@@ -1,0 +1,1 @@
+-Modify the path for the photos in mainwindow.cpp and in signupmenu.cpp
