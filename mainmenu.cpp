@@ -2,6 +2,7 @@
 #include "ui_mainmenu.h"
 #include"gametemplate.h"
 #include"welcomemenu.h"
+#include"Game1/game1menu.h"
 #include<cstring>
 using namespace std;
 
@@ -23,10 +24,9 @@ void MainMenu::setStackedWidget(QStackedWidget *stack){
 
 void MainMenu::on_game1Button_clicked()
 {
-    GameTemplate *gameTemplate=new GameTemplate;
-    gameTemplate->setGameName(ui->game1Button->text());
-    ui->stackedWidget_2->addWidget(gameTemplate);
-    ui->stackedWidget_2->setCurrentWidget(gameTemplate);
+    Game1Menu *game1menu =new Game1Menu;
+    ui->stackedWidget_2->addWidget(game1menu);
+    ui->stackedWidget_2->setCurrentWidget(game1menu);
 }
 
 void MainMenu::on_game2Button_clicked()

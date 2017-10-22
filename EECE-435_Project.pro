@@ -19,18 +19,21 @@ SOURCES += main.cpp\
     loginmenu.cpp \
     signupmenu.cpp \
     mainmenu.cpp \
-    gametemplate.cpp
+    gametemplate.cpp \
+    Game1/game1menu.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
     loginmenu.h \
     signupmenu.h \
     mainmenu.h \
-    gametemplate.h
+    gametemplate.h \
+    Game1/game1menu.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
     loginmenu.ui \
     signupmenu.ui \
     mainmenu.ui \
-    gametemplate.ui
+    gametemplate.ui \
+    Game1/game1menu.ui
