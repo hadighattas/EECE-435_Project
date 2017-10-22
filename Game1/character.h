@@ -13,6 +13,7 @@ class Character : public QObject, public QGraphicsPixmapItem
 public:
     explicit Character(QObject *parent = 0);
     void setDifficulty(int diff);
+    void keyPressEvent(QKeyEvent *event);
 
 signals:
 

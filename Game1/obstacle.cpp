@@ -6,13 +6,13 @@ Obstacle::Obstacle(QObject *parent) :
     srand (time(NULL));
     int random_number = rand()%4;
     if (random_number == 0)
-        setPixmap((QPixmap("Shape7-500.png")).scaled(75,75));
+        setPixmap((QPixmap("Shape7-75.png")));
     else if (random_number == 1)
-        setPixmap((QPixmap("Shape8-500left.png")).scaled(75,75));
+        setPixmap((QPixmap("Shape8-75left.png")));
     else if (random_number == 2)
-        setPixmap((QPixmap("Shape8-500right.png")).scaled(75,75));
+        setPixmap((QPixmap("Shape8-75right.png")));
     else if (random_number == 4)
-        setPixmap((QPixmap("Shape7-500.png")).scaled(75,75));
+        setPixmap((QPixmap("Shape7-75.png")));
 
     setIdentity(random_number);
 
