@@ -3,6 +3,10 @@
 
 #include <QGraphicsScene>
 #include "character.h"
+#include <stdlib.h>
+#include <QObject>
+#include <QImage>
+#include <QBrush>
 
 class Game1Scene : public QGraphicsScene
 {
