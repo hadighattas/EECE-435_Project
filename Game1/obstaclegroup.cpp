@@ -46,6 +46,9 @@ void ObstacleGroup::move() {
             values.open("values.txt", ios::app);
             values<<value<<"\n";
             values.close();
+            collisionValue="value";
+            myScene->Collision(1);
+
         }
         else{
             string vice=this->label->toPlainText().toStdString();
@@ -53,6 +56,8 @@ void ObstacleGroup::move() {
             vices.open("vices.txt", ios::app);
             vices<<vice<<"\n";
             vices.close();
+            collisionValue="vice";
+            myScene->Collision(0);
         }
         scene()->removeItem(this);
         delete (this);
@@ -74,4 +79,13 @@ int ObstacleGroup::getIdentity(){
 void ObstacleGroup::setIdentity(int id){
     this->identity=id;
 }
+QString ObstacleGroup::getCollisionValue(){
+    return collisionValue;
+}
+void ObstacleGroup::setCollisionValue(QString value){
+    this->collisionValue=value;
+}
 
+void ObstacleGroup::setScene(Game1Scene *scene1) {
+    this->myScene = scene1;
+}

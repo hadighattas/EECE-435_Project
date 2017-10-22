@@ -39,6 +39,16 @@ Game1Scene::Game1Scene(QObject *parent) :
     timeText->setFont(QFont("asap condensed", 15, QFont::Bold, false));
     timeText->document()->setPageSize(QSizeF(100,40));
     addItem(timeText);
+    for (int i = 0; i < 5; i++) {
+        lives.append(new QGraphicsPixmapItem(QPixmap("Shape10-50.png")));
+    }
+    previousLivesCount=4;
+    livesCount=3;
+    for (int i=0; i<3; i++){
+        lives.value(i)->setPos(150+i*60, 0);
+        addItem(lives.value(i));
+    }
+
 
 }
 
@@ -56,8 +66,10 @@ void Game1Scene::newObstacle(){
 //    std::uniform_int_distribution<int> distribution(0,7);
 //    int x=distribution(generator);
     ObstacleGroup *obstacle = new ObstacleGroup;
+
     srand (time(NULL));
     int id = obstacle->getIdentity();
+    obstacle->setScene(this);
     int y1=55;
     if (id == 1 ) {
         int r = rand()%4;
@@ -112,6 +124,7 @@ void Game1Scene::newObstacle(){
         }
         else obstacle->setPos(0,y1);
     }
+    obstacleList.append(obstacle);
     addItem(obstacle);
 }
 
@@ -121,6 +134,8 @@ void Game1Scene::addAcquired(QString element){
 
 void Game1Scene::updateTimer() {
     countTime--;
+    if (character->y() == 580)
+        endGame();
     if (countTime==0)
         endGame();
     timeText->setPlainText("Time left: " + QVariant(countTime).toString());
@@ -129,4 +144,26 @@ void Game1Scene::updateTimer() {
 
 void Game1Scene::endGame() {
 
+}
+
+void Game1Scene::updateLives() {
+    for (int i =0; i<previousLivesCount; i++) {
+        removeItem(lives.value(i));
+    }
+    for (int i=0; i<livesCount; i++){
+        lives.value(i)->setPos(150+i*60, 0);
+        addItem(lives.value(i));
+    }
+}
+
+void Game1Scene::Collision(int coll) {
+    if (coll==0) {
+       previousLivesCount--;
+       livesCount--;
+    }
+    else {
+        previousLivesCount = livesCount;
+        livesCount++;
+    }
+    updateLives();
 }

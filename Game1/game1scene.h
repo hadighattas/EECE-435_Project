@@ -11,6 +11,7 @@
 #include <time.h>
 #include <QStringList>
 #include <fstream>
+#include "obstaclegroup.h"
 
 using namespace std ;
 
@@ -22,6 +23,8 @@ public:
     void setDifficulty(int diff);
     void addAcquired(QString element);
     void endGame();
+    void updateLives();
+    void Collision(int coll);
 
 
 signals:
@@ -38,6 +41,9 @@ private:
     QStringList acquired;
     int countTime;
     QGraphicsTextItem *timeText;
+    QList <QGraphicsPixmapItem*>lives;
+    int previousLivesCount;
+    int livesCount;
 };
 
 #endif // GAME1SCENE_H
