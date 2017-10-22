@@ -1,15 +1,15 @@
 #include "game1graphicsview.h"
 #include "game1scene.h"
 
-Game1GraphicsView::Game1GraphicsView(QObject *parent) :
-    QGraphicsView(parent)
-{
-    game1scene *scene1 = new game1scene;
 
-    QGraphicsView *view = new QGraphicsView();
-    view->setScene(scene1);
-    view->setFixedSize(1280, 641);
-    view->setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
-    view->setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
-    view->show();
+Game1GraphicsView::Game1GraphicsView(QWidget *parent) : QGraphicsView(parent)
+{
+
+
+    setFixedSize(1280,661);
+    setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
+    setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
+    Game1Scene *scene1=new Game1Scene;
+    setScene(scene1);
+    show();
 }

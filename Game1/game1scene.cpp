@@ -4,8 +4,9 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsView>
 
-game1scene::game1scene(QObject *parent) :
+Game1Scene::Game1Scene(QObject *parent) :
     QGraphicsScene(parent)
-{
-    setBackgroundBrush(QBrush(QImage("bg3.png")));
+{   
+    setBackgroundBrush(QBrush(QImage("game1background.png").scaledToHeight(661).scaledToWidth(1280)));
+    setSceneRect(0,0,1280,661);
 }

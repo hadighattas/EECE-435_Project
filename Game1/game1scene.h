@@ -3,11 +3,11 @@
 
 #include <QGraphicsScene>
 
-class game1scene : public QGraphicsScene
+class Game1Scene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit game1scene(QObject *parent = 0);
+    explicit Game1Scene(QObject *parent = 0);
 
 signals:
 

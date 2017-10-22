@@ -2,6 +2,8 @@
 #define GAME1MENU_H
 
 #include <QWidget>
+#include<QtWidgets>
+
 
 namespace Ui {
 class Game1Menu;
@@ -14,6 +16,7 @@ class Game1Menu : public QWidget
 public:
     explicit Game1Menu(QWidget *parent = 0);
     ~Game1Menu();
+    void setStackedWidget(QStackedWidget *stack);
 
 private slots:
     void changeCharacter();
@@ -24,8 +27,12 @@ private slots:
 
     void on_normalRadioButton_clicked();
 
+    void on_loginButton_clicked();
+
 private:
     Ui::Game1Menu *ui;
+    QStackedWidget *q;
+
 };
 
 #endif // GAME1MENU_H

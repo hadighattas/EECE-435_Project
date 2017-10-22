@@ -7,7 +7,7 @@ class Game1GraphicsView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    explicit Game1GraphicsView(QObject *parent = 0);
+    explicit Game1GraphicsView(QWidget *parent = 0);
 
 signals:
 
