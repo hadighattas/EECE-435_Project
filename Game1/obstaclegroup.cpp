@@ -1,8 +1,21 @@
+/**
+ * \file obstaclegroup.cpp
+ * \brief Groups a value with an obstacle
+ *
+ * Creating lists of values and vices.\n
+ * Grouping values with obstacles.\n
+ * Moving groups.\n
+*/
+
 #include "obstaclegroup.h"
 
 ObstacleGroup::ObstacleGroup(QObject *parent) :
     QObject(parent)
 {
+    /**
+     * Generating a random value from 2 lists: values and vices.\n
+     * Goruping the value (label) with an obstacle.\n
+    */
     srand(time(NULL));
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(100);
@@ -31,7 +44,17 @@ ObstacleGroup::ObstacleGroup(QObject *parent) :
     label->setDefaultTextColor(QColor(Qt::white));
     addToGroup(label);
 }
+
+/**
+ * @brief ObstacleGroup::move
+ */
 void ObstacleGroup::move() {
+    /**
+     * Speed increments as difficulty increases.\n
+     * Move group left or right according to lane it is in.\n
+     * Detecting collisions and adding catched values in output files: values and vices.\n
+     * Removing groups when they exceed bounds.\n
+    */
     int x1=10;
     if (difficulty == 0)
         x1 = 10;
@@ -46,8 +69,6 @@ void ObstacleGroup::move() {
             values.open("values.txt", ios::app);
             values<<value<<"\n";
             values.close();
-            collisionValue="value";
-            myScene->Collision(1);
 
         }
         else{
@@ -56,8 +77,6 @@ void ObstacleGroup::move() {
             vices.open("vices.txt", ios::app);
             vices<<vice<<"\n";
             vices.close();
-            collisionValue="vice";
-            myScene->Collision(0);
         }
         scene()->removeItem(this);
         delete (this);
@@ -79,13 +98,4 @@ int ObstacleGroup::getIdentity(){
 void ObstacleGroup::setIdentity(int id){
     this->identity=id;
 }
-QString ObstacleGroup::getCollisionValue(){
-    return collisionValue;
-}
-void ObstacleGroup::setCollisionValue(QString value){
-    this->collisionValue=value;
-}
 
-void ObstacleGroup::setScene(Game1Scene *scene1) {
-    this->myScene = scene1;
-}

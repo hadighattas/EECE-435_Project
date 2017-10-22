@@ -1,3 +1,10 @@
+/**
+ * \file obstacle.cpp
+ * \brief Creating obstacles
+ *
+ * Determing type of obstacle (space shuttle or flying saucer) randomly.\n
+*/
+
 #include "obstacle.h"
 
 Obstacle::Obstacle(QObject *parent) :

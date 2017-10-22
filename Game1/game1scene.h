@@ -24,7 +24,6 @@ public:
     void addAcquired(QString element);
     void endGame();
     void updateLives();
-    void Collision(int coll);
 
 
 signals:
@@ -41,6 +40,7 @@ private:
     QStringList acquired;
     int countTime;
     QGraphicsTextItem *timeText;
+    QGraphicsPixmapItem *human;
     QList <QGraphicsPixmapItem*>lives;
     int previousLivesCount;
     int livesCount;

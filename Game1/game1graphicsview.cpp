@@ -1,3 +1,7 @@
+/**
+ * \file graphics1view.cpp
+ * \brief Setting up the GraphicsViews
+*/
 #include "game1graphicsview.h"
 #include "game1scene.h"
 

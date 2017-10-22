@@ -1,3 +1,11 @@
+/**
+ * \file game1menu.cpp
+ * \brief Main Menu of the Game1
+ *
+ * Choosing level of difficulty.\n
+ * Starting game.\n
+*/
+
 #include "game1menu.h"
 #include "ui_game1menu.h"
 #include "game1graphicsview.h"
@@ -31,7 +39,13 @@ void Game1Menu::on_normalRadioButton_clicked()
 {
     changeCharacter();
 }
+/**
+ * @brief Game1Menu::changeCharacter
+ */
 void Game1Menu::changeCharacter(){
+    /**
+    * Changing character according to level of difficulty.\n
+    */
     if(ui->easyRadioButton->isChecked()){
         ui->graphicsView->setStyleSheet("background-image:url(./Shape4-500.png);border:0px;");
     }
@@ -46,8 +60,14 @@ void Game1Menu::setStackedWidget(QStackedWidget *stack){
     this->q=stack;
 }
 
+/**
+ * @brief Game1Menu::on_playButton_clicked
+ */
 void Game1Menu::on_playButton_clicked()
 {
+    /**
+     * Creating the GraphicsView
+     */
     int difficulty;
     Game1GraphicsView *game1graphicsview=new Game1GraphicsView;
     if(ui->easyRadioButton->isChecked()){
