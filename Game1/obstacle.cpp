@@ -11,13 +11,11 @@ Obstacle::Obstacle(QObject *parent) :
         setPixmap((QPixmap("Shape8-75left.png")));
     else if (random_number == 2)
         setPixmap((QPixmap("Shape8-75right.png")));
-    else if (random_number == 4)
+    else if (random_number == 3)
         setPixmap((QPixmap("Shape7-75.png")));
 
     setIdentity(random_number);
 
-    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(100);
 }
 
 void Obstacle::setIdentity(int id) {
@@ -27,28 +25,3 @@ void Obstacle::setIdentity(int id) {
 int Obstacle::getIdentity() {
     return identity;
 }
-
-void Obstacle::move() {
-    int x1=10;
-    if (difficulty == 0)
-        x1 = 10;
-    else if (difficulty == 1)
-        x1 = 15;
-    else if (difficulty == 2)
-        x1 = 20;
-    if (scene()->collidingItems(this).length() != 0){
-        scene()->removeItem(this);
-        delete (this);
-    }
-    if (y() == 65 || y() == 235 || y() == 405) {
-        setPos(x() - x1, y());
-    }
-    else if (y() == 150 || y() == 320 || y() == 490)
-        setPos(x() + x1, y());
-    if (x() < -85 || x() > 1280) {
-        scene()->removeItem(this);
-        delete (this);
-    }
-
-}
-

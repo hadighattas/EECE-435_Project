@@ -37,19 +37,19 @@ void Character::keyPressEvent(QKeyEvent *event) {
     else if (event->key() == Qt::Key_Up) {
         if (y() == 0)
             ;
-        else if (y() == 75)
-            setPos(x(), y()-75);
+        else if (y() == 60)
+            setPos(x(), 0);
         else
-            setPos(x(), y()-85);
+            setPos(x(), y()-65);
     }
 
     else if (event->key() == Qt::Key_Down) {
-        if (y() == 585)
+        if (y() == 580)
             ;
         else if (y() == 0)
-            setPos(x(), y()+75);
+            setPos(x(), y()+60);
         else
-            setPos(x(), y()+85);
+            setPos(x(), y()+65);
     }
 }
 
