@@ -46,10 +46,20 @@ void Game1Menu::setStackedWidget(QStackedWidget *stack){
     this->q=stack;
 }
 
-void Game1Menu::on_loginButton_clicked()
+void Game1Menu::on_playButton_clicked()
 {
+    int difficulty;
     Game1GraphicsView *game1graphicsview=new Game1GraphicsView;
-
+    if(ui->easyRadioButton->isChecked()){
+      difficulty = 0;
+    }
+    else if(ui->normalRadioButton->isChecked()){
+       difficulty = 1;
+    }
+    else if(ui->hardRadioButton->isChecked()){
+        difficulty = 2;
+    }
+    game1graphicsview->setDifficulty(difficulty);
     q->addWidget(game1graphicsview);
     q->setCurrentWidget(game1graphicsview);
 

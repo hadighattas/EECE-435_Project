@@ -27,7 +27,7 @@ private slots:
 
     void on_normalRadioButton_clicked();
 
-    void on_loginButton_clicked();
+    void on_playButton_clicked();
 
 private:
     Ui::Game1Menu *ui;

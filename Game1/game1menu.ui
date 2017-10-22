@@ -212,7 +212,7 @@ color:white;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="loginButton">
+  <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
      <x>1070</x>
