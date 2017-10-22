@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     signupmenu.cpp \
     mainmenu.cpp \
     gametemplate.cpp \
-    Game1/game1menu.cpp
+    Game1/game1menu.cpp \
+    Game1/game1scene.cpp \
+    Game1/game1graphicsview.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -28,7 +30,9 @@ HEADERS  += mainwindow.h \
     signupmenu.h \
     mainmenu.h \
     gametemplate.h \
-    Game1/game1menu.h
+    Game1/game1menu.h \
+    Game1/game1scene.h \
+    Game1/game1graphicsview.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
