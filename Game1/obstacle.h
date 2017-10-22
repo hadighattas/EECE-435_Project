@@ -8,7 +8,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <stdlib.h>
-
+#include <time.h>
 class Obstacle : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -21,10 +21,12 @@ public:
 signals:
 
 public slots:
+    void move();
 
 private:
     int difficulty;
     int identity;
+    QTimer *timer = new QTimer;
 
 };
 

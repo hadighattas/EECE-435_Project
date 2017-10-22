@@ -7,6 +7,8 @@
 #include <QObject>
 #include <QImage>
 #include <QBrush>
+#include "obstacle.h"
+#include <time.h>
 
 class Game1Scene : public QGraphicsScene
 {
@@ -15,13 +17,16 @@ public:
     explicit Game1Scene(QObject *parent = 0);
     void setDifficulty(int diff);
 
+
 signals:
 
 public slots:
+    void newObstacle();
 
 private:
     int difficulty;
     Character *character = new Character;
+    QTimer *timer;
 
 };
 
