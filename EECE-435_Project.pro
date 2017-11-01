@@ -26,7 +26,7 @@ SOURCES += main.cpp\
     Game1/character.cpp \
     Game1/obstacle.cpp \
     Game1/obstaclegroup.cpp \
-    Game1/collisionvalue.cpp
+    Game1/global.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -40,7 +40,7 @@ HEADERS  += mainwindow.h \
     Game1/character.h \
     Game1/obstacle.h \
     Game1/obstaclegroup.h \
-    Game1/collisionvalue.h
+    Game1/global.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \

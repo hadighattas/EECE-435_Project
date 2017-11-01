@@ -1,0 +1,10 @@
+#include "global.h"
+
+
+    QStringList globalValues = QStringList()<<"CARING"<<"COMMITMENT"<<"COMPASSION"<<"COURTESY"<<"HONESTY"<<"INTEGRITY"<<"OPTIMISIM"
+            <<"KINDNESS"<<"OPENNESS"<<"WISDOM"<<"PEACE"<<"FORGVING";
+
+    QStringList globalVices = QStringList()<<"JEALOUS"<<"COWARDICE"<<"ENVY"<<"SHYNESS"<<"ANGER"<<"INSENSIBILITY"<<"MEANNESS"<<
+           "ARROGANCE"<<"BRAGGING"<<"WEAKNESS"<<"GREED"<<"DISLOYALTY"<<"RECKLESNESS"<<"EXTREMESIM"
+           <<"DELUSION"<<"HOSTILITY"<<"LAZINESS"<<"RACISM"<<"STUPIDITY"<<"EGOISM";
+

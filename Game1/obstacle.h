@@ -24,6 +24,7 @@ public slots:
 private:
     int identity;
 
+
 };
 
 #endif // OBSTACLE_H

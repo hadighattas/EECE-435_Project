@@ -6,6 +6,10 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
+#include <QStringList>
+#include <QList>
+#include "obstaclegroup.h"
+#include "global.h"
 
 class Character : public QObject, public QGraphicsPixmapItem
 {
@@ -14,6 +18,9 @@ public:
     explicit Character(QObject *parent = 0);
     void setDifficulty(int diff);
     void keyPressEvent(QKeyEvent *event);
+    QStringList *getValues();
+    QStringList *getVices();
+    void checkCollisions();
 
 signals:
 
@@ -21,6 +28,8 @@ public slots:
 
 private:
     int difficulty;
+    QStringList *values = new QStringList;
+    QStringList *vices = new QStringList;
 
 };
 

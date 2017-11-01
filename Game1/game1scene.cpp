@@ -28,14 +28,18 @@ Game1Scene::Game1Scene(QObject *parent) :
     setBackgroundBrush(QBrush(QImage("game1background.png").scaledToHeight(661).scaledToWidth(1280)));
     setSceneRect(0,0,1280,661);
 
-    timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(newObstacle()));
-    timer->start(1500);
+    timerObstacle = new QTimer(this);
+    connect(timerObstacle, SIGNAL(timeout()), this, SLOT(newObstacle()));
+    timerObstacle->start(700);
 
     timeLeft = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(updateTimer()));
-    timer->start(1000);
+    connect(timeLeft, SIGNAL(timeout()), this, SLOT(updateTimer()));
+    timeLeft->start(1000);
     countTime = 60;
+
+    timerFrame = new QTimer(this);
+    connect(timerFrame, SIGNAL(timeout()), this, SLOT(updateLives()));
+    timerFrame->start(200);
 
     human = new QGraphicsPixmapItem((QPixmap("Shape9-500.png")).scaled(75, 75));
     human->setPos(623, 586);
@@ -47,16 +51,14 @@ Game1Scene::Game1Scene(QObject *parent) :
     timeText->setFont(QFont("asap condensed", 15, QFont::Bold, false));
     timeText->document()->setPageSize(QSizeF(100,40));
     addItem(timeText);
-    for (int i = 0; i < 5; i++) {
-        lives.append(new QGraphicsPixmapItem(QPixmap("Shape10-50.png")));
+    for(int i = 0; i < 3; i++){
+        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+        life->setPos(150 + 60*i, 0);
+        addItem(life);
     }
+    distribution=std::uniform_int_distribution<int>(0, 7);
 
-    previousLivesCount=4;
-    livesCount=3;
-    for (int i=0; i<3; i++){
-        lives.value(i)->setPos(150+i*60, 0);
-        addItem(lives.value(i));
-    }
+
 }
 
 void Game1Scene::setDifficulty(int diff) {
@@ -79,16 +81,15 @@ void Game1Scene::newObstacle(){
      * id = 1 --> space shuttle oriented to left, can be added only starting at right position.\n
      * id = 2 --> space shuttle oriented to right, can be added only starting at left position.\n
     */
-//    std::default_random_engine generator;
-//    std::uniform_int_distribution<int> distribution(0,7);
-//    int x=distribution(generator);
+
+    int r1=distribution(generator);
     ObstacleGroup *obstacle = new ObstacleGroup;
 
-    srand (time(NULL));
+    srand (time(0));
     int id = obstacle->getIdentity();
     int y1=55;
     if (id == 1 ) {
-        int r = rand()%4;
+        int r = r1%4;
         if (r == 0)
             y1 = 55;
         else if (r == 1)
@@ -99,7 +100,7 @@ void Game1Scene::newObstacle(){
             y1=445;
     }
     else if (id == 2 ) {
-        int r = rand()%4;
+        int r = r1%4;
         if (r == 0)
             y1 = 120;
         else if (r == 1)
@@ -110,7 +111,7 @@ void Game1Scene::newObstacle(){
             y1 = 510;
     }
     else if (id == 0 || id== 3 ) {
-        int r = rand()%8;
+        int r = r1%8;
         if (r == 0)
             y1 = 55;
         else if (r == 1)
@@ -141,11 +142,16 @@ void Game1Scene::newObstacle(){
         else obstacle->setPos(0,y1);
     }
     addItem(obstacle);
+    if (collidingItems(obstacle->getLabel()).length()>0){
+        QGraphicsItem *item = collidingItems(obstacle->getLabel()).takeAt(0);
+        QGraphicsTextItem *groupTemp = dynamic_cast<QGraphicsTextItem*>(item);
+        if (groupTemp != 0) {
+            removeItem(obstacle);
+            delete obstacle;
+        }
+    }
 }
 
-void Game1Scene::addAcquired(QString element){
-    acquired+=element;
-}
 
 /**
  * @brief Game1Scene::updateTimer
@@ -177,11 +183,25 @@ void Game1Scene::updateLives() {
      * lives is a List of live images.\n
      * When function is called, remove exisiting images and pritn new ones equal to number of current lives.\n
     */
-    for (int i =0; i<previousLivesCount; i++) {
-        removeItem(lives.value(i));
+    character->checkCollisions();
+    if (livesCount < 7) {
+        if(character->getValues()->size() > valuesNumber){
+            QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+            life->setPos(150 + 60*(livesCount), 0);
+            livesCount++;
+            addItem(life);
+            valuesNumber++;
+        }
+        if(character->getVices()->size() > vicesNumber){
+            livesCount--;
+            QGraphicsItem *toDelete = itemAt(160 + 60*(livesCount), 10, QTransform());
+            removeItem(toDelete);
+            delete toDelete;
+            vicesNumber++;
+            character->setPos(623,0);
+        }
     }
-    for (int i=0; i<livesCount; i++){
-        lives.value(i)->setPos(150+i*60, 0);
-        addItem(lives.value(i));
-    }
+    if (livesCount == 0)
+        endGame();
+
 }

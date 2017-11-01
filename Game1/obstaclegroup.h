@@ -9,14 +9,19 @@
 #include "stdlib.h"
 #include <fstream>
 #include <iostream>
+#include "global.h"
+
 using namespace std;
 class ObstacleGroup : public QObject, public QGraphicsItemGroup
 {
     Q_OBJECT
 public:
     explicit ObstacleGroup(QObject *parent = 0);
+    QString getText();
+    bool getType();
     void setIdentity(int id);
     int getIdentity();
+    QGraphicsTextItem *getLabel();
 
 signals:
 
@@ -24,15 +29,13 @@ public slots:
     void move();
 
 private:
-    int identity;
     int difficulty;
     Obstacle *obs = new Obstacle;
-    QGraphicsTextItem *text = new QGraphicsTextItem;
     QTimer *timer = new QTimer;
-    QStringList values;
-    QStringList vices;
-    QGraphicsTextItem *label ;
+    QGraphicsTextItem *label;
     bool type;
+    int identity;
+
 };
 
 #endif // OBSTACLEGROUP_H

@@ -11,7 +11,6 @@
 Character::Character(QObject *parent) :
     QObject(parent)
 {
-
 }
 /**
  * @brief Character::setDifficulty
@@ -73,4 +72,33 @@ void Character::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+QStringList* Character::getValues() {
+    return values;
+}
 
+QStringList* Character::getVices() {
+    return vices;
+}
+
+void Character::checkCollisions() {
+    /*
+     * item is an item from the colliding items list
+     * groupTemp is 0 if the item is not a QGraphicsTextItem pointer
+    */
+
+    while (scene()->collidingItems(this).length()>0){
+        QGraphicsItem *item = scene()->collidingItems(this).takeAt(0);
+        QGraphicsTextItem *groupTemp = dynamic_cast<QGraphicsTextItem*>(item);
+        if (groupTemp != 0) {
+            if(!(values->contains(groupTemp->toPlainText()) || vices->contains(groupTemp->toPlainText()))){
+            if (globalValues.contains(groupTemp->toPlainText()))
+                values->append(groupTemp->toPlainText());
+            else
+                vices->append(groupTemp->toPlainText());
+            }
+        }
+        scene()->removeItem(item);
+        delete item;
+
+    }
+}

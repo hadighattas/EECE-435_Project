@@ -23,26 +23,22 @@ ObstacleGroup::ObstacleGroup(QObject *parent) :
     setIdentity(obs->getIdentity());
     addToGroup(obs);
 
-    values<<"CARING"<<"COMMITMENT"<<"COMPASSION"<<"COURTESY"<<"HONESTY"<<"INTEGRITY"<<"OPTIMISIM"
-            <<"KINDNESS"<<"OPENNESS"<<"WISDOM"<<"PEACE"<<"FORGVING";
-    vices<<"JEALOUS"<<"COWARDICE"<<"ENVY"<<"SHYNESS"<<"ANGER"<<"INSENSIBILITY"<<"MEANNESS"<<
-           "ARROGANCE"<<"BRAGGING"<<"WEAKNESS"<<"GREED"<<"DISLOYALTY"<<"RECKLESNESS"<<"EXTREMESIM"
-           <<"DELUSION"<<"HOSTILITY"<<"LAZINESS"<<"RACISM"<<"STUPIDITY"<<"EGOISM";
-
     int r1 = rand()%2;
     if (r1==0) {
-        int r2 = rand()%11;
-        label = new QGraphicsTextItem(values.value(r2+1));
+        int r2 = rand() % (globalValues.length());
+        label = new QGraphicsTextItem(globalValues.value(r2));
         type=true;
     }
     else {
-        int r2 = rand()%19;
-        label = new QGraphicsTextItem(vices.value(r2+1));
+        int r2 = rand() % (globalVices.length());
+        label = new QGraphicsTextItem(globalVices.value(r2));
         type=false;
     }
 
     label->setDefaultTextColor(QColor(Qt::white));
     addToGroup(label);
+
+
 }
 
 /**
@@ -62,24 +58,14 @@ void ObstacleGroup::move() {
         x1 = 15;
     else if (difficulty == 2)
         x1 = 20;
-    if (scene()->collidingItems(this).length() >2){
-        if(type){
-            string value=this->label->toPlainText().toStdString();
-            ofstream values;
-            values.open("values.txt", ios::app);
-            values<<value<<"\n";
-            values.close();
 
+    if (scene()->collidingItems(label).length()>0){
+        QGraphicsItem *item = scene()->collidingItems(label).takeAt(0);
+        QGraphicsTextItem *groupTemp = dynamic_cast<QGraphicsTextItem*>(item);
+        if (groupTemp != 0) {
+            scene()->removeItem(this);
+            delete this;
         }
-        else{
-            string vice=this->label->toPlainText().toStdString();
-            ofstream vices;
-            vices.open("vices.txt", ios::app);
-            vices<<vice<<"\n";
-            vices.close();
-        }
-        scene()->removeItem(this);
-        delete (this);
     }
     if (y() == 55 || y() == 185 || y()==315||y() == 445) {
         setPos(x() - x1, y());
@@ -92,10 +78,23 @@ void ObstacleGroup::move() {
     }
 
 }
-int ObstacleGroup::getIdentity(){
-    return identity;
-}
-void ObstacleGroup::setIdentity(int id){
-    this->identity=id;
+
+QString ObstacleGroup::getText() {
+    return label->toPlainText();
 }
 
+bool ObstacleGroup::getType() {
+    return type;
+}
+
+int ObstacleGroup::getIdentity() {
+    return identity;
+}
+
+void ObstacleGroup::setIdentity(int id) {
+    identity = id;
+}
+
+QGraphicsTextItem * ObstacleGroup::getLabel(){
+    return label;
+}
