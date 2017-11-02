@@ -17,7 +17,12 @@ void Game1GraphicsView::setDifficulty(int diff) {
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     Game1Scene *scene1=new Game1Scene;
+    scene1->setStackedWidget(q);
     scene1->setDifficulty(difficulty);
     setScene(scene1);
     show();
+}
+
+void Game1GraphicsView::setStackedWidget(QStackedWidget *stack) {
+    this->q = stack;
 }

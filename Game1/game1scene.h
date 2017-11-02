@@ -10,8 +10,9 @@
 #include "obstacle.h"
 #include <time.h>
 #include <QStringList>
-#include <fstream>
 #include "obstaclegroup.h"
+#include <QWidget>
+#include <QtWidgets>
 
 using namespace std ;
 
@@ -23,7 +24,8 @@ public:
     void setDifficulty(int diff);
     void addAcquired(QString element);
     void endGame();
-    void updateScore();
+    void updateAcquired();
+    void setStackedWidget(QStackedWidget *stack);
 
 signals:
 
@@ -40,18 +42,18 @@ private:
     QTimer *timerFrame;
     int countTime;
     QGraphicsTextItem *timeText;
-    QGraphicsTextItem *scoreText;
     QGraphicsPixmapItem *human;
+    QGraphicsTextItem *numAcquired;
     int valuesNumber=0;
     int vicesNumber=0;
     int livesCount=3;
-    int score=1000;
     int xleft=0, xright=1150;
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution;
     std::default_random_engine generator1;
     std::uniform_int_distribution<int> distribution1;
     int obstaclescreated=0;
+    QStackedWidget *q;
 };
 
 #endif // GAME1SCENE_H

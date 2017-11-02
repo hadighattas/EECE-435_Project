@@ -70,6 +70,7 @@ void Game1Menu::on_playButton_clicked()
      */
     int difficulty;
     Game1GraphicsView *game1graphicsview=new Game1GraphicsView;
+    game1graphicsview->setStackedWidget(q);
     if(ui->easyRadioButton->isChecked()){
       difficulty = 0;
     }

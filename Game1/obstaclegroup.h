@@ -32,7 +32,7 @@ public slots:
 
 private:
     int difficulty;
-    Obstacle *obs = new Obstacle;
+    Obstacle *obs=new Obstacle;
     QTimer *timer = new QTimer;
     QGraphicsTextItem *label;
     bool type;

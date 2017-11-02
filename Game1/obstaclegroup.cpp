@@ -86,19 +86,28 @@ void ObstacleGroup::setRand(int random){
     this->random=random;
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(100);
-
-    setIdentity(obs->getIdentity());
     addToGroup(obs);
-
-    if (random<(33-difficulty*5)) {
+    if (random<(7.5-difficulty*1.25) || random>100-(7.5-difficulty*1.25) ||
+            ( random>50 && random<50+(7.5-difficulty*1.25)) || (random>75 &&random<75+(7.5-difficulty*1.25))) {
         int r2 = random % (globalValues.length());
         label = new QGraphicsTextItem(globalValues.value(r2));
         type=true;
+        int r1 = rand()%2;
+        obs->setIdentity(r1+1);
+        setIdentity(r1+1);
     }
     else {
         int r2 = random % (globalVices.length());
         label = new QGraphicsTextItem(globalVices.value(r2));
         type=false;
+        int r1 = rand()%2;
+        if(r1==0){
+        obs->setIdentity(r1);
+        setIdentity(r1);
+        }else{
+            obs->setIdentity(r1+2);
+            setIdentity(r1+2);
+        }
     }
 
     label->setDefaultTextColor(QColor(Qt::white));

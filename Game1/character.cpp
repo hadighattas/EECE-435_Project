@@ -54,10 +54,8 @@ void Character::keyPressEvent(QKeyEvent *event) {
     }
 
     else if (event->key() == Qt::Key_Up) {
-        if (y() == 0)
+        if (y() == 0 || y() == 60)
             ;
-        else if (y() == 60 )
-            setPos(x(), 0);
         else
             setPos(x(), y()-65);
     }

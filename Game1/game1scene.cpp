@@ -18,13 +18,7 @@
 
 Game1Scene::Game1Scene(QObject *parent) :
     QGraphicsScene(parent)
-{   
-    ofstream values;
-    values.open("values.txt", fstream::out| fstream::trunc);
-    values.close();
-    ofstream vices;
-    vices.open("vices.txt", fstream::out| fstream::trunc);
-    vices.close();
+{
     setBackgroundBrush(QBrush(QImage("game1background.png").scaledToHeight(661).scaledToWidth(1280)));
     setSceneRect(0,0,1280,661);
 
@@ -41,7 +35,7 @@ Game1Scene::Game1Scene(QObject *parent) :
     connect(timerFrame, SIGNAL(timeout()), this, SLOT(updateLives()));
     timerFrame->start(400);
 
-    human = new QGraphicsPixmapItem((QPixmap("Shape9-500.png")).scaled(75, 75));
+    human = new QGraphicsPixmapItem((QPixmap("Shape9-75.png")).scaled(75, 75));
     human->setPos(623, 586);
     addItem(human);
 
@@ -52,12 +46,12 @@ Game1Scene::Game1Scene(QObject *parent) :
     timeText->document()->setPageSize(QSizeF(100,40));
     addItem(timeText);
 
-    scoreText = new QGraphicsTextItem("Score: 1000");
-    scoreText->setPos(1150, 0);
-    scoreText->setDefaultTextColor(QColor(Qt::white));
-    scoreText->setFont(QFont("asap condensed", 15, QFont::Bold, false));
-    scoreText->document()->setPageSize(QSizeF(100,40));
-    addItem(scoreText);
+    numAcquired = new QGraphicsTextItem("Values: 0          Vices: 0   ");
+    numAcquired->setPos(1100, 0);
+    numAcquired->setDefaultTextColor(QColor(Qt::white));
+    numAcquired->setFont(QFont("asap condensed", 15, QFont::Bold, false));
+    numAcquired->document()->setPageSize(QSizeF(500,40));
+    addItem(numAcquired);
 
     for(int i = 0; i < 3; i++){
         QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
@@ -68,8 +62,6 @@ Game1Scene::Game1Scene(QObject *parent) :
 
     distribution1=std::uniform_int_distribution<int>(0, 100);
     newObstacle();
-
-
 }
 
 void Game1Scene::setDifficulty(int diff) {
@@ -178,8 +170,6 @@ void Game1Scene::updateTimer() {
      * When countTime reaches 0 or when character reaches bottom of page --> end game.\n
     */
     countTime--;
-    score-=10;
-    updateScore();
     if (character->y() == 580)
         endGame();
     if (countTime==0)
@@ -202,37 +192,29 @@ void Game1Scene::updateLives() {
      * When function is called, remove exisiting images and pritn new ones equal to number of current lives.\n
     */
     character->checkCollisions();
-    if (livesCount < 7) {
+    if (livesCount < 6) {
         if(character->getValues()->size() > valuesNumber){
             QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
             life->setPos(150 + 60*(livesCount), 0);
             livesCount++;
             addItem(life);
             valuesNumber++;
-            score+=100;
-            updateScore();
         }
+    }
         if(character->getVices()->size() > vicesNumber){
             livesCount--;
             QGraphicsItem *toDelete = itemAt(160 + 60*(livesCount), 10, QTransform());
             removeItem(toDelete);
             delete toDelete;
             vicesNumber++;
-            score-=200;
-            updateScore();
             character->setPos(623,0);
         }
-    }
+        numAcquired->setPlainText("Values: " + QString::fromUtf8(std::to_string(valuesNumber).c_str()) + "          Vices: " + QString::fromUtf8(std::to_string(vicesNumber).c_str()) + "   ");
 
     if (livesCount == 0)
         endGame();
-
 }
-void Game1Scene::updateScore(){
-    QString scoreString=std::to_string(score).c_str();
-    if(score<100)
-        scoreString="  "+scoreString;
-    else if(score<1000)
-        scoreString=' '+scoreString;
-    scoreText->setPlainText("Score: "+scoreString);
+
+void Game1Scene::setStackedWidget(QStackedWidget *stack) {
+    this->q = stack;
 }
