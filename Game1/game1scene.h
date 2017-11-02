@@ -23,6 +23,7 @@ public:
     void setDifficulty(int diff);
     void addAcquired(QString element);
     void endGame();
+    void updateScore();
 
 signals:
 
@@ -39,15 +40,18 @@ private:
     QTimer *timerFrame;
     int countTime;
     QGraphicsTextItem *timeText;
+    QGraphicsTextItem *scoreText;
     QGraphicsPixmapItem *human;
     int valuesNumber=0;
     int vicesNumber=0;
     int livesCount=3;
+    int score=1000;
+    int xleft=0, xright=1150;
     std::default_random_engine generator;
     std::uniform_int_distribution<int> distribution;
-
-
-
+    std::default_random_engine generator1;
+    std::uniform_int_distribution<int> distribution1;
+    int obstaclescreated=0;
 };
 
 #endif // GAME1SCENE_H

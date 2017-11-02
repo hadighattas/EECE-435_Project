@@ -40,14 +40,14 @@ void Character::keyPressEvent(QKeyEvent *event) {
     * Move right or left: continuously without exceeding bounds.\n
     */
     if (event->key() == Qt::Key_Right) {
-        if (x() == 1233)
+        if (x() == 1233 || (y() == 0 && x() > 723 ))
             ;
         else
             setPos(x()+10, y());
     }
 
     else if (event->key() == Qt::Key_Left) {
-        if (x() == 3)
+        if (x() == 3 || (y() == 0 && x() < 523 ))
             ;
         else
             setPos(x()-10, y());
@@ -56,7 +56,7 @@ void Character::keyPressEvent(QKeyEvent *event) {
     else if (event->key() == Qt::Key_Up) {
         if (y() == 0)
             ;
-        else if (y() == 60)
+        else if (y() == 60 )
             setPos(x(), 0);
         else
             setPos(x(), y()-65);

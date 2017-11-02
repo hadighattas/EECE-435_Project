@@ -22,6 +22,8 @@ public:
     void setIdentity(int id);
     int getIdentity();
     QGraphicsTextItem *getLabel();
+    void setRand(int random);
+    void setDifficulty(int difficulty);
 
 signals:
 
@@ -35,6 +37,8 @@ private:
     QGraphicsTextItem *label;
     bool type;
     int identity;
+    int random; //random from uniform ditribution in game scene
+
 
 };
 

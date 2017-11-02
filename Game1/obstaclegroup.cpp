@@ -16,27 +16,8 @@ ObstacleGroup::ObstacleGroup(QObject *parent) :
      * Generating a random value from 2 lists: values and vices.\n
      * Goruping the value (label) with an obstacle.\n
     */
-    srand(time(NULL));
-    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(100);
 
-    setIdentity(obs->getIdentity());
-    addToGroup(obs);
 
-    int r1 = rand()%2;
-    if (r1==0) {
-        int r2 = rand() % (globalValues.length());
-        label = new QGraphicsTextItem(globalValues.value(r2));
-        type=true;
-    }
-    else {
-        int r2 = rand() % (globalVices.length());
-        label = new QGraphicsTextItem(globalVices.value(r2));
-        type=false;
-    }
-
-    label->setDefaultTextColor(QColor(Qt::white));
-    addToGroup(label);
 
 
 }
@@ -67,11 +48,14 @@ void ObstacleGroup::move() {
             delete this;
         }
     }
-    if (y() == 55 || y() == 185 || y()==315||y() == 445) {
+    if (y() == 55 ||y()==315)
         setPos(x() - x1, y());
-    }
-    else
+    else if(y() == 185 ||y() == 445)
+        setPos(x() - 0.75*x1, y());
+    else if (y() == 120 || y() == 380)
         setPos(x() + x1, y());
+    else
+        setPos(x() + 0.75*x1, y());
     if (x() < -500|| x() > 2000) {
         scene()->removeItem(this);
         delete (this);
@@ -97,4 +81,30 @@ void ObstacleGroup::setIdentity(int id) {
 
 QGraphicsTextItem * ObstacleGroup::getLabel(){
     return label;
+}
+void ObstacleGroup::setRand(int random){
+    this->random=random;
+    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
+    timer->start(100);
+
+    setIdentity(obs->getIdentity());
+    addToGroup(obs);
+
+    if (random<(33-difficulty*5)) {
+        int r2 = random % (globalValues.length());
+        label = new QGraphicsTextItem(globalValues.value(r2));
+        type=true;
+    }
+    else {
+        int r2 = random % (globalVices.length());
+        label = new QGraphicsTextItem(globalVices.value(r2));
+        type=false;
+    }
+
+    label->setDefaultTextColor(QColor(Qt::white));
+    addToGroup(label);
+
+}
+void ObstacleGroup::setDifficulty(int difficulty){
+    this->difficulty=difficulty;
 }
