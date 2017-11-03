@@ -3,6 +3,8 @@
 #include <cstring>
 #include <QWidget>
 #include <QtWidgets>
+#include "user.h"
+
 using namespace std;
 
 

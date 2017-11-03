@@ -175,11 +175,21 @@ void Game1Scene::updateTimer() {
     if (countTime==0)
         endGame();
     timeText->setPlainText("Time left: " + QVariant(countTime).toString());
+    if (character->y() == 580){
+        character->setPos(623,580);
+        endGame();
+    }
 
 }
 
 void Game1Scene::endGame() {
-
+    timerFrame->stop();
+    timerObstacle->stop();
+    timeLeft->stop();
+    Game1Score *game1score = new Game1Score;
+    game1score->setScore(livesCount, countTime, character->getValues(), character->getVices());
+    q->addWidget(game1score);
+    q->setCurrentWidget(game1score);
 }
 
 /**

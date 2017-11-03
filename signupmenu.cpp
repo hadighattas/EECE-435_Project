@@ -2,9 +2,9 @@
 #include "ui_signupmenu.h"
 #include"welcomemenu.h"
 #include "mainmenu.h"
-#include<regex>
-#include<cstring>
-#include<QWidget>
+#include <regex>
+#include <cstring>
+#include <QWidget>
 #include <QString>
 
 
@@ -42,17 +42,26 @@ void SignUpMenu::on_emailLineEdit_textChanged(const QString &arg1)
 {
     if(!this->validateEmail(arg1)) ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(/home/hadi/EECE-435_Project/Images/x.png)");
     else ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image:none");
-
 }
 
 void SignUpMenu::on_signupButton_clicked()
 {
+    QString Gender;
+    if (ui->fRadioButton->isChecked())
+        Gender = "Female";
+    else
+        Gender = "Male";
+    user->signUp(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(),
+                 ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(),
+                 Gender);
     MainMenu *mainMenu = new MainMenu;
     mainMenu->setStackedWidget(q);
     q->addWidget(mainMenu);
     q->setCurrentWidget(mainMenu);
     string s="notify-send 'Welcome "+ui->usernameLineEdit->text().toStdString()+"' 'You have successfully signed up.' '-t' 200";
     system(s.c_str());
+
+
 }
 
 void SignUpMenu::on_backButton_clicked()

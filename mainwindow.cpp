@@ -14,9 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->centralWidget->setStyleSheet("background-image: url(/home/hadi/EECE-435_Project/Images/Background.jpg); background-color:black;");
     WelcomeMenu *welcomemenu=new WelcomeMenu(this);
     welcomemenu->setStackedWidget(ui->stackedWidget);
-    ui->stackedWidget->insertWidget(20,welcomemenu);
+    ui->stackedWidget->addWidget(welcomemenu);
     ui->stackedWidget->setCurrentWidget(welcomemenu);
-    int x=ui->stackedWidget->currentIndex();
 }
 
 MainWindow::~MainWindow()

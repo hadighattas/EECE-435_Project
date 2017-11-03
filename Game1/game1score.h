@@ -2,6 +2,8 @@
 #define GAME1SCORE_H
 
 #include <QWidget>
+#include <QStringList>
+#include <string>
 
 namespace Ui {
 class Game1Score;
@@ -13,10 +15,15 @@ class Game1Score : public QWidget
 
 public:
     explicit Game1Score(QWidget *parent = 0);
-    ~Game1Score();
+    void setScore(int lives, int timeLeft, QStringList *finalValues, QStringList *finalVices);
+    ~Game1Score();    
 
 private:
     Ui::Game1Score *ui;
+    QStringList *finalValues, *finalVices;
+    int lives;
+    int timeLeft;
+    int score;
 };
 
 #endif // GAME1SCORE_H

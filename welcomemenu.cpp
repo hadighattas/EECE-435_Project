@@ -12,6 +12,7 @@ WelcomeMenu::WelcomeMenu(QWidget *parent) :
     ui->setupUi(this);
 }
 
+// index of mainwindow in stackedWidget = 2
 WelcomeMenu::~WelcomeMenu()
 {
     delete ui;

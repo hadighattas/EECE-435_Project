@@ -11,6 +11,7 @@
 #include <time.h>
 #include <QStringList>
 #include "obstaclegroup.h"
+#include "game1score.h"
 #include <QWidget>
 #include <QtWidgets>
 

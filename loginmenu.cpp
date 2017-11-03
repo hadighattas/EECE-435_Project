@@ -43,9 +43,11 @@ void LoginMenu::on_loginButton_clicked()
 
 void LoginMenu::on_backButton_clicked()
 {
-    q->removeWidget(this);
-    WelcomeMenu *welcomemenu=new WelcomeMenu;
-    welcomemenu->setStackedWidget(q);
-    q->addWidget(welcomemenu);
-    q->setCurrentWidget(welcomemenu);
+//    q->removeWidget(this);
+//    WelcomeMenu *welcomemenu=new WelcomeMenu;
+//    welcomemenu->setStackedWidget(q);
+//    q->addWidget(welcomemenu);
+//    q->setCurrentWidget(welcomemenu);
+    q->setCurrentIndex(2);
+    q->show();
 }
