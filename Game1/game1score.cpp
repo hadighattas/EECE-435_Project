@@ -55,3 +55,8 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
 
 }
+
+void Game1Score::on_loginButton_clicked()
+{
+
+}

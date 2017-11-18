@@ -2,7 +2,7 @@
 #define GAME1MENU_H
 
 #include <QWidget>
-#include<QtWidgets>
+#include <QtWidgets>
 
 
 namespace Ui {

@@ -7,8 +7,7 @@
 QT       += core gui
 CONFIG += c++11
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
 TARGET = EECE-435_Project
 TEMPLATE = app
 
@@ -28,7 +27,11 @@ SOURCES += main.cpp\
     Game1/obstaclegroup.cpp \
     Game1/global.cpp \
     Game1/game1score.cpp \
-    user.cpp
+    user.cpp \
+    Game2/game2menu.cpp \
+    Game2/engineergraphicsview.cpp \
+    Game2/engineerscene.cpp \
+    Game2/firstsceneengineer.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -44,7 +47,11 @@ HEADERS  += mainwindow.h \
     Game1/obstaclegroup.h \
     Game1/global.h \
     Game1/game1score.h \
-    user.h
+    user.h \
+    Game2/game2menu.h \
+    Game2/engineergraphicsview.h \
+    Game2/engineerscene.h \
+    Game2/firstsceneengineer.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
@@ -53,4 +60,5 @@ FORMS    += mainwindow.ui \
     mainmenu.ui \
     gametemplate.ui \
     Game1/game1menu.ui \
-    Game1/game1score.ui
+    Game1/game1score.ui \
+    Game2/game2menu.ui

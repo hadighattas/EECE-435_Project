@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>661</height>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -218,13 +218,6 @@ color:white;
       <bool>true</bool>
      </property>
     </widget>
-    <zorder>game1Button</zorder>
-    <zorder>game2Button</zorder>
-    <zorder>game3Button</zorder>
-    <zorder>emptyButton</zorder>
-    <zorder>profileButton</zorder>
-    <zorder>stackedWidget_2</zorder>
-    <zorder>signOutButton</zorder>
    </widget>
    <widget class="QWidget" name="page_2"/>
   </widget>
@@ -234,7 +227,7 @@ color:white;
      <x>0</x>
      <y>80</y>
      <width>1280</width>
-     <height>581</height>
+     <height>640</height>
     </rect>
    </property>
    <widget class="QWidget" name="page_3"/>

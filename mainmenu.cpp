@@ -1,9 +1,6 @@
 #include "mainmenu.h"
 #include "ui_mainmenu.h"
-#include"gametemplate.h"
-#include"welcomemenu.h"
-#include"Game1/game1menu.h"
-#include<cstring>
+
 using namespace std;
 
 MainMenu::MainMenu(QWidget *parent) :
@@ -33,10 +30,10 @@ void MainMenu::on_game1Button_clicked()
 
 void MainMenu::on_game2Button_clicked()
 {
-    GameTemplate *gameTemplate=new GameTemplate;
-    gameTemplate->setGameName(ui->game2Button->text());
-    ui->stackedWidget_2->addWidget(gameTemplate);
-    ui->stackedWidget_2->setCurrentWidget(gameTemplate);
+    Game2Menu *game2menu = new Game2Menu;
+    game2menu->setStackedWidget(q);
+    ui->stackedWidget_2->addWidget(game2menu);
+    ui->stackedWidget_2->setCurrentWidget(game2menu);
 }
 
 void MainMenu::on_game3Button_clicked()

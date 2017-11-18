@@ -18,6 +18,9 @@ public:
     void setScore(int lives, int timeLeft, QStringList *finalValues, QStringList *finalVices);
     ~Game1Score();    
 
+private slots:
+    void on_loginButton_clicked();
+
 private:
     Ui::Game1Score *ui;
     QStringList *finalValues, *finalVices;
