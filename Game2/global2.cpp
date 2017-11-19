@@ -6,4 +6,5 @@
     QStringList engineerValues = QStringList()<<"FRIENDSHIP"<<"FRIENDSHIP"<<"FRIENDSHIP"
                                                 <<"COMPLIANCE"<<"COMPLIANCE"<<"COMPLIANCE"
                                                   <<"HONESTY"<<"HONESTY"<<"HONESTY"
-                                                    <<"ACCEPTANCE"<<"ACCEPTANCE"<<"ACCEPTANCE";
+                                                    <<"ACCEPTANCE"<<"ACCEPTANCE"<<"ACCEPTANCE"
+                                                      <<"WORK"<<"WORK"<<"WORK";

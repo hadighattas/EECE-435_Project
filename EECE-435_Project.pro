@@ -35,7 +35,9 @@ SOURCES += main.cpp\
     Game2/global2.cpp \
     Game2/randomalien.cpp \
     Game2/secondsceneengineer.cpp \
-    Game2/thirdsceneengineer.cpp
+    Game2/thirdsceneengineer.cpp \
+    Game2/fourthsceneengineer.cpp \
+    Game2/fifthsceneengineer.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -59,7 +61,9 @@ HEADERS  += mainwindow.h \
     Game2/global2.h \
     Game2/randomalien.h \
     Game2/secondsceneengineer.h \
-    Game2/thirdsceneengineer.h
+    Game2/thirdsceneengineer.h \
+    Game2/fourthsceneengineer.h \
+    Game2/fifthsceneengineer.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \

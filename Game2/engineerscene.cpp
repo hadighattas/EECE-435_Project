@@ -73,6 +73,16 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(third);
     }
+    else if ((item == next || item == arrow) && stateOfEngineer == 3) {
+        FourthSceneEngineer *fourth = new FourthSceneEngineer(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(fourth);
+    }
+    else if ((item == next || item == arrow) && stateOfEngineer == 4) {
+        FifthSceneEngineer *fifth = new FifthSceneEngineer(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(fifth);
+    }
 }
 
 void EngineerScene::updateTime(){
@@ -96,4 +106,10 @@ void EngineerScene::updateTime(){
         character->setPos(480, 280);
     else if (stateOfEngineer == 3)
         character->setPos(535, 260);
+    else if (stateOfEngineer == 4)
+        character->setPos(590, 240);
+    else if (stateOfEngineer == 5)
+        character->setPos(645, 220);
+    else if (stateOfEngineer == 6)
+        character->setPos(700, 200);
 }

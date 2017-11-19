@@ -188,14 +188,14 @@ void ThirdSceneEngineer::showResult() {
     enter->setPos(740, 410);
     addItem(enter);
 
-    story->setPos(500, 280);
+    story->setPos(495, 280);
 
     if (response == 0)
-        story->setPlainText("Your wife sent you \na message and she's pissed\nbecause you didn't answer!");
+        story->setPlainText("Your wife sent you \na message and she's pissed\nbecause you didn't answer!\nYou also annoyed everybody\nat the meeting.");
     else if (response == 1)
-        story->setPlainText("You hung up on your wife.\nBe sure to call her later!");
-    else if (response == 2)
         story->setPlainText("You took a call during a \nmeeting.\nYour boss is now pissed!");
+    else if (response == 2)
+        story->setPlainText("You hung up on your wife.\nBe sure to call her later!");
 
     enterState = 2;
 }
