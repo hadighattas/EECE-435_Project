@@ -1,5 +1,5 @@
-#ifndef FIRSTSCENEENGINEER_H
-#define FIRSTSCENEENGINEER_H
+#ifndef SECONDSCENEENGINEER_H
+#define SECONDSCENEENGINEER_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -11,11 +11,11 @@
 #include "global2.h"
 #include "randomalien.h"
 
-class FirstSceneEngineer : public QGraphicsScene
+class SecondSceneEngineer : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit FirstSceneEngineer(QObject *parent = 0);
+    explicit SecondSceneEngineer(QObject *parent = 0);
     void addAliens();
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -33,6 +33,7 @@ private:
     QGraphicsRectItem *option1, *option2, *option3;
     QGraphicsTextItem *option1Text, *option2Text, *option3Text;
     QPen pen;
+
 };
 
-#endif // FIRSTSCENEENGINEER_H
+#endif // SECONDSCENEENGINEER_H
