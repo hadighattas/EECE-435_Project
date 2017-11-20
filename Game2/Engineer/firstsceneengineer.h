@@ -1,5 +1,5 @@
-#ifndef FOURTHSCENEENGINEER_H
-#define FOURTHSCENEENGINEER_H
+#ifndef FIRSTSCENEENGINEER_H
+#define FIRSTSCENEENGINEER_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,17 +8,18 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
+#include "../global2.h"
+#include "../randomalien.h"
 
-class FourthSceneEngineer : public QGraphicsScene
+class FirstSceneEngineer : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit FourthSceneEngineer(QObject *parent = 0);
+    explicit FirstSceneEngineer(QObject *parent = 0);
+    void addAliens();
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changeScene();
-    void showResult();
 
 signals:
 
@@ -29,10 +30,10 @@ private:
     QGraphicsTextItem *story;
     QGraphicsPixmapItem *character;
     QGraphicsPixmapItem *enter;
-    QGraphicsRectItem *option1, *option2;
-    QGraphicsTextItem *option1Text, *option2Text;
+    QGraphicsRectItem *option1, *option2, *option3;
+    QGraphicsTextItem *option1Text, *option2Text, *option3Text;
     QPen pen;
-    int enterState, response;
+    int enterState;
 };
 
-#endif // FOURTHSCENEENGINEER_H
+#endif // FIRSTSCENEENGINEER_H

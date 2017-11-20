@@ -8,7 +8,7 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
+#include "../global2.h"
 
 class EigthSceneEngineer : public QGraphicsScene
 {

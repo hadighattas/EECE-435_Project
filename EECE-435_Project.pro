@@ -29,18 +29,23 @@ SOURCES += main.cpp\
     Game1/game1score.cpp \
     user.cpp \
     Game2/game2menu.cpp \
-    Game2/engineergraphicsview.cpp \
-    Game2/engineerscene.cpp \
-    Game2/firstsceneengineer.cpp \
+    Game2/Engineer/engineergraphicsview.cpp \
+    Game2/Engineer/engineerscene.cpp \
+    Game2/Engineer/firstsceneengineer.cpp \
     Game2/global2.cpp \
     Game2/randomalien.cpp \
-    Game2/secondsceneengineer.cpp \
-    Game2/thirdsceneengineer.cpp \
-    Game2/fourthsceneengineer.cpp \
-    Game2/fifthsceneengineer.cpp \
-    Game2/sixthsceneengineer.cpp \
-    Game2/seventhsceneengineer.cpp \
-    Game2/eigthsceneengineer.cpp
+    Game2/Engineer/secondsceneengineer.cpp \
+    Game2/Engineer/thirdsceneengineer.cpp \
+    Game2/Engineer/fourthsceneengineer.cpp \
+    Game2/Engineer/fifthsceneengineer.cpp \
+    Game2/Engineer/sixthsceneengineer.cpp \
+    Game2/Engineer/seventhsceneengineer.cpp \
+    Game2/Engineer/eigthsceneengineer.cpp \
+    Game2/Doctor/doctorgraphicsview.cpp \
+    Game2/Doctor/doctorscene.cpp \
+    Game2/Doctor/firstscenedoctor.cpp \
+    Game2/Doctor/secondscenedoctor.cpp \
+    Game2/Doctor/thirdscenedoctor.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -58,18 +63,23 @@ HEADERS  += mainwindow.h \
     Game1/game1score.h \
     user.h \
     Game2/game2menu.h \
-    Game2/engineergraphicsview.h \
-    Game2/engineerscene.h \
-    Game2/firstsceneengineer.h \
+    Game2/Engineer/engineergraphicsview.h \
+    Game2/Engineer/engineerscene.h \
+    Game2/Engineer/firstsceneengineer.h \
     Game2/global2.h \
     Game2/randomalien.h \
-    Game2/secondsceneengineer.h \
-    Game2/thirdsceneengineer.h \
-    Game2/fourthsceneengineer.h \
-    Game2/fifthsceneengineer.h \
-    Game2/sixthsceneengineer.h \
-    Game2/seventhsceneengineer.h \
-    Game2/eigthsceneengineer.h
+    Game2/Engineer/secondsceneengineer.h \
+    Game2/Engineer/thirdsceneengineer.h \
+    Game2/Engineer/fourthsceneengineer.h \
+    Game2/Engineer/fifthsceneengineer.h \
+    Game2/Engineer/sixthsceneengineer.h \
+    Game2/Engineer/seventhsceneengineer.h \
+    Game2/Engineer/eigthsceneengineer.h \
+    Game2/Doctor/doctorgraphicsview.h \
+    Game2/Doctor/doctorscene.h \
+    Game2/Doctor/firstscenedoctor.h \
+    Game2/Doctor/secondscenedoctor.h \
+    Game2/Doctor/thirdscenedoctor.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \

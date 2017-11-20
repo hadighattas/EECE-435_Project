@@ -8,7 +8,7 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
+#include "../global2.h"
 
 class FifthSceneEngineer : public QGraphicsScene
 {
@@ -29,8 +29,8 @@ private:
     QGraphicsTextItem *story;
     QGraphicsPixmapItem *character, *your_friend, *your_colleague;
     QGraphicsPixmapItem *enter;
-    QGraphicsRectItem *option1, *option2, *option3;
-    QGraphicsTextItem *option1Text, *option2Text, *option3Text, *optionsText;
+    QGraphicsRectItem *option1, *option2;
+    QGraphicsTextItem *option1Text, *option2Text, *optionsText;
     QPen pen;
     int clickState, enterState;
 

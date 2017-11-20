@@ -1,5 +1,5 @@
-#ifndef SECONDSCENEENGINEER_H
-#define SECONDSCENEENGINEER_H
+#ifndef SIXTHSCENEENGINEER_H
+#define SIXTHSCENEENGINEER_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,18 +8,17 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
-#include "randomalien.h"
+#include "../global2.h"
 
-class SecondSceneEngineer : public QGraphicsScene
+class SixthSceneEngineer : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit SecondSceneEngineer(QObject *parent = 0);
-    void addAliens();
+    explicit SixthSceneEngineer(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changeScene();
+    void showResult();
 
 signals:
 
@@ -28,13 +27,13 @@ public slots:
 private:
     QGraphicsRectItem *box;
     QGraphicsTextItem *story;
-    QGraphicsPixmapItem *character;
+    QGraphicsPixmapItem *character, *phone;
     QGraphicsPixmapItem *enter;
     QGraphicsRectItem *option1, *option2, *option3;
     QGraphicsTextItem *option1Text, *option2Text, *option3Text;
     QPen pen;
-    int enterState;
-
+    int enterState, response;
+    QSound *notification;
 };
 
-#endif // SECONDSCENEENGINEER_H
+#endif // SIXTHSCENEENGINEER_H

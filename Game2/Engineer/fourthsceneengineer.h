@@ -1,5 +1,5 @@
-#ifndef SIXTHSCENEENGINEER_H
-#define SIXTHSCENEENGINEER_H
+#ifndef FOURTHSCENEENGINEER_H
+#define FOURTHSCENEENGINEER_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,13 +8,13 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
+#include "../global2.h"
 
-class SixthSceneEngineer : public QGraphicsScene
+class FourthSceneEngineer : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit SixthSceneEngineer(QObject *parent = 0);
+    explicit FourthSceneEngineer(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changeScene();
@@ -27,13 +27,12 @@ public slots:
 private:
     QGraphicsRectItem *box;
     QGraphicsTextItem *story;
-    QGraphicsPixmapItem *character, *phone;
+    QGraphicsPixmapItem *character;
     QGraphicsPixmapItem *enter;
-    QGraphicsRectItem *option1, *option2, *option3;
-    QGraphicsTextItem *option1Text, *option2Text, *option3Text;
+    QGraphicsRectItem *option1, *option2;
+    QGraphicsTextItem *option1Text, *option2Text;
     QPen pen;
     int enterState, response;
-    QSound *notification;
 };
 
-#endif // SIXTHSCENEENGINEER_H
+#endif // FOURTHSCENEENGINEER_H

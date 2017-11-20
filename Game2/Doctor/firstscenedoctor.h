@@ -1,5 +1,5 @@
-#ifndef FIRSTSCENEENGINEER_H
-#define FIRSTSCENEENGINEER_H
+#ifndef FIRSTSCENEDOCTOR_H
+#define FIRSTSCENEDOCTOR_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,18 +8,18 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
-#include "randomalien.h"
+#include "../global2.h"
+#include "../randomalien.h"
 
-class FirstSceneEngineer : public QGraphicsScene
+class FirstSceneDoctor : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit FirstSceneEngineer(QObject *parent = 0);
-    void addAliens();
+    explicit FirstSceneDoctor(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void changeScene();
+    void addAliens();
 
 signals:
 
@@ -34,6 +34,7 @@ private:
     QGraphicsTextItem *option1Text, *option2Text, *option3Text;
     QPen pen;
     int enterState;
+
 };
 
-#endif // FIRSTSCENEENGINEER_H
+#endif // FIRSTSCENEDOCTOR_H

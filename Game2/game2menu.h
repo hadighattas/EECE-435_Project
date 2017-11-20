@@ -3,7 +3,8 @@
 
 #include <QWidget>
 #include <QtWidgets>
-#include "engineergraphicsview.h"
+#include "Engineer/engineergraphicsview.h"
+#include "Doctor/doctorgraphicsview.h"
 
 namespace Ui {
 class Game2Menu;

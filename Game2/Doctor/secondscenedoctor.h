@@ -1,5 +1,5 @@
-#ifndef SEVENTHSCENEENGINEER_H
-#define SEVENTHSCENEENGINEER_H
+#ifndef SECONDSCENEDOCTOR_H
+#define SECONDSCENEDOCTOR_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -8,35 +8,34 @@
 #include <QObject>
 #include <QSound>
 
-#include "global2.h"
+#include "../global2.h"
 
-class SeventhSceneEngineer : public QGraphicsScene
+class SecondSceneDoctor : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit SeventhSceneEngineer(QObject *parent = 0);
+    explicit SecondSceneDoctor(QObject *parent = 0);
     void keyPressEvent(QKeyEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void changeScene();
     void showResult();
 
 signals:
 
 public slots:
-    void updateScene();
 
 private:
     QGraphicsRectItem *box;
     QGraphicsTextItem *story;
-    QGraphicsPixmapItem *character, *blindCharacter , *fire;
+    QGraphicsPixmapItem *character, *your_brother, *stranger;
     QGraphicsPixmapItem *enter;
     QGraphicsRectItem *option1, *option2;
     QGraphicsTextItem *option1Text, *option2Text;
     QPen pen;
-    QTimer *timePassedTimer;
-    QSound *fireAlarm, *fireSound;
-    int enterState, response, timePassed;
+    int clickState, enterState, response;
+
 
 };
 
-#endif // SEVENTHSCENEENGINEER_H
+#endif // SECONDSCENEDOCTOR_H

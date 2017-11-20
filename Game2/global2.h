@@ -1,5 +1,5 @@
 #include <QStringList>
 
-extern int stateOfEngineer, moneyGlobal;
-extern QStringList engineerValues;
+extern int stateOfEngineer, stateOfDoctor, moneyGlobal;
+extern QStringList engineerValues, doctorValues;
 

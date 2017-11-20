@@ -27,5 +27,8 @@ void Game2Menu::on_engineerButton_clicked()
 
 void Game2Menu::on_doctorButton_clicked()
 {
-    ;
+    DoctorGraphicsView *doctorGV = new DoctorGraphicsView;
+    doctorGV->setStackedWidget(q);
+    q->addWidget(doctorGV);
+    q->setCurrentWidget(doctorGV);
 }

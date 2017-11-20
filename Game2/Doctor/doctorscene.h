@@ -1,5 +1,5 @@
-#ifndef ENGINEERSCENE_H
-#define ENGINEERSCENE_H
+#ifndef DOCTORSCENE_H
+#define DOCTORSCENE_H
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -13,24 +13,22 @@
 #include <QTime>
 #include <stdlib.h>
 
-#include "global2.h"
-#include "firstsceneengineer.h"
-#include "secondsceneengineer.h"
-#include "thirdsceneengineer.h"
-#include "fourthsceneengineer.h"
-#include "fifthsceneengineer.h"
-#include "sixthsceneengineer.h"
-#include "seventhsceneengineer.h"
-#include "eigthsceneengineer.h"
+#include "../global2.h"
+#include "firstscenedoctor.h"
+#include "secondscenedoctor.h"
+#include "thirdscenedoctor.h"
+//#include "fourthscenedoctor.h"
+//#include "fifthscenedoctor.h"
+//#include "sixthscenedoctor.h"
+//#include "seventhscenedoctor.h"
+//#include "eigthscenedoctor.h"
 
-using namespace std;
 
-class EngineerScene : public QGraphicsScene
+class DoctorScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    explicit EngineerScene(QObject *parent = 0);
-    void setStackedWidget(QStackedWidget *stack);
+    explicit DoctorScene(QObject *parent = 0);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 signals:
@@ -39,7 +37,6 @@ public slots:
     void updateTime();
 
 private:
-    QStackedWidget *q;
     QGraphicsPixmapItem *arrow, *character;
     QGraphicsTextItem *time, *money, *next;
     QPushButton *nextButton;
@@ -49,4 +46,4 @@ private:
 
 };
 
-#endif // ENGINEERSCENE_H
+#endif // DOCTORSCENE_H
