@@ -61,7 +61,8 @@ p, li { white-space: pre-wrap; }
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image:url(./Shape11-400.png);
+    <string notr="true">background: transparent;
+background-image:url(./Shape11-400.png);
 border:0px;</string>
    </property>
   </widget>
@@ -80,14 +81,16 @@ border:0px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image:url(./Shape12-400.png);
-border:0px;</string>
+    <string notr="true">background: transparent;
+background-image:url(./Shape12-400.png);
+border:0px;
+</string>
    </property>
   </widget>
   <widget class="QPushButton" name="engineerButton">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>515</x>
      <y>530</y>
      <width>111</width>
      <height>27</height>
@@ -119,7 +122,7 @@ color:white;
   <widget class="QPushButton" name="doctorButton">
    <property name="geometry">
     <rect>
-     <x>960</x>
+     <x>965</x>
      <y>530</y>
      <width>111</width>
      <height>27</height>

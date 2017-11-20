@@ -60,6 +60,7 @@ void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
             phone->setTransformOriginPoint(115, 250);
             phone->setRotation(-7);
             addItem(phone);
+
             pen.setWidth(5);
 
             //adding first option

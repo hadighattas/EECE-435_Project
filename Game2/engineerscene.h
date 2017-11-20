@@ -19,6 +19,9 @@
 #include "thirdsceneengineer.h"
 #include "fourthsceneengineer.h"
 #include "fifthsceneengineer.h"
+#include "sixthsceneengineer.h"
+#include "seventhsceneengineer.h"
+#include "eigthsceneengineer.h"
 
 using namespace std;
 

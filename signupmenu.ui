@@ -470,7 +470,8 @@ color:white;
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">outline:none;</string>
+    <string notr="true">outline:none;
+background: white;</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="emailValidateView">

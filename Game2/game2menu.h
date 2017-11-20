@@ -21,7 +21,6 @@ public:
 private slots:
 
     void on_engineerButton_clicked();
-
     void on_doctorButton_clicked();
 
 private:

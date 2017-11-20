@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>621</height>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,7 +112,8 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image:url(./Shape4-500.png);
+    <string notr="true">background: transparent;
+background-image:url(./Shape4-500.png);
 border:0px;</string>
    </property>
   </widget>

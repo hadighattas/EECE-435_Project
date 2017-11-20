@@ -7,4 +7,5 @@
                                                 <<"COMPLIANCE"<<"COMPLIANCE"<<"COMPLIANCE"
                                                   <<"HONESTY"<<"HONESTY"<<"HONESTY"
                                                     <<"ACCEPTANCE"<<"ACCEPTANCE"<<"ACCEPTANCE"
-                                                      <<"WORK"<<"WORK"<<"WORK";
+                                                      <<"WORK"<<"WORK"<<"WORK"
+                                                        <<"HELPING OTHERS"<<"HELPING OTHERS";

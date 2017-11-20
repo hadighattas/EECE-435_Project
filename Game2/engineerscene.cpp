@@ -83,6 +83,21 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(fifth);
     }
+    else if ((item == next || item == arrow) && stateOfEngineer == 5) {
+        SixthSceneEngineer *sixth = new SixthSceneEngineer(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(sixth);
+    }
+    else if ((item == next || item == arrow) && stateOfEngineer == 6) {
+        SeventhSceneEngineer *seventh = new SeventhSceneEngineer(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(seventh);
+    }
+    else if ((item == next || item == arrow) && stateOfEngineer == 7) {
+        EigthSceneEngineer *eigth = new EigthSceneEngineer(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(eigth);
+    }
 }
 
 void EngineerScene::updateTime(){
@@ -110,4 +125,12 @@ void EngineerScene::updateTime(){
         character->setPos(590, 245);
     else if (stateOfEngineer == 5)
         character->setPos(645, 225);
+    else if (stateOfEngineer == 6)
+        character->setPos(700, 205);
+    else if (stateOfEngineer == 7)
+        character->setPos(755, 190);
+    else if (stateOfEngineer == 8) {
+        character->setPos(810, 175);
+        next->setPlainText("FINISH");
+    }
 }

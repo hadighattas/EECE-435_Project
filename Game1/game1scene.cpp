@@ -19,7 +19,7 @@
 Game1Scene::Game1Scene(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("game1background.png").scaledToHeight(720).scaledToWidth(1280)));
+    setBackgroundBrush(QBrush(QImage("Game1Background.jpg").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
     timerObstacle = new QTimer(this);

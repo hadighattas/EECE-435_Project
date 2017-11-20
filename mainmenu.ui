@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">border: 2px solid white;</string>
+    <string notr="true">border: 1px dotted white;</string>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QPushButton" name="game1Button">

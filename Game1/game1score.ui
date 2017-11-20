@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1280</width>
-    <height>661</height>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background: black</string>
+   <string notr="true">background: transparent;</string>
   </property>
   <widget class="QTextBrowser" name="textValues">
    <property name="geometry">
