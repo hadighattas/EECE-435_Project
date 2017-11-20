@@ -69,33 +69,31 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(third);
     }
-    /*
     else if ((item == next || item == arrow) && stateOfDoctor == 3) {
         FourthSceneDoctor *fourth = new FourthSceneDoctor(this);
         QGraphicsView *view = views().at(0);
         view->setScene(fourth);
     }
-    else if ((item == next || item == arrow) && stateOfDoctor == 4) {
-        FifthSceneDoctor *fifth = new FifthSceneDoctor(this);
-        QGraphicsView *view = views().at(0);
-        view->setScene(fifth);
-    }
-    else if ((item == next || item == arrow) && stateOfDoctor == 5) {
-        SixthSceneDoctor *sixth = new SixthSceneDoctor(this);
-        QGraphicsView *view = views().at(0);
-        view->setScene(sixth);
-    }
-    else if ((item == next || item == arrow) && stateOfDoctor == 6) {
-        SeventhSceneDoctor *seventh = new SeventhSceneDoctor(this);
-        QGraphicsView *view = views().at(0);
-        view->setScene(seventh);
-    }
-    else if ((item == next || item == arrow) && stateOfDoctor == 7) {
-        EigthSceneDoctor *eigth = new EigthSceneDoctor(this);
-        QGraphicsView *view = views().at(0);
-        view->setScene(eigth);
-    }
-    */
+//    else if ((item == next || item == arrow) && stateOfDoctor == 4) {
+//        FifthSceneDoctor *fifth = new FifthSceneDoctor(this);
+//        QGraphicsView *view = views().at(0);
+//        view->setScene(fifth);
+//    }
+//    else if ((item == next || item == arrow) && stateOfDoctor == 5) {
+//        SixthSceneDoctor *sixth = new SixthSceneDoctor(this);
+//        QGraphicsView *view = views().at(0);
+//        view->setScene(sixth);
+//    }
+//    else if ((item == next || item == arrow) && stateOfDoctor == 6) {
+//        SeventhSceneDoctor *seventh = new SeventhSceneDoctor(this);
+//        QGraphicsView *view = views().at(0);
+//        view->setScene(seventh);
+//    }
+//    else if ((item == next || item == arrow) && stateOfDoctor == 7) {
+//        EigthSceneDoctor *eigth = new EigthSceneDoctor(this);
+//        QGraphicsView *view = views().at(0);
+//        view->setScene(eigth);
+//    }
 }
 
 void DoctorScene::updateTime(){

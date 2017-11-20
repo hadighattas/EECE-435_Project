@@ -57,11 +57,13 @@ void ThirdSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
         doctorValues << "HELPING OTHERS";
         moneyGlobal += 1000;
         response = 0;
+        QSound::play("ChaChing.wav");
         showResult();
     }
     else if (item == moneyStack) {
         moneyGlobal += 6000;
         response = 1;
+        QSound::play("ChaChing.wav");
         showResult();
     }
 }

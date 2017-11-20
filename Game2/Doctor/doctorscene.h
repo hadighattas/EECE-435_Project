@@ -17,7 +17,7 @@
 #include "firstscenedoctor.h"
 #include "secondscenedoctor.h"
 #include "thirdscenedoctor.h"
-//#include "fourthscenedoctor.h"
+#include "fourthscenedoctor.h"
 //#include "fifthscenedoctor.h"
 //#include "sixthscenedoctor.h"
 //#include "seventhscenedoctor.h"
