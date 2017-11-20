@@ -45,87 +45,106 @@ FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
+
+    clickState = 0;
+    enterState = 0;
 }
 
 void FifthSceneEngineer::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-        story->setPlainText("Your first task is to choose someone to assume a technical position in the space shuttle team.\nWho would you choose?");
-        removeItem(enter);
+    if (enterState == 0) {
+        if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
+            story->setPlainText("Your first task is to choose someone to assume a technical position in the space shuttle team.\nWho should you choose?");
+            removeItem(enter);
 
-        pen.setWidth(5);
+            pen.setWidth(5);
 
-        //adding options
-        options->setBrush(Qt::white);
-        options->setPen(pen);
-        options->setRect(40, 140, 385, 110);
-        addItem(options);
+            //adding options
+            options->setBrush(Qt::white);
+            options->setPen(pen);
+            options->setRect(40, 140, 385, 110);
+            addItem(options);
 
-        //setting text of options
-        optionsText->setPlainText("Your friend who really wants to prove himself\nbut is not qualified enough\nor\nA very well qualified colleague.");
-        optionsText->setDefaultTextColor(QColor(Qt::black));
-        optionsText->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        optionsText->setPos(50, 150);
-        addItem(optionsText);
+            //setting text of options
+            optionsText->setPlainText("Your friend who really wants to prove himself\nbut is not qualified enough\nor\nA very well qualified colleague.");
+            optionsText->setDefaultTextColor(QColor(Qt::black));
+            optionsText->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            optionsText->setPos(50, 150);
+            addItem(optionsText);
 
-        //adding first option
-        option1->setBrush(Qt::white);
-        option1->setPen(pen);
-        option1->setRect(150, 420, 120, 50);
-        addItem(option1);
+            //adding first option
+            option1->setBrush(Qt::white);
+            option1->setPen(pen);
+            option1->setRect(150, 420, 120, 50);
+            addItem(option1);
 
-        //setting text of first option
-        option1Text->setPlainText("Friend");
-        option1Text->setDefaultTextColor(QColor(Qt::black));
-        option1Text->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
-        option1Text->setPos(175, 430);
-        addItem(option1Text);
+            //setting text of first option
+            option1Text->setPlainText("Friend");
+            option1Text->setDefaultTextColor(QColor(Qt::black));
+            option1Text->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
+            option1Text->setPos(175, 430);
+            addItem(option1Text);
 
-        //adding second option
-        option2->setBrush(Qt::white);
-        option2->setPen(pen);
-        option2->setRect(585, 420, 120, 50);
-        addItem(option2);
+            //adding second option
+            option2->setBrush(Qt::white);
+            option2->setPen(pen);
+            option2->setRect(585, 420, 120, 50);
+            addItem(option2);
 
-        //setting text of second option
-        option2Text->setPlainText("Colleague");
-        option2Text->setDefaultTextColor(QColor(Qt::black));
-        option2Text->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
-        option2Text->setPos(595, 430);
-        addItem(option2Text);
+            //setting text of second option
+            option2Text->setPlainText("Colleague");
+            option2Text->setDefaultTextColor(QColor(Qt::black));
+            option2Text->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
+            option2Text->setPos(595, 430);
+            addItem(option2Text);
+
+            //permission to click on friend or colleague
+            clickState = 1;
+            enterState = 1;
+        }
     }
+    else if (enterState == 1)
+        return;
 }
 
 void FifthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
-    QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
-    if (item == your_friend) {
-        engineerValues << "FRIENDSHIP";
-        changeScene();
-    }
-    else if (item == your_colleague) {
-        if (engineerValues.contains("FRIENDSHIP"))
-                engineerValues.removeOne("FRIENDSHIP");
-        changeScene();
+    if (clickState == 0)
+        return;
+    else if (clickState == 1) {
+        QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
+        if (item == your_friend) {
+            engineerValues << "FRIENDSHIP";
+            changeScene();
+        }
+        else if (item == your_colleague) {
+            if (engineerValues.contains("FRIENDSHIP"))
+                    engineerValues.removeOne("FRIENDSHIP");
+            changeScene();
+        }
     }
 }
 
 void FifthSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
-    stateOfEngineer = 6;
+    stateOfEngineer = 5;
     QSound::play("ComputerSciFi.wav");
     clear();
 }
 
 void FifthSceneEngineer::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
-     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
-     if (item == your_friend) {
-         your_friend->setPixmap(QPixmap("FriendGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-     }
-     else if (item == your_colleague) {
-         your_colleague->setPixmap(QPixmap("ColleagueGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-     }
-     else {
-         your_friend->setPixmap(QPixmap("Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-         your_colleague->setPixmap(QPixmap("Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-     }
+    if (clickState == 0)
+        return;
+    else if (clickState == 1) {
+         QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
+         if (item == your_friend) {
+             your_friend->setPixmap(QPixmap("FriendGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+         }
+         else if (item == your_colleague) {
+             your_colleague->setPixmap(QPixmap("ColleagueGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+         }
+         else {
+             your_friend->setPixmap(QPixmap("Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_colleague->setPixmap(QPixmap("Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+         }
+    }
 }

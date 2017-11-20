@@ -32,6 +32,7 @@ private:
     QGraphicsRectItem *option1, *option2, *option3;
     QGraphicsTextItem *option1Text, *option2Text, *option3Text, *optionsText;
     QPen pen;
+    int clickState, enterState;
 
 };
 

@@ -39,6 +39,8 @@ SecondSceneEngineer::SecondSceneEngineer(QObject *parent) :
     enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
+
+    enterState = 0;
 }
 
 void SecondSceneEngineer::addAliens() {
@@ -59,52 +61,58 @@ void SecondSceneEngineer::addAliens() {
 }
 
 void SecondSceneEngineer::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-        box->setRect(40, 0, 1200, 100);
-        story->setPlainText("Suddenly, your co-worker accidentally spills his coffee in you.\n You have an important meeting with your boss in 20 min!\nWhat would you do?");
-        removeItem(enter);
+    if (enterState == 0) {
+        if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
+            box->setRect(40, 0, 1200, 100);
+            story->setPlainText("Suddenly, your co-worker accidentally spills his coffee in you.\n You have an important meeting with your boss in 20 min!\nWhat should you do?");
+            removeItem(enter);
 
-        pen.setWidth(5);
+            pen.setWidth(5);
 
-        //adding first option
-        option1->setBrush(Qt::white);
-        option1->setPen(pen);
-        option1->setRect(390, 330, 500, 40);
-        addItem(option1);
+            //adding first option
+            option1->setBrush(Qt::white);
+            option1->setPen(pen);
+            option1->setRect(390, 330, 500, 40);
+            addItem(option1);
 
-        //setting text of first option
-        option1Text->setPlainText("Ask him to buy you new pants right now.");
-        option1Text->setDefaultTextColor(QColor(Qt::black));
-        option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option1Text->setPos(400, 340);
-        addItem(option1Text);
+            //setting text of first option
+            option1Text->setPlainText("Ask him to buy you new pants right now.");
+            option1Text->setDefaultTextColor(QColor(Qt::black));
+            option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option1Text->setPos(400, 340);
+            addItem(option1Text);
 
-        //adding second option
-        option2->setBrush(Qt::white);
-        option2->setPen(pen);
-        option2->setRect(390, 410, 500, 40);
-        addItem(option2);
+            //adding second option
+            option2->setBrush(Qt::white);
+            option2->setPen(pen);
+            option2->setRect(390, 410, 500, 40);
+            addItem(option2);
 
-        //setting text of second option
-        option2Text->setPlainText("Recognize it was an accident and let it go.");
-        option2Text->setDefaultTextColor(QColor(Qt::black));
-        option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option2Text->setPos(400, 420);
-        addItem(option2Text);
+            //setting text of second option
+            option2Text->setPlainText("Recognize it was an accident and let it go.");
+            option2Text->setDefaultTextColor(QColor(Qt::black));
+            option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option2Text->setPos(400, 420);
+            addItem(option2Text);
 
-        //adding third option
-        option3->setBrush(Qt::white);
-        option3->setPen(pen);
-        option3->setRect(390, 490, 500, 40);
-        addItem(option3);
+            //adding third option
+            option3->setBrush(Qt::white);
+            option3->setPen(pen);
+            option3->setRect(390, 490, 500, 40);
+            addItem(option3);
 
-        //setting text of third option
-        option3Text->setPlainText("Report him to the HR department.");
-        option3Text->setDefaultTextColor(QColor(Qt::black));
-        option3Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option3Text->setPos(400, 500);
-        addItem(option3Text);
+            //setting text of third option
+            option3Text->setPlainText("Report him to the HR department.");
+            option3Text->setDefaultTextColor(QColor(Qt::black));
+            option3Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option3Text->setPos(400, 500);
+            addItem(option3Text);
+
+            enterState = 1;
+        }
     }
+    else if (enterState == 1)
+        return;
 }
 
 void SecondSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){

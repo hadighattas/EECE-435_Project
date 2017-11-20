@@ -39,55 +39,63 @@ FirstSceneEngineer::FirstSceneEngineer(QObject *parent) :
     enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
+
+    enterState = 0;
 }
 
 void FirstSceneEngineer::keyPressEvent(QKeyEvent *event) {
-    if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-        box->setRect(40, 0, 1200, 100);
-        story->setPlainText("It's 8AM and you just arrived to work.\nYour friend calls in sick, but you know he's actually lying and wants to go on a trip with his family.\nWhat would you do?");
-        removeItem(enter);
+    if (enterState == 0) {
+        if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
+            box->setRect(40, 0, 1200, 100);
+            story->setPlainText("It's 8AM and you just arrived to work.\nYour friend calls in sick, but you know he's actually lying and wants to go on a trip with his family.\nWhat should you do?");
+            removeItem(enter);
 
-        pen.setWidth(5);
+            pen.setWidth(5);
 
-        //adding first option
-        option1->setBrush(Qt::white);
-        option1->setPen(pen);
-        option1->setRect(440, 315, 500, 40);
-        addItem(option1);
+            //adding first option
+            option1->setBrush(Qt::white);
+            option1->setPen(pen);
+            option1->setRect(440, 315, 500, 40);
+            addItem(option1);
 
-        //setting text of first option
-        option1Text->setPlainText("Report him to your boss and compromise your friendship.");
-        option1Text->setDefaultTextColor(QColor(Qt::black));
-        option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option1Text->setPos(450, 325);
-        addItem(option1Text);
+            //setting text of first option
+            option1Text->setPlainText("Report him to your boss and compromise your friendship.");
+            option1Text->setDefaultTextColor(QColor(Qt::black));
+            option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option1Text->setPos(450, 325);
+            addItem(option1Text);
 
-        //adding second optio
-        option2->setBrush(Qt::white);
-        option2->setPen(pen);
-        option2->setRect(440, 395, 500, 40);
-        addItem(option2);
+            //adding second optio
+            option2->setBrush(Qt::white);
+            option2->setPen(pen);
+            option2->setRect(440, 395, 500, 40);
+            addItem(option2);
 
-        //setting text of second option
-        option2Text->setPlainText("Stay silent and preserve your friendship.");
-        option2Text->setDefaultTextColor(QColor(Qt::black));
-        option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option2Text->setPos(450, 405);
-        addItem(option2Text);
+            //setting text of second option
+            option2Text->setPlainText("Stay silent and preserve your friendship.");
+            option2Text->setDefaultTextColor(QColor(Qt::black));
+            option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option2Text->setPos(450, 405);
+            addItem(option2Text);
 
-        //adding third option
-        option3->setBrush(Qt::white);
-        option3->setPen(pen);
-        option3->setRect(440, 475, 500, 40);
-        addItem(option3);
+            //adding third option
+            option3->setBrush(Qt::white);
+            option3->setPen(pen);
+            option3->setRect(440, 475, 500, 40);
+            addItem(option3);
 
-        //setting text of third option
-        option3Text->setPlainText("Convince your friend to abandon his family and come to work.");
-        option3Text->setDefaultTextColor(QColor(Qt::black));
-        option3Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-        option3Text->setPos(450, 485);
-        addItem(option3Text);
+            //setting text of third option
+            option3Text->setPlainText("Convince your friend to abandon his family and come to work.");
+            option3Text->setDefaultTextColor(QColor(Qt::black));
+            option3Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
+            option3Text->setPos(450, 485);
+            addItem(option3Text);
+
+            enterState = 1;
+        }
     }
+    else if (enterState == 1)
+        return;
 }
 
 void FirstSceneEngineer::addAliens() {

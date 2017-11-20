@@ -107,9 +107,7 @@ void EngineerScene::updateTime(){
     else if (stateOfEngineer == 3)
         character->setPos(535, 260);
     else if (stateOfEngineer == 4)
-        character->setPos(590, 240);
+        character->setPos(590, 245);
     else if (stateOfEngineer == 5)
-        character->setPos(645, 220);
-    else if (stateOfEngineer == 6)
-        character->setPos(700, 200);
+        character->setPos(645, 225);
 }

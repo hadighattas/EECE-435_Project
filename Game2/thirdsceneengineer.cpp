@@ -49,7 +49,7 @@ ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
 void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (enterState == 0) {
-            story->setPlainText("Your wife calls!\nWhat would you do?");
+            story->setPlainText("Your wife calls!\nWhat should you do?");
             removeItem(enter);
             setBackgroundBrush(QBrush(QImage("ConferenceRoomBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
 
@@ -191,7 +191,7 @@ void ThirdSceneEngineer::showResult() {
     story->setPos(495, 280);
 
     if (response == 0)
-        story->setPlainText("Your wife sent you \na message and she's pissed\nbecause you didn't answer!\nYou also annoyed everybody\nat the meeting.");
+        story->setPlainText("Your wife sent you \na message and she's pissed\nbecause you didn't answer!\nYou also annoyed everybody\nat the meeting because\nyour phone rang for\ntoo long.");
     else if (response == 1)
         story->setPlainText("You took a call during a \nmeeting.\nYour boss is now pissed!");
     else if (response == 2)

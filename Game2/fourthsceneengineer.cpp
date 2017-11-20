@@ -43,7 +43,7 @@ FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
 void FourthSceneEngineer::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (enterState == 0) {
-            story->setPlainText("Your boss wants you to assume a managerial position in this project: either director or manager.\nWhat would you choose?");
+            story->setPlainText("Your boss wants you to assume a managerial position in this project: either director or manager.\nWhat should you choose?");
             removeItem(enter);
 
             //adding first option
