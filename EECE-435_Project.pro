@@ -49,7 +49,8 @@ SOURCES += main.cpp\
     Game2/Doctor/fourthscenedoctor.cpp \
     Game2/Doctor/fifthscenedoctor.cpp \
     Game2/Doctor/sixthscenedoctor.cpp \
-    Game2/game2score.cpp
+    Game2/game2score.cpp \
+    Game2/Doctor/seventhscenedoctor.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -87,7 +88,8 @@ HEADERS  += mainwindow.h \
     Game2/Doctor/fourthscenedoctor.h \
     Game2/Doctor/fifthscenedoctor.h \
     Game2/Doctor/sixthscenedoctor.h \
-    Game2/game2score.h
+    Game2/game2score.h \
+    Game2/Doctor/seventhscenedoctor.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \

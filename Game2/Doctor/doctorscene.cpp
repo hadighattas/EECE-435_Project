@@ -3,6 +3,7 @@
 DoctorScene::DoctorScene(QObject *parent) :
     QGraphicsScene(parent)
 {
+    stateOfDoctor = 0;
     setBackgroundBrush(QBrush(QImage("SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
@@ -93,16 +94,22 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(sixth);
     }
-//    else if ((item == next || item == arrow) && stateOfDoctor == 6) {
-//        SeventhSceneDoctor *seventh = new SeventhSceneDoctor(this);
-//        QGraphicsView *view = views().at(0);
-//        view->setScene(seventh);
-//    }
-//    else if ((item == next || item == arrow) && stateOfDoctor == 7) {
-//        EigthSceneDoctor *eigth = new EigthSceneDoctor(this);
-//        QGraphicsView *view = views().at(0);
-//        view->setScene(eigth);
-//    }
+    else if ((item == next || item == arrow) && stateOfDoctor == 6) {
+        SeventhSceneDoctor *seventh = new SeventhSceneDoctor(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(seventh);
+    }
+    else if ((item == next || item == arrow) && stateOfDoctor == 8) {
+        score = new Game2Score;
+        timerTime->stop();
+        score->setStackedWidget(q);
+        q->addWidget(score);
+        q->setCurrentWidget(score);
+    }
+}
+
+void DoctorScene::setStackedWidget(QStackedWidget *stack) {
+    this->q = stack;
 }
 
 void DoctorScene::updateTime(){

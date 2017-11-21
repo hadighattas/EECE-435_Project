@@ -1,8 +1,19 @@
+/**
+ * \file engineerscene.cpp
+ * \brief Main scene that shows progress of character
+ *
+ * Shows the progress of the character on map.\n
+ * Shows current amount of money.\n
+ * Allows character to pass from scenario to scenario.\n
+ * When all scenarios completed, allows to switch to score menu.\n
+*/
+
 #include "engineerscene.h"
 
 EngineerScene::EngineerScene(QObject *parent) :
     QGraphicsScene(parent)
 {
+    stateOfEngineer = 0;
     setBackgroundBrush(QBrush(QImage("SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
@@ -110,6 +121,7 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
     else if ((item == next || item == arrow) && stateOfEngineer == 8) {
         score = new Game2Score;
         timerTime->stop();
+        score->setStackedWidget(q);
         q->addWidget(score);
         q->setCurrentWidget(score);
     }

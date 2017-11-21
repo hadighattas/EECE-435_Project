@@ -109,11 +109,13 @@ void SixthSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     if (item == option1 || item == option1Text) {
         compliance += 1;
         response = 1;
+        timerPhone->stop();
         showResult();
     }
     else if (item == option2 || item == option2Text) {
         compliance -=1;
         response = 2;
+        timerPhone->stop();
         showResult();
     }
 }
@@ -155,7 +157,6 @@ void SixthSceneDoctor::changeScene() {
     stateOfDoctor = 6;
     QSound::play("ComputerSciFi.wav");
     clear();
-
 }
 
 void SixthSceneDoctor::rotatePhone() {

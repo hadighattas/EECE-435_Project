@@ -188,6 +188,7 @@ void Game1Scene::endGame() {
     timeLeft->stop();
     Game1Score *game1score = new Game1Score;
     game1score->setScore(livesCount, countTime, character->getValues(), character->getVices());
+    game1score->setStackedWidget(q);
     q->addWidget(game1score);
     q->setCurrentWidget(game1score);
 }

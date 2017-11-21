@@ -56,7 +56,12 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
 
 }
 
+void Game1Score::setStackedWidget(QStackedWidget *stack) {
+    this->q = stack;
+}
+
 void Game1Score::on_loginButton_clicked()
 {
-
+    q->setCurrentIndex(3);
+    q->show();
 }

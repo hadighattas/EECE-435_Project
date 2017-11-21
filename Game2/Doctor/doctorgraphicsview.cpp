@@ -7,13 +7,14 @@ DoctorGraphicsView::DoctorGraphicsView(QWidget *parent) :
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
 
-    // creating first scene
-    DoctorScene *doctorScene = new DoctorScene;
-//    doctorScene->setStackedWidget(q);
-    setScene(doctorScene);
-    show();
+
 }
 
 void DoctorGraphicsView::setStackedWidget(QStackedWidget *stack) {
-        this->q = stack;
+    this->q = stack;
+    // creating first scene
+    DoctorScene *doctorScene = new DoctorScene;
+    doctorScene->setStackedWidget(q);
+    setScene(doctorScene);
+    show();
 }

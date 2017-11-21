@@ -2,6 +2,7 @@
 #define GAME1SCORE_H
 
 #include <QWidget>
+#include <QtWidgets>
 #include <QStringList>
 #include <string>
 
@@ -16,6 +17,7 @@ class Game1Score : public QWidget
 public:
     explicit Game1Score(QWidget *parent = 0);
     void setScore(int lives, int timeLeft, QStringList *finalValues, QStringList *finalVices);
+    void setStackedWidget(QStackedWidget *stack);
     ~Game1Score();    
 
 private slots:
@@ -24,6 +26,7 @@ private slots:
 private:
     Ui::Game1Score *ui;
     QStringList *finalValues, *finalVices;
+    QStackedWidget *q;
     int lives;
     int timeLeft;
     int score;

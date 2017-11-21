@@ -84,5 +84,4 @@ void Game1Menu::on_playButton_clicked()
     game1graphicsview->setDifficulty(difficulty);
     q->addWidget(game1graphicsview);
     q->setCurrentWidget(game1graphicsview);
-
 }
