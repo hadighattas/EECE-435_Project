@@ -14,6 +14,7 @@
 #include <stdlib.h>
 
 #include "../global2.h"
+#include "../game2score.h"
 #include "firstsceneengineer.h"
 #include "secondsceneengineer.h"
 #include "thirdsceneengineer.h"
@@ -44,6 +45,7 @@ private:
     QGraphicsTextItem *time, *money, *next;
     QPushButton *nextButton;
     QTimer *timerTime;
+    Game2Score *score;
     bool flag;
     bool playSound;
 

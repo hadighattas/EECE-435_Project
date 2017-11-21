@@ -50,6 +50,15 @@ DoctorScene::DoctorScene(QObject *parent) :
     QSound::play("ComputerSciFi.wav");
 
     updateTime();
+
+    //initial values
+    friendship = 3;
+    compliance = 3;
+    honesty = 3;
+    forgivingness = 3;
+    helping = 3;
+    family = 3;
+    courage = 3;
 }
 
 void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
@@ -74,16 +83,16 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(fourth);
     }
-//    else if ((item == next || item == arrow) && stateOfDoctor == 4) {
-//        FifthSceneDoctor *fifth = new FifthSceneDoctor(this);
-//        QGraphicsView *view = views().at(0);
-//        view->setScene(fifth);
-//    }
-//    else if ((item == next || item == arrow) && stateOfDoctor == 5) {
-//        SixthSceneDoctor *sixth = new SixthSceneDoctor(this);
-//        QGraphicsView *view = views().at(0);
-//        view->setScene(sixth);
-//    }
+    else if ((item == next || item == arrow) && stateOfDoctor == 4) {
+        FifthSceneDoctor *fifth = new FifthSceneDoctor(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(fifth);
+    }
+    else if ((item == next || item == arrow) && stateOfDoctor == 5) {
+        SixthSceneDoctor *sixth = new SixthSceneDoctor(this);
+        QGraphicsView *view = views().at(0);
+        view->setScene(sixth);
+    }
 //    else if ((item == next || item == arrow) && stateOfDoctor == 6) {
 //        SeventhSceneDoctor *seventh = new SeventhSceneDoctor(this);
 //        QGraphicsView *view = views().at(0);

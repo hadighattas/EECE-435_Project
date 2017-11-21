@@ -140,17 +140,15 @@ void ThirdSceneEngineer::updateSeconds() {
 void ThirdSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        engineerValues << "FAMILY";
-        if (engineerValues.contains("COMPLIANCE"))
-            engineerValues.removeOne("COMPLIANCE");
+        family += 1;
+        compliance -= 1;
         response = 1;
         secondsLeft->stop();
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        engineerValues << "COMPLIANCE";
-        if (engineerValues.contains("FAMILY"))
-            engineerValues.removeOne("FAMILY");
+        compliance += 1;
+        family -= 1;
         response = 2;
         secondsLeft->stop();
         showResult();
@@ -191,8 +189,11 @@ void ThirdSceneEngineer::showResult() {
 
     story->setPos(495, 280);
 
-    if (response == 0)
+    if (response == 0) {
         story->setPlainText("Your wife sent you \na message and she's pissed\nbecause you didn't answer!\nYou also annoyed everybody\nat the meeting because\nyour phone rang for\ntoo long.");
+        family -= 1;
+        compliance -= 1;
+    }
     else if (response == 1)
         story->setPlainText("You took a call during a \nmeeting.\nYour boss is now pissed!");
     else if (response == 2)

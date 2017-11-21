@@ -118,20 +118,19 @@ void FirstSceneEngineer::addAliens() {
 void FirstSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        engineerValues << "COMPLIANCE";
-        engineerValues << "HONESTY";
-        if (engineerValues.contains("FRIENDSHIP"))
-                engineerValues.removeOne("FRIENDSHIP");
+        compliance += 1;
+        honesty += 1;
+        friendship -= 1;
         changeScene();
     }
     else if (item == option2 || item == option2Text) {
-        engineerValues << "FRIENDSHIP";
-        if (engineerValues.contains("COMPLIANCE"))
-                engineerValues.removeOne("COMPLIANCE");
+        friendship += 1;
+        compliance -= 1;
         changeScene();
     }
     else if (item == option3 || item == option3Text) {
-        engineerValues << "FRIENDSHIP" << "COMPLIANCE";
+        friendship += 1;
+        compliance += 1;
         changeScene();
     }
 }

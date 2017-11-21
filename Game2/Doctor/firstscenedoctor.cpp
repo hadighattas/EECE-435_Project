@@ -106,16 +106,15 @@ void FirstSceneDoctor::keyPressEvent(QKeyEvent *event) {
 void FirstSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        doctorValues << "HELPING OTHERS" << "HELPING OTHERS";
+        helping += 1;
         changeScene();
     }
     else if (item == option2 || item == option2Text) {
-        if (doctorValues.contains("HELPING OTHERS"))
-                doctorValues.removeOne("HELPING OTHERS");
+        helping -= 1;
         changeScene();
     }
     else if (item == option3 || item == option3Text) {
-        doctorValues << "HELPING OTHERS";
+        helping += 1;
         changeScene();
     }
 }

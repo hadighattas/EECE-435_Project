@@ -112,12 +112,11 @@ void FifthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     else if (clickState == 1) {
         QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
         if (item == your_friend) {
-            engineerValues << "FRIENDSHIP";
+            friendship += 1;
             changeScene();
         }
         else if (item == your_colleague) {
-            if (engineerValues.contains("FRIENDSHIP"))
-                    engineerValues.removeOne("FRIENDSHIP");
+            friendship -= 1;
             changeScene();
         }
     }

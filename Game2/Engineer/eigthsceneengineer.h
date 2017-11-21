@@ -27,12 +27,13 @@ public slots:
 private:
     QGraphicsRectItem *box;
     QGraphicsTextItem *story;
-    QGraphicsPixmapItem *character;
+    QGraphicsPixmapItem *character, *vasa;
     QGraphicsPixmapItem *enter;
     QGraphicsRectItem *option1, *option2;
     QGraphicsTextItem *option1Text, *option2Text;
     QPen pen;
     int enterState, response;
+    QSound *rocket;
 
 };
 

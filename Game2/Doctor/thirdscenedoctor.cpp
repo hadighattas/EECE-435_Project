@@ -34,10 +34,7 @@ ThirdSceneDoctor::ThirdSceneDoctor(QObject *parent) :
     story->setPos(80, 10);
     addItem(story);
 
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    enter->setPos(1150, 30);
-    addItem(enter);
-    removeItem(enter);
+    enter = new QGraphicsPixmapItem;
 
     enterState = 0;
 }
@@ -54,7 +51,7 @@ void ThirdSceneDoctor::keyPressEvent(QKeyEvent *event) {
 void ThirdSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == money) {
-        doctorValues << "HELPING OTHERS";
+        helping += 1;
         moneyGlobal += 1000;
         response = 0;
         QSound::play("ChaChing.wav");
@@ -81,15 +78,17 @@ void ThirdSceneDoctor::showResult() {
     removeItem(moneyStack);
     box->setRect(490, 260, 300, 200);
 
-    story->setPos(495, 280);
-
+    enter->setPixmap(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(740, 410);
+    enter->setZValue(2);
     addItem(enter);
 
+    story->setPos(495, 280);
+
     if (response == 0)
-        story->setPlainText("You have decided to\nprice the medicine at\n100 Vollars\nYour salary increased by\n 1000 Vollars.");
+        story->setPlainText("You have decided to\nprice the medicine at\n100 Vollars.\nYour salary increased by\n 1000 Vollars.");
     else if (response == 1)
-        story->setPlainText("You have decided to\nprice the medicine at\n600 Vollars\nYour salary increased by\n 6000 Vollars.");
+        story->setPlainText("You have decided to\nprice the medicine at\n600 Vollars.\nYour salary increased by\n 6000 Vollars.");
 
     enterState = 1;
 }

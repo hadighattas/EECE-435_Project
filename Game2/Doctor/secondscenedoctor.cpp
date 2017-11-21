@@ -33,7 +33,7 @@ SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
     option2Text = new QGraphicsTextItem;
 
     //setting text of story
-    story = new QGraphicsTextItem("After a long day at work, you are informed that two badly injured patients\nare on their way. As soon as they arrive, you realize that...");
+    story = new QGraphicsTextItem("After a long day at work, you are informed that two badly injured patients are on their way.\nAs soon as they arrive, you realize that...");
     story->setDefaultTextColor(QColor(Qt::black));
     story->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
     story->setPos(80, 10);
@@ -51,7 +51,7 @@ SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
 void SecondSceneDoctor::keyPressEvent(QKeyEvent *event) {
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-            story->setPlainText("One of them is your brother, but the other patient is in a worse condition\nWho do you choose to help?");
+            story->setPlainText("One of them is your brother, and the other one is a stranger whose condition is more critical.\nWho do you choose to help?");
             removeItem(enter);
 
             pen.setWidth(5);
@@ -100,14 +100,13 @@ void SecondSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     else if (clickState == 1) {
         QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
         if (item == your_brother) {
-            doctorValues << "FAMILY";
+            family += 1;
             response = 0;
             showResult();
         }
         else if (item == stranger) {
-            if (doctorValues.contains("FAMILY"))
-                    doctorValues.removeOne("FAMILY");
-            doctorValues << "COMPLIANCE";
+            family -= 1;
+            compliance += 1;
             response = 1;
             showResult();
         }
@@ -136,12 +135,12 @@ void SecondSceneDoctor::showResult() {
     story->setPos(495, 280);
 
     if (response == 0) {
-        story->setPlainText("You have decided to\nsave your brother\nthe kind stranger is\ndead.");
+        story->setPlainText("You have decided to\nsave your brother.\nthe kind stranger is\ndead.");
         removeItem(stranger);
         character->setPos(1000, 450);
     }
     else if (response == 1) {
-        story->setPlainText("You have decided to\nsave the stranger\nYour brother is okay.");
+        story->setPlainText("You have decided to\nsave the stranger.\nYour brother is okay.");
         removeItem(your_brother);
         character->setPos(810, 340);
     }

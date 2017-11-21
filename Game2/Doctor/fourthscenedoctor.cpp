@@ -32,7 +32,7 @@ FourthSceneDoctor::FourthSceneDoctor(QObject *parent) :
     waterSound = new QSound("Water.wav");
     waterSound->setLoops(2);
 
-    countTimer = 15;
+    countTimer = 30;
     waterTimer = new QTimer(this);
     connect(waterTimer, SIGNAL(timeout()), this, SLOT(updateScene()));
 
@@ -66,8 +66,8 @@ void FourthSceneDoctor::keyPressEvent(QKeyEvent *event) {
             enterState = 1;
 
             water->setPixmap(QPixmap("Water.png").scaled(1279, 576, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-            water->setPos(0, 700);
-            waterTimer->start(500);
+            water->setPos(0, 660);
+            waterTimer->start(250);
             waterSound->play();
             addItem(water);
         }
@@ -83,15 +83,12 @@ void FourthSceneDoctor::keyPressEvent(QKeyEvent *event) {
 void FourthSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == records) {
-        doctorValues << "COMPLIANCE";
-        if (doctorValues.contains("COMPLIANCE"))
-            doctorValues.removeOne("COMPLIANCE");
+        compliance += 1;
         response = 1;
         showResult();
     }
     else if (item == briefcase) {
-        if (doctorValues.contains("COMPLIANCE"))
-            doctorValues.removeOne("COMPLIANCE");
+        compliance -= 1;
         response = 2;
         showResult();
     }
@@ -106,6 +103,7 @@ void FourthSceneDoctor::changeScene() {
 }
 
 void FourthSceneDoctor::showResult() {
+    waterTimer->stop();
     waterSound->stop();
     removeItem(records);
     removeItem(briefcase);
@@ -120,8 +118,7 @@ void FourthSceneDoctor::showResult() {
 
     if (response == 0) {
         story->setPlainText("You took too much time to\nmake a decision. You\nlost both items.");
-        if (doctorValues.contains("COMPLIANCE"))
-            doctorValues.removeOne("COMPLIANCE");
+        compliance -= 1;
     }
     else if (response == 1)
         story->setPlainText("You chose to save the\nrecords.\nYou always put your\npatients first!");
@@ -134,9 +131,8 @@ void FourthSceneDoctor::showResult() {
 
 void FourthSceneDoctor::updateScene(){
     countTimer--;
-    water->setPos(water->x(), water->y() - 25);
+    water->setPos(water->x(), water->y() - 13);
     if (countTimer == 0) {
-        waterTimer->stop();
         showResult();
     }
 }

@@ -108,15 +108,14 @@ void SeventhSceneEngineer::keyPressEvent(QKeyEvent *event) {
 void SeventhSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        if (engineerValues.contains("COURAGE"))
-                engineerValues.removeOne("COURAGE");
-        if (engineerValues.contains("HELPING OTHERS"))
-                engineerValues.removeOne("HELPING OTHERS");
+        courage -= 1;
+        helping -= 1;
         response = 1;
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        engineerValues << "COURAGE" << "HELPING OTHERS";
+        courage += 1;
+        helping += 1;
         response = 2;
         showResult();
     }
@@ -148,10 +147,8 @@ void SeventhSceneEngineer::showResult() {
     story->setPos(495, 280);
 
     if (response == 0) {
-        if (engineerValues.contains("COURAGE"))
-                engineerValues.removeOne("COURAGE");
-        if (engineerValues.contains("HELPING OTHERS"))
-                engineerValues.removeOne("HELPING OTHERS");
+        courage -= 1;
+        helping -= 1;
 
         story->setPlainText("You took too much time to\ndecide, and now your\ncolleague is dead.\nThis was a tough decision.");
         removeItem(blindCharacter);

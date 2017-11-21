@@ -27,7 +27,7 @@ SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
     option3Text = new QGraphicsTextItem;
 
     //setting text of story
-    story = new QGraphicsTextItem("You are in circulating between the cubicles, checking on your team's work.\n");
+    story = new QGraphicsTextItem("You are circulating between the cubicles, checking on your team's work.\n");
     story->setDefaultTextColor(QColor(Qt::black));
     story->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
     story->setPos(80, 10);
@@ -112,20 +112,18 @@ void SixthSceneEngineer::keyPressEvent(QKeyEvent *event) {
 void SixthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        engineerValues << "HONESTY";
+        honesty += 1;
         response = 0;
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        if (engineerValues.contains("HONESTY"))
-            engineerValues.removeOne("HONESTY");
+        honesty -= 1;
         response = 1;
         showResult();
     }
     else if (item == option3 || item == option3Text) {
-        engineerValues << "HELPING OTHERS";
-        if (engineerValues.contains("HONESTY"))
-            engineerValues.removeOne("HONESTY");
+        helping += 1;
+        honesty -= 1;
         response = 2;
         showResult();
     }

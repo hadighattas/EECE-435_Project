@@ -118,17 +118,15 @@ void SecondSceneEngineer::keyPressEvent(QKeyEvent *event) {
 void SecondSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        if (engineerValues.contains("ACCEPTANCE"))
-            engineerValues.removeOne("ACCEPTANCE");
+        forgivingness -= 1;
         changeScene();
     }
     else if (item == option2 || item == option2Text) {
-        engineerValues << "ACCEPTANCE";
+        forgivingness += 1;
         changeScene();
     }
     else if (item == option3 || item == option3Text) {
-        if (engineerValues.contains("ACCEPTANCE"))
-            engineerValues.removeOne("ACCEPTANCE");
+        forgivingness -= 1;
         changeScene();
     }
 }

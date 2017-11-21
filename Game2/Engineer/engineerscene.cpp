@@ -50,6 +50,15 @@ EngineerScene::EngineerScene(QObject *parent) :
     QSound::play("ComputerSciFi.wav");
 
     updateTime();
+
+    //initial values
+    friendship = 3;
+    compliance = 3;
+    honesty = 3;
+    forgivingness = 3;
+    helping = 3;
+    family = 3;
+    courage = 3;
 }
 
 void EngineerScene::setStackedWidget(QStackedWidget *stack) {
@@ -98,6 +107,13 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsView *view = views().at(0);
         view->setScene(eigth);
     }
+    else if ((item == next || item == arrow) && stateOfEngineer == 8) {
+        score = new Game2Score;
+        timerTime->stop();
+        q->addWidget(score);
+        q->setCurrentWidget(score);
+    }
+
 }
 
 void EngineerScene::updateTime(){

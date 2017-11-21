@@ -38,6 +38,9 @@ EigthSceneEngineer::EigthSceneEngineer(QObject *parent) :
 
     //enterstate determines if we want to read the enter key, and what to do if we do
     enterState = 0;
+
+    //declare sound
+    rocket = new QSound("Rocket.wav");
 }
 
 void EigthSceneEngineer::keyPressEvent(QKeyEvent *event) {
@@ -80,21 +83,22 @@ void EigthSceneEngineer::keyPressEvent(QKeyEvent *event) {
     }
     else if (enterState == 1)
         return;
-    else if (enterState == 2)
+    else if (enterState == 2) {
+        rocket->stop();
         changeScene();
+    }
 }
 
 void EigthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
-        engineerValues << "HONESTY";
+        honesty += 1;
         response = 0;
         moneyGlobal -= 5000;
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        if (engineerValues.contains("HONESTY"))
-            engineerValues.removeOne("HONESTY");
+        honesty -= 1;
         response = 1;
         showResult();
     }
@@ -115,6 +119,12 @@ void EigthSceneEngineer::showResult() {
     removeItem(option2Text);
 
     setBackgroundBrush(QBrush(QImage("SpaceShuttle.png").scaledToWidth(1280).scaledToHeight(720)));
+
+    vasa = new QGraphicsPixmapItem(QPixmap("VASA.png").scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    vasa->setPos(1095, 150);
+    addItem(vasa);
+
+    rocket->play();
 
     enter->setPos(1150, 35);
     removeItem(character);

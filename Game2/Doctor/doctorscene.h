@@ -18,8 +18,8 @@
 #include "secondscenedoctor.h"
 #include "thirdscenedoctor.h"
 #include "fourthscenedoctor.h"
-//#include "fifthscenedoctor.h"
-//#include "sixthscenedoctor.h"
+#include "fifthscenedoctor.h"
+#include "sixthscenedoctor.h"
 //#include "seventhscenedoctor.h"
 //#include "eigthscenedoctor.h"
 

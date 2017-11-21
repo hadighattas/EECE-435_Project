@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Game2Score</class>
+ <widget class="QWidget" name="Game2Score">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>200</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>FAMILY</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>250</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>FRIENDSHIP</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>300</y>
+     <width>241</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>COMPLIANCE TO WORK</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>400</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>HELPING OTHERS</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>450</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>COURAGE</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>350</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>HONESTY</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>850</x>
+     <y>570</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>500</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;
+color:white;
+</string>
+   </property>
+   <property name="text">
+    <string>FORGIVINGNESS</string>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="familyProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>200</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="friendshipProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>250</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="complianceProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>300</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="honestyProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>350</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="helpingProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>400</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="forgivingnessProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>500</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="courageProgressBar">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>450</y>
+     <width>231</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar::chunk {
+background: rgb(140, 0, 105);
+border-bottom-right-radius: 10px;
+border-bottom-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-left-radius: 10px;
+}
+QProgressBar{
+color: white;
+text-align: center;
+font: 18pt &quot;Digital-7&quot;;
+background: transparent;
+}</string>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

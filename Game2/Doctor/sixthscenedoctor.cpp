@@ -1,18 +1,14 @@
-#include "fourthsceneengineer.h"
+#include "sixthscenedoctor.h"
 
-FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
+SixthSceneDoctor::SixthSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("ConferenceRoomCharacters.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage("Vacation.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    character->setPos(950, 350);
+    character = new QGraphicsPixmapItem(QPixmap("DoctorVacation.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character->setPos(530, 395);
     addItem(character);
-
-    vasa = new QGraphicsPixmapItem(QPixmap("VASA.png").scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    vasa->setPos(1095, 150);
-    addItem(vasa);
 
     //adding upper box to contain story
     box = new QGraphicsRectItem;
@@ -29,7 +25,7 @@ FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
     option2Text = new QGraphicsTextItem;
 
     //setting text of story
-    story = new QGraphicsTextItem("During the meeting, your boss announces the new contract between VISCOVERY and VASA.\nYour company will help VASA build a space shuttle!");
+    story = new QGraphicsTextItem("You are on vacation for one week with your family.\nThis is the only time off you get during the whole year.");
     story->setDefaultTextColor(QColor(Qt::black));
     story->setFont(QFont("Super Webcomic Bros.", 16, QFont::Normal, false));
     story->setPos(80, 10);
@@ -42,39 +38,60 @@ FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
 
     //enterstate determines if we want to read the enter key, and what to do if we do
     enterState = 0;
+    response = 0;
+
+    ringtone = new QSound("Ringtone.wav");
+    viber = new QSound("Vibration.wav");
+
 }
 
-void FourthSceneEngineer::keyPressEvent(QKeyEvent *event) {
+void SixthSceneDoctor::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (enterState == 0) {
-            story->setPlainText("Your boss wants you to assume a managerial position in this project: either director or manager.\nWhat should you choose?");
+            story->setPlainText("Suddenly, an anoying patient starts calling.\nWhat should you choose?");
             removeItem(enter);
+
+            //adding phone
+            phone = new QGraphicsPixmapItem(QPixmap("PhonePatient.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            phone->setPos(60, 120);
+            phone->setTransformationMode(Qt::SmoothTransformation);
+            phone->setTransformOriginPoint(115, 250);
+            phone->setRotation(-7);
+            addItem(phone);
+            ringtone->play();
+            viber->play();
 
             //adding first option
             option1->setBrush(Qt::white);
             option1->setPen(pen);
-            option1->setRect(530, 465, 420, 80);
+            option1->setRect(430, 225, 150, 80);
             addItem(option1);
 
             //setting text of first option
-            option1Text->setPlainText("Director position: higher salaray but very little\ntime for your family.");
+            option1Text->setPlainText("Answer his call.");
             option1Text->setDefaultTextColor(QColor(Qt::black));
             option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-            option1Text->setPos(540, 480);
+            option1Text->setPos(440, 250);
             addItem(option1Text);
 
             //adding second option
             option2->setBrush(Qt::white);
             option2->setPen(pen);
-            option2->setRect(530, 600, 420, 80);
+            option2->setRect(680, 225, 150, 80);
             addItem(option2);
 
             //setting text of second option
-            option2Text->setPlainText("Manager position: good but lower than director,\nlower salary but more time with family.");
+            option2Text->setPlainText("Continue enjoying\n  your vaction.");
             option2Text->setDefaultTextColor(QColor(Qt::black));
             option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
-            option2Text->setPos(540, 615);
+            option2Text->setPos(682, 240);
             addItem(option2Text);
+
+            //timer seconds
+            count = 8;
+            timerPhone = new QTimer(this);
+            connect(timerPhone, SIGNAL(timeout()), this, SLOT(rotatePhone()));
+            timerPhone->start(1000);
 
             enterState = 1;
         }
@@ -87,31 +104,31 @@ void FourthSceneEngineer::keyPressEvent(QKeyEvent *event) {
     }
 }
 
-void FourthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+void SixthSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         compliance += 1;
-        family -= 1;
-        response = 0;
+        response = 1;
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        compliance -= 1;
-        family += 1;
-        response = 1;
+        compliance -=1;
+        response = 2;
         showResult();
     }
 }
 
-void FourthSceneEngineer::showResult() {
+void SixthSceneDoctor::showResult() {
+    viber->stop();
+    ringtone->stop();
+    removeItem(phone);
     removeItem(option1);
     removeItem(option1Text);
     removeItem(option2);
     removeItem(option2Text);
 
-    setBackgroundBrush(QBrush(QImage("ConferenceRoomBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
-
     box->setRect(490, 260, 300, 200);
+    character->setPos(810, 340);
 
     enter->setPos(740, 410);
     addItem(enter);
@@ -119,21 +136,37 @@ void FourthSceneEngineer::showResult() {
     story->setPos(500, 280);
 
     if (response == 0) {
-        story->setPlainText("You chose the director\nposition. Your salary will\nincrease by 5000 Vollars.\nIn the next 4 months, \nyou will barely see\nyour family.");
-        moneyGlobal += 5000;
+        story->setPlainText("You chose to ignore\nthe call.\nMaybe it was something\nimportant...");
+        compliance -= 1;
     }
     else if (response == 1) {
-        story->setPlainText("You chose the manager\nposition. Your salary will\nincrease by 2000 Vollars.\nYour family is glad you \nstill have time to\nsee them.");
-        moneyGlobal += 2000;
+        story->setPlainText("You chose to answer.\nYou always put your\npatients first!");
+    }
+    else if (response == 2) {
+        story->setPlainText("You chose to decline\nthe call.\nMaybe it was something\nimportant...");
     }
 
     enterState = 2;
 }
 
-void FourthSceneEngineer::changeScene() {
+void SixthSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
-    stateOfEngineer = 4;
+    stateOfDoctor = 6;
     QSound::play("ComputerSciFi.wav");
     clear();
+
+}
+
+void SixthSceneDoctor::rotatePhone() {
+    count--;
+    if(phone->rotation() < 0)
+            phone->setRotation(phone->rotation() + 14);
+        else if(phone->rotation() > 0)
+            phone->setRotation(phone->rotation() - 14);
+    if(count == -1){
+        timerPhone->stop();
+        showResult();
+        return ;
+    }
 }

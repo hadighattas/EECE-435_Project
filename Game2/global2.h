@@ -1,5 +1,5 @@
 #include <QStringList>
 
 extern int stateOfEngineer, stateOfDoctor, moneyGlobal;
-extern QStringList engineerValues, doctorValues;
+extern int friendship, compliance, honesty, forgivingness, helping, family, courage;
 
