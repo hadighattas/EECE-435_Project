@@ -1,3 +1,8 @@
+/**
+ * \file secondscenedoctor.cpp
+ * \brief Second doctor scenario
+*/
+
 #include "secondscenedoctor.h"
 
 SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
@@ -48,14 +53,25 @@ SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief SecondSceneDoctor::keyPressEvent
+ * @param event
+ */
 void SecondSceneDoctor::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * If enterState is 2, this means the scene is showing the result of the player's choice, and pressing enter switches back to main map.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             story->setPlainText("One of them is your brother, and the other one is a stranger whose condition is more critical.\nWho do you choose to help?");
             removeItem(enter);
 
             pen.setWidth(5);
-
 
             //adding first option
             option1->setBrush(Qt::white);
@@ -94,7 +110,14 @@ void SecondSceneDoctor::keyPressEvent(QKeyEvent *event) {
         changeScene();
 }
 
+/**
+ * @brief SecondSceneDoctor::mousePressEvent
+ * @param event
+ */
 void SecondSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and results of option choosed is shown.\n
+     */
     if (clickState == 0)
         return;
     else if (clickState == 1) {
@@ -113,7 +136,14 @@ void SecondSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief SecondSceneDoctor::changeScene
+ */
 void SecondSceneDoctor::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 2;
@@ -121,7 +151,16 @@ void SecondSceneDoctor::changeScene() {
     clear();
 }
 
+/**
+ * @brief SecondSceneDoctor::showResult
+ */
 void SecondSceneDoctor::showResult() {
+    /**
+     * Removes unwanted items.\n
+     * Shows result depending on value of response.\n
+     * enterState is set to 2 so that enter key is disabled after this\n
+     * Removes character that was not chosen.\n
+     */
     removeItem(option1);
     removeItem(option1Text);
     removeItem(option2);
@@ -147,7 +186,15 @@ void SecondSceneDoctor::showResult() {
     enterState = 2;
 }
 
+/**
+ * @brief SecondSceneDoctor::mouseMoveEvent
+ * @param event
+ */
 void SecondSceneDoctor::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
+    /**
+      * If clickState is not yet set to 1, (options are not shown), moving mouse has no effect on images.\n
+      * When clickState is 1, moving mouse over brother or stranger changes their pixmap to make them glow.\n
+      */
     if (clickState == 0)
         return;
     else if (clickState == 1) {

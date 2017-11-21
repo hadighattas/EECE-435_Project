@@ -1,3 +1,8 @@
+/**
+ * \file secondsceneengineer.cpp
+ * \brief Second engineer scenario
+*/
+
 #include "secondsceneengineer.h"
 
 SecondSceneEngineer::SecondSceneEngineer(QObject *parent) :
@@ -21,6 +26,7 @@ SecondSceneEngineer::SecondSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -43,7 +49,13 @@ SecondSceneEngineer::SecondSceneEngineer(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief SecondSceneEngineer::addAliens
+ */
 void SecondSceneEngineer::addAliens() {
+    /**
+     * Creates 3 aliens randomly at specific positions.
+     */
     RandomAlien *alien1 = new RandomAlien;
     alien1->setPixmap(alien1->pixmap().scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     alien1->setPos(210, 500);
@@ -60,7 +72,18 @@ void SecondSceneEngineer::addAliens() {
     addItem(alien3);
 }
 
+/**
+ * @brief SecondSceneEngineer::keyPressEvent
+ * @param event
+ */
 void SecondSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             box->setRect(40, 0, 1200, 100);
@@ -115,7 +138,14 @@ void SecondSceneEngineer::keyPressEvent(QKeyEvent *event) {
         return;
 }
 
+/**
+ * @brief SecondSceneEngineer::mousePressEvent
+ * @param event
+ */
 void SecondSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and scene is switched back to the main map.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         forgivingness -= 1;
@@ -131,7 +161,14 @@ void SecondSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief SecondSceneEngineer::changeScene
+ */
 void SecondSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 2;

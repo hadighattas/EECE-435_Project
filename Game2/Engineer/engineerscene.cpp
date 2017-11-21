@@ -70,13 +70,28 @@ EngineerScene::EngineerScene(QObject *parent) :
     helping = 3;
     family = 3;
     courage = 3;
+
+    stateOfDoctor = 0;
+    stateOfEngineer = 0;
 }
 
+/**
+ * @brief EngineerScene::setStackedWidget
+ * @param stack
+ */
 void EngineerScene::setStackedWidget(QStackedWidget *stack) {
     this->q = stack;
 }
 
+/**
+ * @brief EngineerScene::mousePressEvent
+ * @param event
+ */
 void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on arrow, this function takes him to next scenario.\n
+     * After the last scenario, takes him to score ui.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if ((item == next || item == arrow) && stateOfEngineer == 0) {
         FirstSceneEngineer *first = new FirstSceneEngineer(this);
@@ -125,10 +140,16 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         q->addWidget(score);
         q->setCurrentWidget(score);
     }
-
 }
 
+/**
+ * @brief EngineerScene::updateTime
+ */
 void EngineerScene::updateTime(){
+    /**
+     * Shows the time of day, updated every second.\n
+     * Depending on value of stateOfEngineer, which is global, sets position of character on the map.\n
+    */
     time->setPlainText(QTime::currentTime().toString());
     if (flag == true) {
         arrow->setPixmap((QPixmap("arrowGlow.png")));

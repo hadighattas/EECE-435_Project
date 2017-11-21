@@ -1,3 +1,13 @@
+/**
+ * \file doctorscene.cpp
+ * \brief Main scene that shows progress of character
+ *
+ * Shows the progress of the character on map.\n
+ * Shows current amount of money.\n
+ * Allows character to pass from scenario to scenario.\n
+ * When all scenarios completed, allows to switch to score menu.\n
+*/
+
 #include "doctorscene.h"
 
 DoctorScene::DoctorScene(QObject *parent) :
@@ -60,9 +70,20 @@ DoctorScene::DoctorScene(QObject *parent) :
     helping = 3;
     family = 3;
     courage = 3;
+
+    stateOfDoctor = 0;
+    stateOfEngineer = 0;
 }
 
+/**
+ * @brief DoctorScene::mousePressEvent
+ * @param event
+ */
 void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on arrow, this function takes him to next scenario.\n
+     * After the last scenario, takes him to score ui.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if ((item == next || item == arrow) && stateOfDoctor == 0) {
         FirstSceneDoctor *first = new FirstSceneDoctor(this);
@@ -108,11 +129,22 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief DoctorScene::setStackedWidget
+ * @param stack
+ */
 void DoctorScene::setStackedWidget(QStackedWidget *stack) {
     this->q = stack;
 }
 
+/**
+ * @brief DoctorScene::updateTime
+ */
 void DoctorScene::updateTime(){
+    /**
+     * Shows the time of day, updated every second.\n
+     * Depending on value of stateOfEngineer, which is global, sets position of character on the map.\n
+    */
     time->setPlainText(QTime::currentTime().toString());
     if (flag == true) {
         arrow->setPixmap((QPixmap("arrowGlow.png")));

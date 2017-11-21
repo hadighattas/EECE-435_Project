@@ -1,3 +1,8 @@
+/**
+ * \file seventhscenedoctor.cpp
+ * \brief Seventh doctor scenario
+*/
+
 #include "seventhscenedoctor.h"
 
 SeventhSceneDoctor::SeventhSceneDoctor(QObject *parent) :
@@ -70,7 +75,21 @@ SeventhSceneDoctor::SeventhSceneDoctor(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief SeventhSceneDoctor::keyPressEvent
+ * @param event
+ */
 void SeventhSceneDoctor::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * clickState is set to 1 to allow player to click on an option in first scenario.\n
+     * If enterState is 2, pressing enter shows options in second scenario.\n
+     * If enterState is 3, pressing enter has no effect.\n
+    */
     if (enterState == 0) { //state 0 is when the user has never pressed enter
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             breakingSound->play();
@@ -81,27 +100,21 @@ void SeventhSceneDoctor::keyPressEvent(QKeyEvent *event) {
             pen.setWidth(5);
 
             //adding first option
-
             addItem(option1);
 
             //setting text of first option
-
             addItem(option1Text);
 
             //adding second option
-
             addItem(option2);
 
             //setting text of second option
-
             addItem(option2Text);
 
             //adding third option
-
             addItem(option3);
 
             //setting text of third option
-
             addItem(option3Text);
 
 
@@ -155,7 +168,17 @@ void SeventhSceneDoctor::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+/**
+ * @brief SeventhSceneDoctor::mousePressEvent
+ * @param event
+ */
 void SeventhSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * Before clickState is set to 1, clicking on screen has no effect.\n
+     * If player clicks on one option, values are updated and scene is switched to second scenario.\n
+     * If clickState is 2, player can click on option of second scenario.\n
+     * After this, values are updated and scene is switched back to main map.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (clickState == 1) {
         if (item == option1 || item == option1Text) {
@@ -187,7 +210,15 @@ void SeventhSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief SeventhSceneDoctor::secondScenario
+ */
 void SeventhSceneDoctor::secondScenario() {
+    /**
+     * Removes unwanted items.\n
+     * Adds graphics for second scenario.\n
+     * enterState is set to 2 so that enter key shows options of second scenario.\n
+     */
     setBackgroundBrush(QBrush(QImage("OperationRoom2.png").scaledToWidth(1280).scaledToHeight(720)));
 
     character->setPos(250, 400);
@@ -209,7 +240,14 @@ void SeventhSceneDoctor::secondScenario() {
     enterState = 2;
 }
 
+/**
+ * @brief SeventhSceneDoctor::changeScene
+ */
 void SeventhSceneDoctor::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 8;

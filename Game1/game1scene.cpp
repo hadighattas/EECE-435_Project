@@ -84,8 +84,8 @@ void Game1Scene::newObstacle(){
      * id = 2 --> space shuttle oriented to right, can be added only starting at left position.\n
     */
     obstaclescreated++;
-    int r1=distribution(generator);
-    int r2=distribution1(generator1);
+    int r1 = distribution(generator);
+    int r2 = distribution1(generator1);
     ObstacleGroup *obstacle = new ObstacleGroup;
     obstacle->setDifficulty(difficulty);
     obstacle->setRand(r2);
@@ -100,7 +100,7 @@ void Game1Scene::newObstacle(){
         else if (r == 2)
             y1 = 315;
         else if (r== 3)
-            y1=445;
+            y1 = 445;
     }
     else if (id == 2 ) {
         int r = r1%4;

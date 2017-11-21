@@ -1,3 +1,8 @@
+/**
+ * \file fifthsceneengineer.cpp
+ * \brief Fifth engineer scenario
+*/
+
 #include "fifthsceneengineer.h"
 
 FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
@@ -6,6 +11,7 @@ FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     setBackgroundBrush(QBrush(QImage("Cubicles.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
+    //adding characters
     character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(1060, 470);
     addItem(character);
@@ -27,6 +33,7 @@ FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -50,7 +57,19 @@ FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief FifthSceneEngineer::keyPressEvent
+ * @param event
+ */
 void FifthSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * clickState is set to 1 to allow player to click on an option.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             story->setPlainText("Your first task is to choose someone to assume a technical position in the space shuttle team.\nWho should you choose?");
@@ -106,7 +125,15 @@ void FifthSceneEngineer::keyPressEvent(QKeyEvent *event) {
         return;
 }
 
+/**
+ * @brief FifthSceneEngineer::mousePressEvent
+ * @param event
+ */
 void FifthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * Before clickState is set to 1, clicking on screen has no effect.\n
+     * If player clicks on one option, values are updated and scene is switched back to the main map.\n
+     */
     if (clickState == 0)
         return;
     else if (clickState == 1) {
@@ -122,7 +149,14 @@ void FifthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief FifthSceneEngineer::changeScene
+ */
 void FifthSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 5;
@@ -130,7 +164,15 @@ void FifthSceneEngineer::changeScene() {
     clear();
 }
 
+/**
+ * @brief FifthSceneEngineer::mouseMoveEvent
+ * @param event
+ */
 void FifthSceneEngineer::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
+    /**
+      * If clickState is not yet set to 1, (options are not shown), moving mouse has no effect on images.\n
+      * When clickState is 1, moving mouse over friend or colleagues changes their pixmap to make them glow.\n
+      */
     if (clickState == 0)
         return;
     else if (clickState == 1) {

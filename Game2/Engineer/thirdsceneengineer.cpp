@@ -1,3 +1,8 @@
+/**
+ * \file thirdsceneengineer.cpp
+ * \brief Third engineer scenario
+*/
+
 #include "thirdsceneengineer.h"
 
 ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
@@ -19,6 +24,7 @@ ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -41,12 +47,25 @@ ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
     enterState = 0;
     response = 0;
 
+    //initializing sounds to be played later
     tick = new QSound("Tick.wav");
     ringtone = new QSound("Ringtone.wav");
     viber = new QSound("Vibration.wav");
 }
 
+/**
+ * @brief ThirdSceneEngineer::keyPressEvent
+ * @param event
+ */
 void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * If enterState is 2, this means the scene is showing the result of the player's choice, and pressing enter switches back to main map.\n
+    */
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (enterState == 0) {
             story->setPlainText("Your wife calls!\nWhat should you do?");
@@ -89,6 +108,7 @@ void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
             option2Text->setPos(400, 420);
             addItem(option2Text);
 
+            //playing sounds
             ringtone->play();
             viber->play();
 
@@ -121,7 +141,14 @@ void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+/**
+ * @brief ThirdSceneEngineer::updateSeconds
+ */
 void ThirdSceneEngineer::updateSeconds() {
+    /**
+      * countSeconds counts the number of times this function has been called.\n
+      * When countSeconds becomes negative, counter stops and displays the result.\n
+      */
     countSeconds--;
     rotatePhone();
     if(countSeconds == -1){
@@ -137,7 +164,14 @@ void ThirdSceneEngineer::updateSeconds() {
     secondsLeftText->setPlainText(QString::number(countSeconds));
 }
 
+/**
+ * @brief ThirdSceneEngineer::mousePressEvent
+ * @param event
+ */
 void ThirdSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and results of option choosed is shown.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         family += 1;
@@ -155,6 +189,9 @@ void ThirdSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief ThirdSceneEngineer::changeScene
+ */
 void ThirdSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
@@ -170,7 +207,15 @@ void ThirdSceneEngineer::rotatePhone() {
         phone->setRotation(phone->rotation() - 14);
 }
 
+/**
+ * @brief ThirdSceneEngineer::showResult
+ */
 void ThirdSceneEngineer::showResult() {
+    /**
+     * Removes unwanted items.\n
+     * Shows result depending on value of response.\n
+     * enterState is set to 2 so that enter key is disabled after this\n
+     */
     removeItem(phone);
     removeItem(option1);
     removeItem(option1Text);

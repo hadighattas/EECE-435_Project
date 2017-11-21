@@ -1,3 +1,8 @@
+/**
+ * \file sixthsceneengineer.cpp
+ * \brief Sixth engineer scenario
+*/
+
 #include "sixthsceneengineer.h"
 
 SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
@@ -19,6 +24,7 @@ SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -44,7 +50,19 @@ SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
     notification = new QSound("Notification.wav");
 }
 
+/**
+ * @brief SixthSceneEngineer::keyPressEvent
+ * @param event
+ */
 void SixthSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * If enterState is 2, this means the scene is showing the result of the player's choice, and pressing enter switches back to main map.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             setBackgroundBrush(QBrush(QImage("CubiclesBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
@@ -109,7 +127,14 @@ void SixthSceneEngineer::keyPressEvent(QKeyEvent *event) {
         changeScene();
 }
 
+/**
+ * @brief SixthSceneEngineer::mousePressEvent
+ * @param event
+ */
 void SixthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and results of option choosed is shown.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         honesty += 1;
@@ -129,7 +154,14 @@ void SixthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief SixthSceneEngineer::changeScene
+ */
 void SixthSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 6;
@@ -138,7 +170,16 @@ void SixthSceneEngineer::changeScene() {
     delete this;
 }
 
+/**
+ * @brief SixthSceneEngineer::showResult
+ */
 void SixthSceneEngineer::showResult() {
+    /**
+     * Removes unwanted items.\n
+     * Shows result depending on value of response.\n
+     * enterState is set to 2 so that enter key is disabled after this\n
+     * Updates moneyGlobal, which is global,depending on response.\n
+     */
     removeItem(phone);
     removeItem(option1);
     removeItem(option1Text);

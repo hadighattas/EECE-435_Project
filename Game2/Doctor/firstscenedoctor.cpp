@@ -1,3 +1,8 @@
+/**
+ * \file firstscenedoctor.cpp
+ * \brief First doctor scenario
+*/
+
 #include "firstscenedoctor.h"
 
 FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
@@ -21,6 +26,7 @@ FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -43,7 +49,18 @@ FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief FirstSceneDoctor::keyPressEvent
+ * @param event
+ */
 void FirstSceneDoctor::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             box->setRect(40, 0, 1200, 100);
@@ -103,7 +120,14 @@ void FirstSceneDoctor::keyPressEvent(QKeyEvent *event) {
         return;
 }
 
+/**
+ * @brief FirstSceneDoctor::mousePressEvent
+ * @param event
+ */
 void FirstSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and scene is switched back to the main map.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         helping += 1;
@@ -119,7 +143,13 @@ void FirstSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief FirstSceneDoctor::addAliens
+ */
 void FirstSceneDoctor::addAliens() {
+    /**
+     * Creates 3 aliens randomly at specific positions.
+     */
     RandomAlien *alien1 = new RandomAlien;
     alien1->setPixmap(alien1->pixmap().scaled(120, 120, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     alien1->setPos(190, 340);
@@ -136,7 +166,14 @@ void FirstSceneDoctor::addAliens() {
     addItem(alien3);
 }
 
+/**
+ * @brief FirstSceneDoctor::changeScene
+ */
 void FirstSceneDoctor::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 1;

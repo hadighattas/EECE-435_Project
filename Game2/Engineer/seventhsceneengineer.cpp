@@ -1,3 +1,8 @@
+/**
+ * \file seventhsceneengineer.cpp
+ * \brief Seventh engineer scenario
+*/
+
 #include "seventhsceneengineer.h"
 
 SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
@@ -23,6 +28,7 @@ SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -52,7 +58,19 @@ SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
     fireSound = new QSound("FireSound.wav");
 }
 
+/**
+ * @brief SeventhSceneEngineer::keyPressEvent
+ * @param event
+ */
 void SeventhSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * If enterState is 2, this means the scene is showing the result of the player's choice, and pressing enter switches back to main map.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             box->setRect(40, 0, 1200, 100);
@@ -105,7 +123,14 @@ void SeventhSceneEngineer::keyPressEvent(QKeyEvent *event) {
         changeScene();
 }
 
+/**
+ * @brief SeventhSceneEngineer::mousePressEvent
+ * @param event
+ */
 void SeventhSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and results of option choosed is shown.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         courage -= 1;
@@ -121,7 +146,14 @@ void SeventhSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief SeventhSceneEngineer::changeScene
+ */
 void SeventhSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 7;
@@ -129,7 +161,15 @@ void SeventhSceneEngineer::changeScene() {
     clear();
 }
 
+/**
+ * @brief SeventhSceneEngineer::showResult
+ */
 void SeventhSceneEngineer::showResult() {
+    /**
+     * Removes unwanted items.\n
+     * Shows result depending on value of response.\n
+     * enterState is set to 2 so that enter key is disabled after this\n
+     */
     timePassedTimer->stop();
     removeItem(option1);
     removeItem(option1Text);
@@ -166,7 +206,15 @@ void SeventhSceneEngineer::showResult() {
     enterState = 2;
 }
 
+/**
+ * @brief SeventhSceneEngineer::updateScene
+ */
 void SeventhSceneEngineer::updateScene() {
+    /**
+     * Function called every second.\n
+     * Updates size of fire image by scaling it.\n
+     * After time has passed, scene is switched to show the result.\n
+     */
     timePassed++;
     QPixmap oldPixmap = fire->pixmap();
     fire->setPixmap(QPixmap("Fire.png").scaled(oldPixmap.width() + 12, oldPixmap.height() + 12, Qt::KeepAspectRatio, Qt::SmoothTransformation));

@@ -1,3 +1,9 @@
+/**
+ * \file fourthsceneengineer.cpp
+ * \brief Fourth engineer scenario
+*/
+
+
 #include "fourthsceneengineer.h"
 
 FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
@@ -23,6 +29,7 @@ FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -44,7 +51,19 @@ FourthSceneEngineer::FourthSceneEngineer(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief FourthSceneEngineer::keyPressEvent
+ * @param event
+ */
 void FourthSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+     * If enterState is 2, this means the scene is showing the result of the player's choice, and pressing enter switches back to main map.\n
+    */
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (enterState == 0) {
             story->setPlainText("Your boss wants you to assume a managerial position in this project: either director or manager.\nWhat should you choose?");
@@ -87,7 +106,14 @@ void FourthSceneEngineer::keyPressEvent(QKeyEvent *event) {
     }
 }
 
+/**
+ * @brief FourthSceneEngineer::mousePressEvent
+ * @param event
+ */
 void FourthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and results of option choosed is shown.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         compliance += 1;
@@ -103,7 +129,16 @@ void FourthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief FourthSceneEngineer::showResult
+ */
 void FourthSceneEngineer::showResult() {
+    /**
+     * Removes unwanted items.\n
+     * Shows result depending on value of response.\n
+     * enterState is set to 2 so that enter key is disabled after this\n
+     * Updates moneyGlobal, which is global,depending on response.\n
+     */
     removeItem(option1);
     removeItem(option1Text);
     removeItem(option2);
@@ -130,7 +165,14 @@ void FourthSceneEngineer::showResult() {
     enterState = 2;
 }
 
+/**
+ * @brief FourthSceneEngineer::changeScene
+ */
 void FourthSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 4;

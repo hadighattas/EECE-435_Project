@@ -1,3 +1,8 @@
+/**
+ * \file thirdscenedoctor.cpp
+ * \brief Doctor third scenario
+*/
+
 #include "thirdscenedoctor.h"
 
 ThirdSceneDoctor::ThirdSceneDoctor(QObject *parent) :

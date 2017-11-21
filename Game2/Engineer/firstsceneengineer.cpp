@@ -1,3 +1,8 @@
+/**
+ * \file firstsceneengineer.cpp
+ * \brief First engineer scenario
+*/
+
 #include "firstsceneengineer.h"
 
 FirstSceneEngineer::FirstSceneEngineer(QObject *parent) :
@@ -21,6 +26,7 @@ FirstSceneEngineer::FirstSceneEngineer(QObject *parent) :
     box->setPen(pen);
     addItem(box);
 
+    //declaring graphics that will contain the options
     option1 = new QGraphicsRectItem;
     option1Text = new QGraphicsTextItem;
     option2 = new QGraphicsRectItem;
@@ -43,7 +49,18 @@ FirstSceneEngineer::FirstSceneEngineer(QObject *parent) :
     enterState = 0;
 }
 
+/**
+ * @brief FirstSceneEngineer::keyPressEvent
+ * @param event
+ */
 void FirstSceneEngineer::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Changes the text of the upper box\n
+     * enterState sets result of pressing enter key.\n
+     * If it is 0, pressing enter shows the options.\n
+     * After showing the options, enterState is set to 1.\n
+     * If enterState is 1, pressing enter key has no effect.\n
+    */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             box->setRect(40, 0, 1200, 100);
@@ -98,7 +115,13 @@ void FirstSceneEngineer::keyPressEvent(QKeyEvent *event) {
         return;
 }
 
+/**
+ * @brief FirstSceneEngineer::addAliens
+ */
 void FirstSceneEngineer::addAliens() {
+    /**
+     * Creates 3 aliens randomly at specific positions.
+     */
     RandomAlien *alien1 = new RandomAlien;
     alien1->setPixmap(alien1->pixmap().scaled(120, 120, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     alien1->setPos(190, 340);
@@ -115,7 +138,14 @@ void FirstSceneEngineer::addAliens() {
     addItem(alien3);
 }
 
+/**
+ * @brief FirstSceneEngineer::mousePressEvent
+ * @param event
+ */
 void FirstSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
+    /**
+     * If player clicks on one option, values are updated and scene is switched back to the main map.\n
+     */
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == option1 || item == option1Text) {
         compliance += 1;
@@ -135,7 +165,14 @@ void FirstSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
     }
 }
 
+/**
+ * @brief FirstSceneEngineer::changeScene
+ */
 void FirstSceneEngineer::changeScene() {
+    /**
+     * Gets the view that is showing the current scene.\n
+     * Sets back the scene to the parent of the current scene, which is the main map.\n
+     */
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 1;
