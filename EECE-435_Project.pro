@@ -50,7 +50,12 @@ SOURCES += main.cpp\
     Game2/Doctor/fifthscenedoctor.cpp \
     Game2/Doctor/sixthscenedoctor.cpp \
     Game2/game2score.cpp \
-    Game2/Doctor/seventhscenedoctor.cpp
+    Game2/Doctor/seventhscenedoctor.cpp \
+    Game3/game3menu.cpp \
+    Game3/game3graphicsview.cpp \
+    Game3/game3scene.cpp \
+    Game3/global3.cpp \
+    Game3/player.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -89,7 +94,12 @@ HEADERS  += mainwindow.h \
     Game2/Doctor/fifthscenedoctor.h \
     Game2/Doctor/sixthscenedoctor.h \
     Game2/game2score.h \
-    Game2/Doctor/seventhscenedoctor.h
+    Game2/Doctor/seventhscenedoctor.h \
+    Game3/game3menu.h \
+    Game3/game3graphicsview.h \
+    Game3/game3scene.h \
+    Game3/global3.h \
+    Game3/player.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
@@ -100,4 +110,5 @@ FORMS    += mainwindow.ui \
     Game1/game1menu.ui \
     Game1/game1score.ui \
     Game2/game2menu.ui \
-    Game2/game2score.ui
+    Game2/game2score.ui \
+    Game3/game3menu.ui

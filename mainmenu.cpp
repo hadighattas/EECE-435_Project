@@ -38,10 +38,10 @@ void MainMenu::on_game2Button_clicked()
 
 void MainMenu::on_game3Button_clicked()
 {
-    GameTemplate *gameTemplate=new GameTemplate;
-    gameTemplate->setGameName(ui->game3Button->text());
-    ui->stackedWidget_2->addWidget(gameTemplate);
-    ui->stackedWidget_2->setCurrentWidget(gameTemplate);
+    Game3Menu *game3menu = new Game3Menu;
+    game3menu->setStackedWidget(q);
+    ui->stackedWidget_2->addWidget(game3menu);
+    ui->stackedWidget_2->setCurrentWidget(game3menu);
 }
 
 void MainMenu::on_signOutButton_clicked()
