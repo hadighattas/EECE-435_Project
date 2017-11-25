@@ -55,7 +55,8 @@ SOURCES += main.cpp\
     Game3/game3graphicsview.cpp \
     Game3/game3scene.cpp \
     Game3/global3.cpp \
-    Game3/player.cpp
+    Game3/player.cpp \
+    Game3/game3score.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -99,7 +100,8 @@ HEADERS  += mainwindow.h \
     Game3/game3graphicsview.h \
     Game3/game3scene.h \
     Game3/global3.h \
-    Game3/player.h
+    Game3/player.h \
+    Game3/game3score.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
@@ -111,4 +113,5 @@ FORMS    += mainwindow.ui \
     Game1/game1score.ui \
     Game2/game2menu.ui \
     Game2/game2score.ui \
-    Game3/game3menu.ui
+    Game3/game3menu.ui \
+    Game3/game3score.ui

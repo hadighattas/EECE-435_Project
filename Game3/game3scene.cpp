@@ -13,6 +13,23 @@ Game3Scene::Game3Scene(QObject *parent) :
 
     timerNotMatch = new QTimer;
     connect(timerNotMatch, SIGNAL(timeout()), this, SLOT(notMatch()));
+
+    timerEndGame = new QTimer;
+    connect(timerEndGame, SIGNAL(timeout()), this, SLOT(endGame()));
+
+    valuesAcquired = new QStringList;
+    vicesAcquired = new QStringList;
+
+    endMessage = new QGraphicsTextItem("");
+    endMessage->setFont(QFont("asap condensed", 40, QFont::Bold, false));
+    endMessage->setDefaultTextColor(QColor(Qt::white));
+    endMessage->setZValue(3);
+
+    flip = new QSound("CardFlip.wav");
+    fail = new QSound("FailSound.wav");
+    win = new QSound("WinningSound.wav");
+    correct = new QSound("Correct.wav");
+    wrong = new QSound("Wrong.wav");
 }
 
 void Game3Scene::placeCards() {
@@ -55,6 +72,8 @@ void Game3Scene::setValues() {
         maxj = 4;
     }
 
+    valuesLeftCount = maxi;
+
     bool done = false;
 
     for (int i = 0; i < maxi; i++) {
@@ -62,7 +81,7 @@ void Game3Scene::setValues() {
         while (!done){
             int v1 = rand() % 18;
             int v2 = rand() % 18;
-            int random = rand() % globalValues3.size();
+            int random = rand() % (globalValues3.size() - 1);
             if (values.at(v1)->toPlainText() == "" && values.at(v2)->toPlainText() == "" && v1 != v2) {
                 values.at(v1)->setPlainText(globalValues3.at(random));
                 values.at(v2)->setPlainText(globalValues3.at(random));
@@ -76,8 +95,10 @@ void Game3Scene::setValues() {
         while (!done){
             int v1 = rand() % 18;
             int v2 = rand() % 18;
-            int random = rand() % globalVices3.size();
+            int random = rand() % (globalVices3.size() - 1);
             if (values.at(v1)->toPlainText() == "" && values.at(v2)->toPlainText() == "" && v1 != v2) {
+                values.at(v1)->setDefaultTextColor(QColor(Qt::red));
+                values.at(v2)->setDefaultTextColor(QColor(Qt::red));
                 values.at(v1)->setPlainText(globalVices3.at(random));
                 values.at(v2)->setPlainText(globalVices3.at(random));
                 done = true;
@@ -105,6 +126,7 @@ void Game3Scene::setValues() {
         cursor.clearSelection();
         values.at(k)->setTextCursor(cursor);
         values.at(k)->setPos(x, y);
+        values.at(k)->setZValue(2);
     }
 }
 
@@ -114,15 +136,25 @@ void Game3Scene::setStackedWidget(QStackedWidget *stack) {
 
 void Game3Scene::setDifficulty(int diff) {
     this->difficulty = diff;
+    if (diff == 0 || diff == 1)
+        livesCount = 3;
+    else
+        livesCount = 2;
     placeCards();
     setValues();
 
     player = new Player;
     player->setDifficulty(difficulty);
     player->setPos(140, 167);
-    player->setFlag(QGraphicsItem::ItemIsFocusable);
-    player->setFocus();
     addItem(player);
+
+    // showing lives
+    for(int i = 0; i < livesCount; i++){
+        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+        life->setPos(0, 150 + 60*i);
+        lives.insert(i, life);
+        addItem(lives.at(i));
+    }
 }
 
 void Game3Scene::keyPressEvent(QKeyEvent *event) {
@@ -138,55 +170,105 @@ void Game3Scene::keyPressEvent(QKeyEvent *event) {
             row = (player->y() - 167) / 226;
 
         int position = column + 6 * row;
-        if (position1 == position)
-            return ;
-        else if (position1 == -1) {
+        if (position1 == -1 && stateOfCard.at(position) == CLOSED) {
             position1 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            cards.at(position)->setPixmap(QPixmap("CardFront.png"));
+            flip->play();
+            cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
-        else if (position2 == -1) {
+        else if (position2 == -1 && stateOfCard.at(position) == CLOSED) {
             position2 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            cards.at(position)->setPixmap(QPixmap("CardFront.png"));
-            if (values.at(position1)->toPlainText() == values.at(position2)->toPlainText()) {
-                player->clearFocus();
+            flip->play();
+            cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            if (values.at(position1)->toPlainText() == values.at(position2)->toPlainText())
                 timerMatch->start(1000);
-            }
-            else {
-                player->clearFocus();
+            else
                 timerNotMatch->start(1000);
-            }
         }
 
     }
+    else
+        player->move(event);
 }
 
 void Game3Scene::match() {
+    timerMatch->stop();
+
+    if (globalValues3.contains(values.at(position1)->toPlainText())) { // value
+        correct->play();
+        valuesAcquired->append(values.at(position1)->toPlainText());
+        valuesLeftCount--;
+        if (valuesLeftCount == 0) {
+            win->play();
+            endMessage->setPlainText("    You won!\nNo values left.");
+            endMessage->setPos(640 - endMessage->boundingRect().width()/2, 320);
+            addItem(endMessage);
+            // flipping remaining cards
+            for(int i= 0; i < 18; i++){
+                if(stateOfCard.at(i) == CLOSED){
+                    addItem(values.at(i));
+                    cards.at(i)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                }
+            }
+            timerEndGame->start(3000);
+        }
+    }
+    else {
+        wrong->play();
+        vicesAcquired->append(values.at(position1)->toPlainText());
+        removeItem(lives.last());
+        lives.removeLast();
+        livesCount--;
+        if (lives.size() == 0) {
+            fail->play();
+            endMessage->setPlainText("You lost.");
+            endMessage->setPos(640 - endMessage->boundingRect().width()/2, 340);
+            addItem(endMessage);
+            // flipping remaining cards
+            for(int i= 0; i < 18; i++){
+                if(stateOfCard.at(i) == CLOSED){
+                    addItem(values.at(i));
+                    cards.at(i)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                }
+            }
+            timerEndGame->start(3000);
+        }
+    }
     removeItem(cards.at(position1));
     removeItem(cards.at(position2));
     removeItem(values.at(position1));
-    removeItem(values.at(position1));
+    removeItem(values.at(position2));
     stateOfCard.replace(position1, REMOVED);
     stateOfCard.replace(position2, REMOVED);
-
-    player->setFocus();
 
     position1 = -1;
     position2 = -1;
 }
 
 void Game3Scene::notMatch() {
+    timerNotMatch->stop();
     stateOfCard.replace(position1, CLOSED);
     stateOfCard.replace(position2, CLOSED);
 
-    cards.at(position1)->setPixmap(QPixmap("Card.png"));
-    cards.at(position2)->setPixmap(QPixmap("Card.png"));
+    removeItem(values.at(position1));
+    removeItem(values.at(position2));
 
-    player->setFocus();
+    flip->play();
+    cards.at(position1)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    cards.at(position2)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     position1 = -1;
     position2 = -1;
+}
+
+void Game3Scene::endGame() {
+    timerEndGame->stop();
+    Game3Score *game3score = new Game3Score;
+    game3score->setScore(livesCount, valuesAcquired, vicesAcquired);
+    game3score->setStackedWidget(q);
+    q->addWidget(game3score);
+    q->setCurrentWidget(game3score);
 }

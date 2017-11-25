@@ -23,7 +23,7 @@ void Player::setDifficulty(int diff) {
     }
 }
 
-void Player::keyPressEvent(QKeyEvent *event) {
+void Player::move(QKeyEvent *event) {
     if  (event->key() == Qt::Key_Right) {
         if (x() == 1040)
             ;

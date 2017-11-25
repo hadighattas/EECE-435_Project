@@ -8,9 +8,11 @@
 #include <QtWidgets>
 #include <stdlib.h>
 #include <QGraphicsRectItem>
+#include <QSound>
 
 #include "player.h"
 #include "global3.h"
+#include "game3score.h"
 
 #define OPEN 1
 #define CLOSED 2
@@ -22,10 +24,9 @@ class Game3Scene : public QGraphicsScene
 public:
     explicit Game3Scene(QObject *parent = 0);
     void setDifficulty(int diff);
-    void endGame();
+    void setStackedWidget(QStackedWidget *stack);
     void placeCards();
     void setValues();
-    void setStackedWidget(QStackedWidget *stack);
     void keyPressEvent(QKeyEvent *event);
 
 signals:
@@ -33,17 +34,21 @@ signals:
 public slots:
     void match();
     void notMatch();
+    void endGame();
 
 private:
-    int difficulty;
-    QList <QGraphicsPixmapItem*> cards;
+    int difficulty, livesCount;
+    QList <QGraphicsPixmapItem*> cards, lives;
     QList <QGraphicsTextItem*> values;
+    QGraphicsTextItem *endMessage;
+    QStringList *valuesAcquired;
+    QStringList *vicesAcquired;
     QList <int> stateOfCard;
     QStackedWidget *q;
-    QTimer *timerMatch, *timerNotMatch;
+    QTimer *timerMatch, *timerNotMatch, *timerEndGame;
     Player *player;
-    int position1, position2;
-
+    int position1, position2, valuesLeftCount;
+    QSound *fail, *win, *correct, *wrong, *flip;
 };
 
 #endif // GAME3SCENE_H

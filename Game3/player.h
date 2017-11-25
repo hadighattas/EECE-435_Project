@@ -11,7 +11,7 @@ class Player : public QObject, public QGraphicsPixmapItem
 public:
     explicit Player(QObject *parent = 0);
     void setDifficulty(int diff);
-    void keyPressEvent(QKeyEvent *event);
+    void move(QKeyEvent *event);
 
 signals:
 
