@@ -33,6 +33,7 @@ private slots:
 private:
     Ui::Game3Menu *ui;
     QStackedWidget *q;
+    int menuIndex;
 };
 
 #endif // GAME3MENU_H

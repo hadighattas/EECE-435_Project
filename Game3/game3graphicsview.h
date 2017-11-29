@@ -13,7 +13,7 @@ class Game3GraphicsView : public QGraphicsView
 public:
     explicit Game3GraphicsView(QWidget *parent = 0);
     void setDifficulty(int diff);
-    void setStackedWidget(QStackedWidget *stack);
+    void setStackedWidget(QStackedWidget *stack, int menuIndex);
 
 signals:
 
@@ -22,6 +22,7 @@ public slots:
 private:
     int difficulty;
     QStackedWidget *q;
+    int menuIndex;
 
 };
 

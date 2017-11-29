@@ -24,7 +24,7 @@ class Game3Scene : public QGraphicsScene
 public:
     explicit Game3Scene(QObject *parent = 0);
     void setDifficulty(int diff);
-    void setStackedWidget(QStackedWidget *stack);
+    void setStackedWidget(QStackedWidget *stack, int menuIndex);
     void placeCards();
     void setValues();
     void keyPressEvent(QKeyEvent *event);
@@ -45,6 +45,7 @@ private:
     QStringList *vicesAcquired;
     QList <int> stateOfCard;
     QStackedWidget *q;
+    int menuIndex;
     QTimer *timerMatch, *timerNotMatch, *timerEndGame;
     Player *player;
     int position1, position2, valuesLeftCount;

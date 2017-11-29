@@ -15,7 +15,6 @@ Game3Menu::Game3Menu(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->easyRadioButton->setChecked(true);
-
 }
 
 Game3Menu::~Game3Menu()
@@ -56,7 +55,8 @@ void Game3Menu::changeCharacter(){
     }
 }
 void Game3Menu::setStackedWidget(QStackedWidget *stack){
-    this->q=stack;
+    this->q = stack;
+    this->menuIndex = stack->currentIndex();
 }
 
 /**
@@ -69,7 +69,7 @@ void Game3Menu::on_playButton_clicked()
      */
     int difficulty;
     Game3GraphicsView *Game3graphicsview = new Game3GraphicsView;
-    Game3graphicsview->setStackedWidget(q);
+    Game3graphicsview->setStackedWidget(q, this->menuIndex);
 
     if(ui->easyRadioButton->isChecked()){
       difficulty = 0;

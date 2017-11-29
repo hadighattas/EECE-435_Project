@@ -16,12 +16,13 @@ void Game3GraphicsView::setDifficulty(int diff) {
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     Game3Scene *scene = new Game3Scene;
-    scene->setStackedWidget(q);
+    scene->setStackedWidget(q, this->menuIndex);
     scene->setDifficulty(difficulty);
     setScene(scene);
     show();
 }
 
-void Game3GraphicsView::setStackedWidget(QStackedWidget *stack) {
+void Game3GraphicsView::setStackedWidget(QStackedWidget *stack, int menuIndex) {
     this->q = stack;
+    this->menuIndex = menuIndex;
 }

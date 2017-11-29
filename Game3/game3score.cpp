@@ -13,8 +13,9 @@ Game3Score::~Game3Score()
     delete ui;
 }
 
-void Game3Score::setStackedWidget(QStackedWidget *stack) {
+void Game3Score::setStackedWidget(QStackedWidget *stack, int menuIndex) {
     this->q = stack;
+    this->menuIndex = menuIndex;
 }
 
 void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *finalVices) {
@@ -48,4 +49,11 @@ void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *fina
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
 
+}
+
+
+void Game3Score::on_exitButton_clicked()
+{
+    q->setCurrentIndex(menuIndex);
+    q->show();
 }

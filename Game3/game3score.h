@@ -17,13 +17,17 @@ class Game3Score : public QWidget
 public:
     explicit Game3Score(QWidget *parent = 0);
     ~Game3Score();
-    void setStackedWidget(QStackedWidget *stack);
+    void setStackedWidget(QStackedWidget *stack, int menuIndex);
     void setScore(int livesCount, QStringList *values, QStringList *vices);
+
+private slots:
+    void on_exitButton_clicked();
 
 private:
     Ui::Game3Score *ui;
     QStringList *finalValues, *finalVices;
     QStackedWidget *q;
+    int menuIndex;
     int lives;
     int score;
 };

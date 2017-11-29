@@ -130,8 +130,9 @@ void Game3Scene::setValues() {
     }
 }
 
-void Game3Scene::setStackedWidget(QStackedWidget *stack) {
+void Game3Scene::setStackedWidget(QStackedWidget *stack, int menuIndex) {
     this->q = stack;
+    this->menuIndex = menuIndex;
 }
 
 void Game3Scene::setDifficulty(int diff) {
@@ -171,17 +172,17 @@ void Game3Scene::keyPressEvent(QKeyEvent *event) {
 
         int position = column + 6 * row;
         if (position1 == -1 && stateOfCard.at(position) == CLOSED) {
+            flip->play();
             position1 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            flip->play();
             cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
         else if (position2 == -1 && stateOfCard.at(position) == CLOSED) {
+            flip->play();
             position2 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            flip->play();
             cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             if (values.at(position1)->toPlainText() == values.at(position2)->toPlainText())
                 timerMatch->start(1000);
@@ -250,13 +251,13 @@ void Game3Scene::match() {
 
 void Game3Scene::notMatch() {
     timerNotMatch->stop();
+    flip->play();
     stateOfCard.replace(position1, CLOSED);
     stateOfCard.replace(position2, CLOSED);
 
     removeItem(values.at(position1));
     removeItem(values.at(position2));
 
-    flip->play();
     cards.at(position1)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     cards.at(position2)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
@@ -268,7 +269,7 @@ void Game3Scene::endGame() {
     timerEndGame->stop();
     Game3Score *game3score = new Game3Score;
     game3score->setScore(livesCount, valuesAcquired, vicesAcquired);
-    game3score->setStackedWidget(q);
+    game3score->setStackedWidget(q, this->menuIndex);
     q->addWidget(game3score);
     q->setCurrentWidget(game3score);
 }
