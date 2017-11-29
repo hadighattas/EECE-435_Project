@@ -65,7 +65,8 @@ void Game3Menu::setStackedWidget(QStackedWidget *stack){
 void Game3Menu::on_playButton_clicked()
 {
     /**
-     * Creating the GraphicsView
+     * Setting difficulty according to button selected.\n
+     * Creating the GraphicsView.
      */
     int difficulty;
     Game3GraphicsView *Game3graphicsview = new Game3GraphicsView;

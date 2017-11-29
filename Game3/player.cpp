@@ -1,3 +1,8 @@
+/**
+ * \file player.cpp
+ * \brief Defining functionalities of the player.
+*/
+
 #include "player.h"
 
 Player::Player(QObject *parent) :
@@ -11,6 +16,9 @@ Player::Player(QObject *parent) :
  * @param diff
  */
 void Player::setDifficulty(int diff) {
+    /**
+     *
+     */
     this->difficulty = diff;
     if (difficulty == 0) {
         setPixmap((QPixmap("Shape4-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));

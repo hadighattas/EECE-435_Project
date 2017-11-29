@@ -17,20 +17,29 @@ void Game3Score::setStackedWidget(QStackedWidget *stack, int menuIndex) {
     this->q = stack;
     this->menuIndex = menuIndex;
 }
-
+/**
+ * @brief Game3Score::setScore
+ * @param lives Number of lives left
+ * @param finalValues QStringList of values gained
+ * @param finalVices QStrindList of vices gained
+ */
 void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *finalVices) {
     this->lives = lives;
     this->finalValues = finalValues;
     this->finalVices = finalVices;
-
-    for (int i = 0; i < this->finalValues->length(); i++) {
+    /**
+     * @brief Adding the values to the score page
+     */
+    for (int i = 0; i < this->finalValues->length(); i++)
         ui->textValues->append(this->finalValues->at(i) + '\n');
-   //     ui->textValues->setTextColor(QColor(Qt::white));
-    }
-
+    /**
+     * @brief Adding the vices to the score page
+     */
     for (int i = 0; i < this->finalVices->length(); i++)
         ui->textVices->append(this->finalVices->at(i) + '\n');
-
+    /**
+     * @brief Adding the lives to the score page
+     */
     for (int i = 0; i < lives; i++) {
         if( i == 0 )
             ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
@@ -44,13 +53,11 @@ void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *fina
     else
         score = finalValues->size()*100 - finalVices->length()*200;
     ui->scoreValue->setText(std::to_string(score).c_str());
-    if(score>300)
+    if(score>200)
         ui->response->setText("Welcome to Earth!\n You have gained enough values to join us");
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
-
 }
-
 
 void Game3Score::on_exitButton_clicked()
 {

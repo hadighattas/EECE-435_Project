@@ -31,8 +31,13 @@ Game3Scene::Game3Scene(QObject *parent) :
     correct = new QSound("Correct.wav");
     wrong = new QSound("Wrong.wav");
 }
-
+/**
+ * @brief Game3Scene::placeCards
+ */
 void Game3Scene::placeCards() {
+    /**
+     * Displays all the cards on the screen grid of 3 rows and 6 columns.\n
+    */
     for(int i =0; i < 18; i++) {
         int y;
         if (i < 6)
@@ -50,15 +55,28 @@ void Game3Scene::placeCards() {
         addItem(cards.at(i));
     }
 }
-
+/**
+ * @brief Game3Scene::setValues
+ */
 void Game3Scene::setValues() {
+    /**
+     * Adds values and vices two by two to the values list.\n
+     * The number of values and vices added depends on the difficulty.\n
+     * Each value/vice is mapped to the corresponding card with the same index.\n
+    */
     for (int i = 0; i < 18; i++) {
         values.insert(i ,new QGraphicsTextItem);
         values.at(i)->setFont(QFont("asap condensed", 13, QFont::Bold, false));
         values.at(i)->setDefaultTextColor(QColor(Qt::white));
     }
-
-    int maxi, maxj;
+    /**
+     * @brief maxi, Number of values to be added.
+     */
+    int maxi;
+    /**
+     * @brief maxj, Number of vices to be added.
+     */
+    int maxj;
     if (difficulty == 0) {
         maxi = 7;
         maxj = 2;
@@ -73,7 +91,9 @@ void Game3Scene::setValues() {
     }
 
     valuesLeftCount = maxi;
-
+    /**
+     * @brief done, checks if we added a value or a vice.
+     */
     bool done = false;
 
     for (int i = 0; i < maxi; i++) {
@@ -118,6 +138,9 @@ void Game3Scene::setValues() {
 
         // centering text in textItem
         values.at(k)->setTextWidth(110);
+        /**
+         * @brief format, used to center the text.
+         */
         QTextBlockFormat format;
         format.setAlignment(Qt::AlignCenter);
         QTextCursor cursor = values.at(k)->textCursor();
@@ -134,13 +157,20 @@ void Game3Scene::setStackedWidget(QStackedWidget *stack, int menuIndex) {
     this->q = stack;
     this->menuIndex = menuIndex;
 }
-
+/**
+ * @brief Game3Scene::setDifficulty
+ * @param diff
+ */
 void Game3Scene::setDifficulty(int diff) {
+    /**
+     * Takes the difficulty from the graphics view and the initializes the scene accordingly by showing the apropriate character and number of lives.\n
+    */
     this->difficulty = diff;
     if (diff == 0 || diff == 1)
         livesCount = 3;
     else
         livesCount = 2;
+
     placeCards();
     setValues();
 
@@ -157,8 +187,16 @@ void Game3Scene::setDifficulty(int diff) {
         addItem(lives.at(i));
     }
 }
-
+/**
+ * @brief Game3Scene::keyPressEvent
+ * @param event
+ */
 void Game3Scene::keyPressEvent(QKeyEvent *event) {
+    /**
+     * Detects keyPressEvents and act accordingly.\n
+     * If the user pressed enter, it flips the card if it is open and if it is the second card opened, check if it is a match or not.\n
+     * Else, the keyPressEvent is passed to the character.
+     */
     int row, column;
     if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
         if (player->x() == 140)
@@ -194,8 +232,19 @@ void Game3Scene::keyPressEvent(QKeyEvent *event) {
     else
         player->move(event);
 }
-
+/**
+ * @brief Game3Scene::match
+ */
 void Game3Scene::match() {
+    /**
+     * Called when two cards match and checks wether it is a value or a vice.\n
+     * Checks if card at the position entered is contained in list of vices or values.\n
+     * If it is a value, we decrement the count.\n
+     * If all values have been found, end the game and flip all remaining cards.
+     * If it is a vice, we remove a life.\n
+     * If there are no lives left, end game and set endMessage accordingly.\n
+     * For both cases we remove the corresponding cards and set their state to REMOVED.\n
+     */
     timerMatch->stop();
 
     if (globalValues3.contains(values.at(position1)->toPlainText())) { // value
@@ -248,8 +297,15 @@ void Game3Scene::match() {
     position1 = -1;
     position2 = -1;
 }
-
+/**
+ * @brief Game3Scene::notMatch
+ */
 void Game3Scene::notMatch() {
+    /**
+     * Called when two cards do not match.\n
+     * Flips cards back.\n
+     * Resets the position of currently flipped cards to nothing (-1)\n
+     */
     timerNotMatch->stop();
     flip->play();
     stateOfCard.replace(position1, CLOSED);
@@ -264,8 +320,13 @@ void Game3Scene::notMatch() {
     position1 = -1;
     position2 = -1;
 }
-
+/**
+ * @brief Game3Scene::endGame
+ */
 void Game3Scene::endGame() {
+    /**
+     * Called when there are no more values left or no lives left and display.\n
+     */
     timerEndGame->stop();
     Game3Score *game3score = new Game3Score;
     game3score->setScore(livesCount, valuesAcquired, vicesAcquired);

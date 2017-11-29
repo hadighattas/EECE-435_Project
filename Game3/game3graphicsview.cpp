@@ -10,11 +10,20 @@ Game3GraphicsView::Game3GraphicsView(QWidget *parent) :
 
 }
 
+/**
+ * @brief Game3GraphicsView::setDifficulty
+ * @param diff
+ */
 void Game3GraphicsView::setDifficulty(int diff) {
+    /**
+      * Passing difficulty to scene\n
+      * Showing the scene\n
+      */
     this->difficulty = diff;
     setFixedSize(1280, 720);
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
+
     Game3Scene *scene = new Game3Scene;
     scene->setStackedWidget(q, this->menuIndex);
     scene->setDifficulty(difficulty);
