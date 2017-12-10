@@ -1,3 +1,8 @@
+/**
+ * \file user.cpp
+ * \brief User class that performs operations on user data in txt file
+ *
+*/
 #include "user.h"
 
 User *user = new User;
@@ -6,6 +11,17 @@ User::User(){
 
 }
 
+/**
+ * @brief User::signUp Signs up the user and save his information in txt file
+ * @param firstName
+ * @param lastName
+ * @param email
+ * @param username
+ * @param password
+ * @param age
+ * @param gender
+ * @return
+ */
 bool User::signUp(QString firstName, QString lastName, QString email, QString username,
                   QString password, QString age, QString gender) {
     this->firstName = firstName;
@@ -22,7 +38,14 @@ bool User::signUp(QString firstName, QString lastName, QString email, QString us
           << '|' <<  firstName.toStdString() << '|' << lastName.toStdString() << '|' <<
              age.toStdString() << '|' << gender.toStdString() << "\n\n\n\n\n";
     users.close();
+    return true;
 }
+/**
+ * @brief User::login Logs in the user and loads his information
+ * @param username
+ * @param password
+ * @return
+ */
 
 bool User::login(QString username, QString password) {
     QFile inputFile("users.txt");
@@ -67,6 +90,12 @@ bool User::login(QString username, QString password) {
     return false;
 }
 
+/**
+ * @brief User::exists Checks if the user exists or username taken
+ * @param email If email is "any" then checking if username taken
+ * @param username
+ * @return
+ */
 bool User::exists(QString email, QString username) {
     QFile inputFile("users.txt");
     if (inputFile.open(QIODevice::ReadOnly))
