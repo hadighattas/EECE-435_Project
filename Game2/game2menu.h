@@ -5,6 +5,8 @@
 #include <QtWidgets>
 #include "Engineer/engineergraphicsview.h"
 #include "Doctor/doctorgraphicsview.h"
+#include "user.h"
+#include "../globalindices.h"
 
 namespace Ui {
 class Game2Menu;
@@ -23,6 +25,8 @@ private slots:
 
     void on_engineerButton_clicked();
     void on_doctorButton_clicked();
+
+    void on_resumeButton_clicked();
 
 private:
     Ui::Game2Menu *ui;

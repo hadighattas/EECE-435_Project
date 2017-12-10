@@ -46,13 +46,19 @@ EngineerScene::EngineerScene(QObject *parent) :
     addItem(money);
 
     //showing time of day
-    time = new QGraphicsTextItem("10:00:20");
+    time = new QGraphicsTextItem("00:00:00");
     time->setPos(230, 550);
     time->setRotation(-5);
     time->setDefaultTextColor(QColor(Qt::yellow));
     time->setFont(QFont("asap condensed", 18, QFont::Bold, false));
     time->setPlainText(QTime::currentTime().toString());
     addItem(time);
+
+    exit = new QGraphicsTextItem("EXIT");
+    exit->setPos(1000, 650);
+    exit->setDefaultTextColor(QColor(Qt::white));
+    exit->setFont(QFont("asap condensed", 18, QFont::Bold, false));
+    addItem(exit);
 
     timerTime = new QTimer(this);
     connect(timerTime, SIGNAL(timeout()), this, SLOT(updateTime()));
@@ -139,6 +145,11 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         score->setStackedWidget(q);
         q->addWidget(score);
         q->setCurrentWidget(score);
+        game2Index = 100;
+    }
+    else if (item == exit) {
+        q->setCurrentIndex(mainIndex);
+        q->show();
     }
 }
 

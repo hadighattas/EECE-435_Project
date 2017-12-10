@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include <QtWidgets>
+#include "game1graphicsview.h"
+#include "user.h"
+#include "../globalindices.h"
 
 
 namespace Ui {
@@ -29,10 +32,12 @@ private slots:
 
     void on_playButton_clicked();
 
+    void on_resumeButton_clicked();
+
 private:
     Ui::Game1Menu *ui;
     QStackedWidget *q;
-
+    Game1GraphicsView *game1graphicsview;
 };
 
 #endif // GAME1MENU_H

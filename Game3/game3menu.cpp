@@ -84,4 +84,10 @@ void Game3Menu::on_playButton_clicked()
     Game3graphicsview->setDifficulty(difficulty);
     q->addWidget(Game3graphicsview);
     q->setCurrentWidget(Game3graphicsview);
+    game3Index = q->indexOf(Game3graphicsview);
+}
+
+void Game3Menu::on_resumeButton_clicked()
+{
+    q->setCurrentIndex(game3Index);
 }

@@ -83,12 +83,12 @@ QGraphicsTextItem * ObstacleGroup::getLabel(){
     return label;
 }
 void ObstacleGroup::setRand(int random){
-    this->random=random;
+    this->random = random;
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(100);
     addToGroup(obs);
-    if (random<(7.5-difficulty*1.25) || random>100-(7.5-difficulty*1.25) ||
-            ( random>50 && random<50+(7.5-difficulty*1.25)) || (random>75 &&random<75+(7.5-difficulty*1.25))) {
+    if (random<(12-difficulty*1.25) || random>100-(12-difficulty*1.25) ||
+            ( random>50 && random<50+(12-difficulty*1.25)) || (random>75 &&random<75+(12-difficulty*1.25))) {
         int r2 = random % (globalValues.length());
         label = new QGraphicsTextItem(globalValues.value(r2));
         type=true;

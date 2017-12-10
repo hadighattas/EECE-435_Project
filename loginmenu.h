@@ -3,6 +3,11 @@
 
 #include <QWidget>
 #include<QtWidgets>
+#include"welcomemenu.h"
+#include "mainmenu.h"
+#include <cstring>
+#include "user.h"
+#include "globalindices.h"
 
 namespace Ui {
 class LoginMenu;
@@ -31,6 +36,7 @@ private slots:
 private:
     Ui::LoginMenu *ui;
     QStackedWidget *q;
+    User user;
 
 };
 

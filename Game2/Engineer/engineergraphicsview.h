@@ -6,6 +6,7 @@
 #include <QtWidgets>
 
 #include "engineerscene.h"
+#include "user.h"
 
 class EngineerGraphicsView : public QGraphicsView
 {

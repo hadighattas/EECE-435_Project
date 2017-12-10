@@ -6,8 +6,10 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QCoreApplication::setOrganizationName("EECE435");
+    QCoreApplication::setOrganizationDomain("eece435.com");
+    QCoreApplication::setApplicationName("EECE-435_Project");
     MainWindow w;
     w.show();
-    srand(time(NULL));
     return a.exec();
 }

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include<QtWidgets>
+#include "user.h"
+#include "globalindices.h"
 
 namespace Ui {
 class WelcomeMenu;

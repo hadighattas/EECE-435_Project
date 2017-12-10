@@ -83,7 +83,7 @@ void Character::checkCollisions() {
      * item is an item from the colliding items list
      * groupTemp is 0 if the item is not a QGraphicsTextItem pointer
     */
-
+    if (started){
     while (scene()->collidingItems(this).length()>0){
         QGraphicsItem *item = scene()->collidingItems(this).takeAt(0);
         QGraphicsTextItem *groupTemp = dynamic_cast<QGraphicsTextItem*>(item);
@@ -98,5 +98,6 @@ void Character::checkCollisions() {
         scene()->removeItem(item);
         delete item;
 
+    }
     }
 }

@@ -8,6 +8,7 @@
 #include "Game1/game1menu.h"
 #include "Game2/game2menu.h"
 #include "Game3/game3menu.h"
+#include "user.h"
 #include <cstring>
 
 namespace Ui {

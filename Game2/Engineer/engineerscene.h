@@ -23,6 +23,7 @@
 #include "sixthsceneengineer.h"
 #include "seventhsceneengineer.h"
 #include "eigthsceneengineer.h"
+#include "../../globalindices.h"
 
 using namespace std;
 
@@ -42,7 +43,7 @@ public slots:
 private:
     QStackedWidget *q;
     QGraphicsPixmapItem *arrow, *character;
-    QGraphicsTextItem *time, *money, *next;
+    QGraphicsTextItem *time, *money, *next, *exit;
     QPushButton *nextButton;
     QTimer *timerTime;
     Game2Score *score;

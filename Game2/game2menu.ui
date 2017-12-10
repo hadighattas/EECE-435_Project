@@ -155,6 +155,38 @@ color:white;
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="resumeButton">
+   <property name="geometry">
+    <rect>
+     <x>750</x>
+     <y>560</y>
+     <width>111</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:focus { outline-color:white; 
+border:1px solid #ffffff;}
+QPushButton{
+background:transparent;
+border:none;
+color:white;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>RESUME</string>
+   </property>
+   <property name="autoDefault">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

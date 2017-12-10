@@ -245,155 +245,12 @@ color:white;
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
+  <widget class="QPushButton" name="resumeButton">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>220</y>
-     <width>500</width>
-     <height>500</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background: transparent;
-background-image:url(./Shape4-500.png);
-border:0px;</string>
-   </property>
-  </widget>
-  <widget class="QGroupBox" name="groupBox_2">
-   <property name="geometry">
-    <rect>
-     <x>1210</x>
-     <y>490</y>
-     <width>120</width>
-     <height>101</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:transparent;</string>
-   </property>
-   <property name="title">
-    <string/>
-   </property>
-   <widget class="QRadioButton" name="easyRadioButton_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>10</y>
-      <width>117</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Asap Condensed</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">outline:none;
-background-color:transparent;
-color:white;</string>
-    </property>
-    <property name="text">
-     <string>EASY</string>
-    </property>
-    <property name="autoRepeat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="normalRadioButton_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>40</y>
-      <width>117</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Asap Condensed</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">outline:none;
-background-color:transparent;
-color:#ffffff;</string>
-    </property>
-    <property name="text">
-     <string>NORMAL</string>
-    </property>
-   </widget>
-   <widget class="QRadioButton" name="hardRadioButton_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>70</y>
-      <width>117</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Asap Condensed</family>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">outline:none;
-background-color:transparent;
-color:white;</string>
-    </property>
-    <property name="text">
-     <string>HARD</string>
-    </property>
-    <property name="autoRepeat">
-     <bool>false</bool>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>1230</x>
-     <y>470</y>
-     <width>91</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:transparent;
-color:white;
-</string>
-   </property>
-   <property name="text">
-    <string>DIFFICULTY</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="playButton_2">
-   <property name="geometry">
-    <rect>
-     <x>1240</x>
-     <y>670</y>
-     <width>70</width>
+     <x>1050</x>
+     <y>550</y>
+     <width>111</width>
      <height>27</height>
     </rect>
    </property>
@@ -414,64 +271,10 @@ color:white;
 </string>
    </property>
    <property name="text">
-    <string>PLAY</string>
+    <string>RESUME</string>
    </property>
    <property name="autoDefault">
     <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QTextBrowser" name="textBrowser_2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>260</y>
-     <width>301</width>
-     <height>400</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background: transparent;
-border: none;</string>
-   </property>
-   <property name="html">
-    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Asap Condensed'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'Ubuntu'; font-size:20pt; text-decoration: underline; color:#ffffff;&quot;&gt;Instructions:&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Ubuntu'; font-size:20pt; text-decoration: underline; color:#ffffff;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="gameLabel_2">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>170</y>
-     <width>280</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-     <pointsize>48</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:transparent;
-color:white;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

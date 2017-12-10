@@ -25,6 +25,12 @@ Game3Scene::Game3Scene(QObject *parent) :
     endMessage->setDefaultTextColor(QColor(Qt::white));
     endMessage->setZValue(3);
 
+    exit = new QGraphicsTextItem("EXIT");
+    exit->setPos(1000, 650);
+    exit->setDefaultTextColor(QColor(Qt::white));
+    exit->setFont(QFont("asap condensed", 18, QFont::Bold, false));
+    addItem(exit);
+
     flip = new QSound("CardFlip.wav");
     fail = new QSound("FailSound.wav");
     win = new QSound("WinningSound.wav");
@@ -333,4 +339,5 @@ void Game3Scene::endGame() {
     game3score->setStackedWidget(q, this->menuIndex);
     q->addWidget(game3score);
     q->setCurrentWidget(game3score);
+    game3Index = 100;
 }

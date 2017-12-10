@@ -5,6 +5,7 @@
 #include <QtWidgets>
 
 #include "global2.h"
+#include "../globalindices.h"
 
 namespace Ui {
 class Game2Score;

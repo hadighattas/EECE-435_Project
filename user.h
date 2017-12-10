@@ -3,17 +3,20 @@
 
 #include <QString>
 #include <QStringList>
+#include <QFile>
 #include <fstream>
+#include <QTextStream>
 
 using namespace std;
 
 class User
 {
 public:
-    User();
+    explicit User();
     bool signUp(QString firstName, QString lastName, QString email, QString username,
                 QString password, QString age, QString gender);
     bool login(QString username, QString password);
+    bool exists(QString email, QString username);
     void addGame1Score(int score1);
     void addGame2Score(int score2);
     void addGame3Score(int score3);

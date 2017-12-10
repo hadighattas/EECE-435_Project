@@ -22,6 +22,8 @@ public:
     QStringList *getVices();
     void checkCollisions();
 
+    bool started;
+
 signals:
 
 public slots:

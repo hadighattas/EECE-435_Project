@@ -14,7 +14,7 @@ Game2Menu::~Game2Menu()
 }
 
 void Game2Menu::setStackedWidget(QStackedWidget *stack){
-    this->q=stack;
+    this->q = stack;
 }
 
 void Game2Menu::on_engineerButton_clicked()
@@ -23,6 +23,7 @@ void Game2Menu::on_engineerButton_clicked()
     engineerGV->setStackedWidget(q);
     q->addWidget(engineerGV);
     q->setCurrentWidget(engineerGV);
+    game2Index = q->indexOf(engineerGV);
 }
 
 void Game2Menu::on_doctorButton_clicked()
@@ -31,4 +32,10 @@ void Game2Menu::on_doctorButton_clicked()
     doctorGV->setStackedWidget(q);
     q->addWidget(doctorGV);
     q->setCurrentWidget(doctorGV);
+    game2Index = q->indexOf(doctorGV);
+}
+
+void Game2Menu::on_resumeButton_clicked()
+{
+    q->setCurrentIndex(game2Index);
 }

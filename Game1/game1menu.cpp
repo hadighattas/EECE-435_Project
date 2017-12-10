@@ -8,7 +8,6 @@
 
 #include "game1menu.h"
 #include "ui_game1menu.h"
-#include "game1graphicsview.h"
 
 Game1Menu::Game1Menu(QWidget *parent) :
     QWidget(parent),
@@ -57,7 +56,7 @@ void Game1Menu::changeCharacter(){
     }
 }
 void Game1Menu::setStackedWidget(QStackedWidget *stack){
-    this->q=stack;
+    this->q = stack;
 }
 
 /**
@@ -69,7 +68,7 @@ void Game1Menu::on_playButton_clicked()
      * Creating the GraphicsView
      */
     int difficulty;
-    Game1GraphicsView *game1graphicsview = new Game1GraphicsView;
+    game1graphicsview = new Game1GraphicsView;
     game1graphicsview->setStackedWidget(q);
 
     if(ui->easyRadioButton->isChecked()){
@@ -84,4 +83,11 @@ void Game1Menu::on_playButton_clicked()
     game1graphicsview->setDifficulty(difficulty);
     q->addWidget(game1graphicsview);
     q->setCurrentWidget(game1graphicsview);
+    game1Index = q->indexOf(game1graphicsview);
+}
+
+void Game1Menu::on_resumeButton_clicked()
+{
+    q->setCurrentIndex(game1Index);
+    game1graphicsview->resume();
 }

@@ -42,9 +42,13 @@ void WelcomeMenu::on_signupButton_clicked()
 void WelcomeMenu::on_guestButton_clicked()
 {
     MainMenu *mainMenu = new MainMenu;
+    User user;
+    QString G = "Guest";
+    user.signUp(G, G, G, G, G, G, G);
     mainMenu->setStackedWidget(q);
     q->addWidget(mainMenu);
     q->setCurrentWidget(mainMenu);
+    mainIndex = q->indexOf(mainMenu);
     string s="notify-send 'Hey how about signing up?' 'You could benefit from lots of user exclusive features!' '-t' 200";
     system(s.c_str());
 }

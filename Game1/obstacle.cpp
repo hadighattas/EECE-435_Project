@@ -10,10 +10,6 @@
 Obstacle::Obstacle(QObject *parent) :
     QObject(parent)
 {
-
-
-
-
 }
 
 void Obstacle::setIdentity(int id) {

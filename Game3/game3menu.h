@@ -5,6 +5,7 @@
 #include <QtWidgets>
 
 #include "game3graphicsview.h"
+#include "../globalindices.h"
 
 namespace Ui {
 class Game3Menu;
@@ -29,6 +30,8 @@ private slots:
     void on_normalRadioButton_clicked();
 
     void on_playButton_clicked();
+
+    void on_resumeButton_clicked();
 
 private:
     Ui::Game3Menu *ui;

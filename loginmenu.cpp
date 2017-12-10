@@ -1,8 +1,6 @@
 #include "loginmenu.h"
 #include "ui_loginmenu.h"
-#include"welcomemenu.h"
-#include "mainmenu.h"
-#include <cstring>
+
 using namespace std;
 
 LoginMenu::LoginMenu(QWidget *parent) :
@@ -33,12 +31,16 @@ void LoginMenu::on_usernameLineEdit_returnPressed(){
 
 void LoginMenu::on_loginButton_clicked()
 {
-    MainMenu *mainMenu = new MainMenu;
-    mainMenu->setStackedWidget(q);
-    q->addWidget(mainMenu);
-    q->setCurrentWidget(mainMenu);
-    string s="notify-send 'Welcome back "+ui->usernameLineEdit->text().toStdString()+"' 'You are now logged in' '-t' 200";
-    system(s.c_str());
+    bool result = user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
+    if(result){
+        MainMenu *mainMenu = new MainMenu;
+        mainMenu->setStackedWidget(q);
+        q->addWidget(mainMenu);
+        q->setCurrentWidget(mainMenu);
+        string s="notify-send 'Welcome back "+ui->usernameLineEdit->text().toStdString()+"' 'You are now logged in' '-t' 200";
+        mainIndex = q->indexOf(mainMenu);
+        system(s.c_str());
+    }
 }
 
 void LoginMenu::on_backButton_clicked()

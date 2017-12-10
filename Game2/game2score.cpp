@@ -51,6 +51,6 @@ int Game2Score::getPercentage(int value) {
 
 void Game2Score::on_exitButton_clicked()
 {
-    q->setCurrentIndex(3);
+    q->setCurrentIndex(mainIndex);
     q->show();
 }

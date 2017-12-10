@@ -1,4 +1,4 @@
-/**
+﻿/**
  * \file game1scene.cpp
  * \brief Adding and managing scene items
  *
@@ -22,18 +22,31 @@ Game1Scene::Game1Scene(QObject *parent) :
     setBackgroundBrush(QBrush(QImage("Game1Background.jpg").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
+    blurr = new QGraphicsPixmapItem(QPixmap("Game1BackgroundBlurred.jpg").scaled(1280, 720));
+    blurr->setPos(1,1);
+    blurr->setZValue(20);
+    addItem(blurr);
+
+    startCounter = new QGraphicsTextItem("3");
+    startCounter->setPos(600, 300);
+    startCounter->setZValue(20);
+    startCounter->setDefaultTextColor(QColor(Qt::white));
+    startCounter->setFont(QFont("asap condensed", 100, QFont::Bold, false));
+    startCounter->document()->setPageSize(QSizeF(300,300));
+    addItem(startCounter);
+
+    timerStart = new QTimer(this);
+    connect(timerStart, SIGNAL(timeout()), this, SLOT(start()));
+
     timerObstacle = new QTimer(this);
     connect(timerObstacle, SIGNAL(timeout()), this, SLOT(newObstacle()));
-    timerObstacle->start(200);
 
     timeLeft = new QTimer(this);
     connect(timeLeft, SIGNAL(timeout()), this, SLOT(updateTimer()));
-    timeLeft->start(1000);
     countTime = 60;
 
     timerFrame = new QTimer(this);
     connect(timerFrame, SIGNAL(timeout()), this, SLOT(updateLives()));
-    timerFrame->start(400);
 
     human = new QGraphicsPixmapItem((QPixmap("Shape9-75.png")).scaled(75, 75));
     human->setPos(623, 586);
@@ -53,6 +66,12 @@ Game1Scene::Game1Scene(QObject *parent) :
     numAcquired->document()->setPageSize(QSizeF(500,40));
     addItem(numAcquired);
 
+    exit = new QGraphicsTextItem("EXIT");
+    exit->setPos(1000, 650);
+    exit->setDefaultTextColor(QColor(Qt::white));
+    exit->setFont(QFont("asap condensed", 18, QFont::Bold, false));
+    addItem(exit);
+
     for(int i = 0; i < 3; i++){
         QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
         life->setPos(150 + 60*i, 0);
@@ -66,11 +85,29 @@ Game1Scene::Game1Scene(QObject *parent) :
 
 void Game1Scene::setDifficulty(int diff) {
     this->difficulty = diff;
+    character->started = false;
     character->setDifficulty(difficulty);
-    character->setFlag(QGraphicsItem::ItemIsFocusable);
-    character->setFocus();
     addItem(character);
     character->setPos(623, 0);
+    timerObstacle->start(200+25*(difficulty+1));
+    timeLeft->start(1000);
+    timerFrame->start(400);
+    timerStart->start(1000);
+}
+
+void Game1Scene::start() {
+    startCount--;
+    if(startCount > 0) {
+        startCounter->setPlainText(QString::number(startCount));
+    }
+    if (startCount == 0){
+        removeItem(startCounter);
+        removeItem(blurr);
+        character->setFlag(QGraphicsItem::ItemIsFocusable);
+        character->setFocus();
+        timerStart->stop();
+        character->started = true;
+    }
 }
 
 /**
@@ -86,6 +123,7 @@ void Game1Scene::newObstacle(){
     obstaclescreated++;
     int r1 = distribution(generator);
     int r2 = distribution1(generator1);
+    distribution1(generator1);
     ObstacleGroup *obstacle = new ObstacleGroup;
     obstacle->setDifficulty(difficulty);
     obstacle->setRand(r2);
@@ -191,6 +229,7 @@ void Game1Scene::endGame() {
     game1score->setStackedWidget(q);
     q->addWidget(game1score);
     q->setCurrentWidget(game1score);
+    game1Index = 100;
 }
 
 /**
@@ -228,4 +267,23 @@ void Game1Scene::updateLives() {
 
 void Game1Scene::setStackedWidget(QStackedWidget *stack) {
     this->q = stack;
+}
+
+void Game1Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    if(event->button() == Qt::LeftButton) {
+        QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
+        if (item == exit) {
+            timeLeft->stop();
+            timerFrame->stop();
+            timerObstacle->stop();
+            character->setPos(623, 0);
+            q->setCurrentIndex(mainIndex);
+        }
+    }
+}
+
+void Game1Scene::resume() {
+    timeLeft->start(1000);
+    timerFrame->start(400);
+    timerObstacle->start(200);
 }

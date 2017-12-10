@@ -13,6 +13,7 @@
 #include "player.h"
 #include "global3.h"
 #include "game3score.h"
+#include "../globalindices.h"
 
 #define OPEN 1
 #define CLOSED 2
@@ -95,6 +96,9 @@ private:
     /**
      * @brief valuesLeftCount Number of values left in the game
      */
+
+    QGraphicsTextItem *exit;
+
     int valuesLeftCount;
     QSound *fail, *win, *correct, *wrong, *flip;
 };

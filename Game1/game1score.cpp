@@ -62,6 +62,6 @@ void Game1Score::setStackedWidget(QStackedWidget *stack) {
 
 void Game1Score::on_loginButton_clicked()
 {
-    q->setCurrentIndex(3);
+    q->setCurrentIndex(mainIndex);
     q->show();
 }
