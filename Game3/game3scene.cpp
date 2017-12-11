@@ -343,3 +343,11 @@ void Game3Scene::endGame() {
     clear();
     deleteLater();
 }
+
+void Game3Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+    QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
+    if (item == exit) {
+        q->setCurrentIndex(mainIndex);
+        q->show();
+    }
+}

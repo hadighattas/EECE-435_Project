@@ -15,7 +15,7 @@ Game1Menu::Game1Menu(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->easyRadioButton->setChecked(true);
-
+    scene = new Game1Scene;
 }
 
 Game1Menu::~Game1Menu()
@@ -81,6 +81,8 @@ void Game1Menu::on_playButton_clicked()
         difficulty = 2;
     }
     game1graphicsview->setDifficulty(difficulty);
+    scene =  game1graphicsview->getScene();
+//    connect(this, SIGNAL(resumeOrder()), scene, SLOT(resume()));
     q->addWidget(game1graphicsview);
     q->setCurrentWidget(game1graphicsview);
     game1Index = q->indexOf(game1graphicsview);
@@ -88,6 +90,10 @@ void Game1Menu::on_playButton_clicked()
 
 void Game1Menu::on_resumeButton_clicked()
 {
+    if (game1Index == 100)
+        return;
     q->setCurrentIndex(game1Index);
-    game1graphicsview->resume();
+    scene->resume();
+//    game1graphicsview->resume();
+//    emit resumeOrder();
 }

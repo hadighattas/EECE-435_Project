@@ -61,3 +61,11 @@ void MainMenu::on_signOutButton_clicked()
     system(s.c_str());
 
 }
+
+void MainMenu::on_profileButton_clicked()
+{
+    Profile *profile = new Profile;
+    ui->stackedWidget_2->addWidget(profile);
+    ui->stackedWidget_2->setCurrentWidget(profile);
+
+}

@@ -37,5 +37,7 @@ void Game2Menu::on_doctorButton_clicked()
 
 void Game2Menu::on_resumeButton_clicked()
 {
+    if (game2Index == 100)
+        return;
     q->setCurrentIndex(game2Index);
 }

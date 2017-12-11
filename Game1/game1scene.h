@@ -31,7 +31,7 @@ public:
     void updateAcquired();
     void setStackedWidget(QStackedWidget *stack);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void resume();
+
 
 signals:
 
@@ -40,6 +40,7 @@ public slots:
     void updateTimer();
     void updateLives();
     void start();
+    void resume();
 
 private:
     int difficulty;

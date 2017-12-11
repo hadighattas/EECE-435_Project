@@ -63,49 +63,23 @@ bool User::login(QString username, QString password) {
        while (!in.atEnd())
        {
           QString line = in.readLine();
-          char *temp = strtok((char*)(line.toStdString().c_str()), "|");
-          if(temp != NULL){
-              if(strcmp(temp, username.toStdString().c_str()) == 0) {
-                  temp = strtok(NULL, "|");
-                  if (strcmp(temp, password.toStdString().c_str()) == 0) {
-                      this->username = username;
-                      this->password = password;
-                      int count = 0;
-                      while(temp != NULL) {
-                          temp = strtok(NULL, "|");
-                          switch(count) {
-                              case 0:
-                                  this->email = QString(temp);
-                              case 1:
-                                  this->firstName = QString(temp);
-                              case 2:
-                                  this->lastName = QString(temp);
-                              case 3:
-                                  this->age = QString(temp);
-                              case 4:
-                                  this->gender = QString(temp);
-                          }
-                          count++;
-                      }
-                      for (int i=0; i<3; i++) {
-                          line = in.readLine();
-                          char *temp = strtok((char*)(line.toStdString().c_str()), " ");
-                          temp = strtok(NULL, " ");
-                          if(temp != NULL){
-                              while(temp != NULL) {
-                                  if (i == 0)
-                                      game1Scores.append(QString(temp));
-                                  else if (i == 1)
-                                      game2Scores.append(QString(temp));
-                                  else
-                                      game3Scores.append(QString(temp));
-                                  temp = strtok(NULL, " ");
-                              }
-                          }
-                      }
-                      inputFile.close();
-                      return true;
-                  }
+          QStringList data = line .split("|", QString::SkipEmptyParts);
+          if (data.at(0) ==  username) {
+              if (data.at(1) == password) {
+                  this->username = username;
+                  this->password = password;
+                  this->email = data.at(2);
+                  this->firstName = data.at(3);
+                  this->lastName = data.at(4);
+                  this->age = data.at(5);
+                  this->gender = data.at(6);
+                  line = in.readLine();
+                  game1Scores = line.split(" ", QString::SkipEmptyParts);
+                  line = in.readLine();
+                  game2Scores = line.split(" ", QString::SkipEmptyParts);
+                  line = in.readLine();
+                  game3Scores = line.split(" ", QString::SkipEmptyParts);
+                  return true;
               }
           }
        }
@@ -128,25 +102,16 @@ bool User::exists(QString email, QString username) {
        while (!in.atEnd())
        {
           QString line = in.readLine();
-          char *temp = strtok((char*)(line.toStdString().c_str()), "|");
-          if(temp != NULL){
-              if(strcmp(temp, username.toStdString().c_str()) != 0) {
-                  temp = strtok(NULL, "|");
-                  temp = strtok(NULL, "|");
-                  if (strcmp(temp, email.toStdString().c_str()) == 0 && email != "any")
-                    break;
-              }
-              else break;
-
+          QStringList data = line .split("|", QString::SkipEmptyParts);
+          if(data.length()>2){
+          if (data.at(0) == username || (data.at(2) == email && email != "any")) {
+              return true;
           }
-       }
-       if (in.atEnd()){
-           inputFile.close();
-           return false;
+          }
        }
     }
     inputFile.close();
-    return true;
+    return false;
 }
 
 void User::addGameScore(int game, int score) {
@@ -211,4 +176,52 @@ void User::addGameScore(int game, int score) {
     temp.close();
     remove("users.txt");
     rename("temp.txt","users.txt");
+}
+
+QStringList User::getGame1Scores() {
+    return game1Scores;
+}
+
+QStringList User::getGame2Scores() {
+    return game2Scores;
+}
+
+QStringList User::getGame3Scores() {
+    return game3Scores;
+}
+
+int User::averageGlobalScore(int game) {
+    QString gameName;
+    if (game == 1)
+        gameName = "game1";
+    else if (game == 2)
+        gameName = "game2";
+    else if (game == 3)
+        gameName = "game3";
+    QStringList allScores;
+    QFile inputFile("users.txt");
+    if (inputFile.open(QIODevice::ReadOnly))
+    {
+       QTextStream in(&inputFile);
+       while (!in.atEnd())
+       {
+          QString line = in.readLine();
+          QStringList data = line .split(" ", QString::SkipEmptyParts);
+          if(data.length()>1){
+              if (data.at(0) == gameName) {
+                  for(int i = 1; i < data.length(); i++)
+                      allScores.append(data.at(i));
+              }
+          }
+       }
+    }
+    if (allScores.length() == 0)
+        return 0;
+    else {
+        int sum = 0;
+        for(int i = 0; i < allScores.length(); i++)
+            sum += allScores.at(i).toInt();
+        return sum/(allScores.length());
+    }
+    inputFile.close();
 }

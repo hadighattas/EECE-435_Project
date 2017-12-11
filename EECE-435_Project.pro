@@ -6,7 +6,7 @@
 
 QT       += core gui
 QT       += network
-CONFIG += c++11
+CONFIG   += c++11
 
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
@@ -64,7 +64,8 @@ SOURCES += main.cpp\
     Game3/game3score.cpp\
     OAuth/fbdemo.cpp\
     OAuth/helper.cpp \
-    globalindices.cpp
+    globalindices.cpp \
+    profile.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -111,7 +112,8 @@ HEADERS  += mainwindow.h \
     Game3/game3score.h \
     OAuth/fbdemo.h\
     OAuth/helper.h \
-    globalindices.h
+    globalindices.h \
+    profile.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
@@ -123,4 +125,5 @@ FORMS    += mainwindow.ui \
     Game2/game2menu.ui \
     Game2/game2score.ui \
     Game3/game3menu.ui \
-    Game3/game3score.ui
+    Game3/game3score.ui \
+    profile.ui

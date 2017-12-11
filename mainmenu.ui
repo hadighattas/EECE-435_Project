@@ -122,38 +122,6 @@ color:white;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="emptyButton">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>35</y>
-       <width>80</width>
-       <height>30</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>Asap Condensed</family>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">QPushButton:focus { outline-color:white; 
-border:1px solid #ffffff;}
-QPushButton{
-background:transparent;
-border:none;
-color:white;
-}
-</string>
-     </property>
-     <property name="text">
-      <string>EMPTY</string>
-     </property>
-     <property name="autoDefault">
-      <bool>true</bool>
-     </property>
-    </widget>
     <widget class="QPushButton" name="profileButton">
      <property name="geometry">
       <rect>

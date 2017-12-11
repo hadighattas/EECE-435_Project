@@ -16,7 +16,7 @@
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>400</x>
      <y>50</y>
      <width>500</width>
      <height>500</height>
@@ -36,7 +36,7 @@ border:0px;</string>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>1010</x>
+     <x>1040</x>
      <y>320</y>
      <width>120</width>
      <height>101</height>
@@ -56,7 +56,7 @@ border:0px;</string>
    <widget class="QRadioButton" name="easyRadioButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>30</x>
       <y>10</y>
       <width>117</width>
       <height>22</height>
@@ -82,7 +82,7 @@ color:white;</string>
    <widget class="QRadioButton" name="normalRadioButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>30</x>
       <y>40</y>
       <width>117</width>
       <height>22</height>
@@ -105,7 +105,7 @@ color:#ffffff;</string>
    <widget class="QRadioButton" name="hardRadioButton">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>30</x>
       <y>70</y>
       <width>117</width>
       <height>22</height>
@@ -132,7 +132,7 @@ color:white;</string>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>1030</x>
+     <x>1060</x>
      <y>300</y>
      <width>91</width>
      <height>17</height>
@@ -159,7 +159,7 @@ color:white;
   <widget class="QPushButton" name="playButton">
    <property name="geometry">
     <rect>
-     <x>1040</x>
+     <x>1070</x>
      <y>500</y>
      <width>70</width>
      <height>27</height>
@@ -191,7 +191,7 @@ color:white;
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>30</x>
      <y>90</y>
      <width>301</width>
      <height>400</height>
@@ -218,7 +218,7 @@ p, li { white-space: pre-wrap; }
   <widget class="QPushButton" name="resumeButton">
    <property name="geometry">
     <rect>
-     <x>1020</x>
+     <x>1050</x>
      <y>550</y>
      <width>111</width>
      <height>27</height>

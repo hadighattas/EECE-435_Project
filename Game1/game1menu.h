@@ -38,6 +38,10 @@ private:
     Ui::Game1Menu *ui;
     QStackedWidget *q;
     Game1GraphicsView *game1graphicsview;
+    Game1Scene *scene;
+
+signals:
+    void resumeOrder();
 };
 
 #endif // GAME1MENU_H

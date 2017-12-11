@@ -55,6 +55,12 @@ DoctorScene::DoctorScene(QObject *parent) :
     time->setPlainText(QTime::currentTime().toString());
     addItem(time);
 
+    exit = new QGraphicsTextItem("EXIT");
+    exit->setPos(1000, 650);
+    exit->setDefaultTextColor(QColor(Qt::white));
+    exit->setFont(QFont("asap condensed", 18, QFont::Bold, false));
+    addItem(exit);
+
     timerTime = new QTimer(this);
     connect(timerTime, SIGNAL(timeout()), this, SLOT(updateTime()));
     timerTime->start(500);
@@ -131,6 +137,10 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         q->setCurrentWidget(score);
         clear();
         deleteLater();
+    }
+    else if (item == exit) {
+        q->setCurrentIndex(mainIndex);
+        q->show();
     }
 }
 

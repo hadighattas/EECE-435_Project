@@ -27,7 +27,7 @@ Game1Scene::Game1Scene(QObject *parent) :
     blurr->setZValue(20);
     addItem(blurr);
 
-    startCounter = new QGraphicsTextItem("3");
+    startCounter = new QGraphicsTextItem("5");
     startCounter->setPos(600, 300);
     startCounter->setZValue(20);
     startCounter->setDefaultTextColor(QColor(Qt::white));
@@ -231,7 +231,6 @@ void Game1Scene::endGame() {
     q->setCurrentWidget(game1score);
     game1Index = 100;
     clear();
-    deleteLater();
 }
 
 /**
@@ -280,11 +279,13 @@ void Game1Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
             timerObstacle->stop();
             character->setPos(623, 0);
             q->setCurrentIndex(mainIndex);
+            character->started = false;
         }
     }
 }
 
 void Game1Scene::resume() {
+    character->started = true;
     timeLeft->start(1000);
     timerFrame->start(400);
     timerObstacle->start(200);

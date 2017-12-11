@@ -8,6 +8,7 @@
 #include "Game2/game2menu.h"
 #include "Game3/game3menu.h"
 #include "user.h"
+#include "profile.h"
 #include <cstring>
 
 namespace Ui {
@@ -31,6 +32,8 @@ private slots:
     void on_game3Button_clicked();
 
     void on_signOutButton_clicked();
+
+    void on_profileButton_clicked();
 
 private:
     Ui::MainMenu *ui;

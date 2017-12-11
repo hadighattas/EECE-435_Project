@@ -7,6 +7,7 @@
 #include <fstream>
 #include <QTextStream>
 #include <string>
+#include <QDebug>
 
 using namespace std;
 
@@ -19,6 +20,10 @@ public:
     bool login(QString username, QString password);
     bool exists(QString email, QString username);
     void addGameScore(int game, int score);
+    QStringList getGame1Scores();
+    QStringList getGame2Scores();
+    QStringList getGame3Scores();
+    int averageGlobalScore(int game);
 
 private:
     QString firstName;

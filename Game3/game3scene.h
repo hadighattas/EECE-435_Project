@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <QGraphicsRectItem>
 #include <QSound>
+#include <QMouseEvent>
 
 #include "player.h"
 #include "global3.h"
@@ -29,6 +30,7 @@ public:
     void placeCards();
     void setValues();
     void keyPressEvent(QKeyEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 signals:
 

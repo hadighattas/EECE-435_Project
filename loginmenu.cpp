@@ -31,6 +31,10 @@ void LoginMenu::on_usernameLineEdit_returnPressed(){
 
 void LoginMenu::on_loginButton_clicked()
 {
+    if (ui->usernameLineEdit->text().size() == 0 || ui->passwordLineEdit->text().size() == 0) {
+        ui->message->setText("Please enter username and password");
+        return;
+    }
     bool result = user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
     if(result){
         MainMenu *mainMenu = new MainMenu;

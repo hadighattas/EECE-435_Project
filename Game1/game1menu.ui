@@ -43,33 +43,6 @@ color:white;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="gameLabel">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>0</y>
-     <width>280</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Asap Condensed</family>
-     <pointsize>48</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background:transparent;
-color:white;
-</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QTextBrowser" name="textBrowser">
    <property name="geometry">
     <rect>

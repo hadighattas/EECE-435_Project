@@ -138,9 +138,6 @@ void SignUpMenu::on_signupButton_clicked()
                     Gender);
         user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
         theUser = user;
-        theUser.addGameScore(1, 1000);
-        theUser.addGameScore(3, 900);
-        theUser.addGameScore(1, 900);
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);

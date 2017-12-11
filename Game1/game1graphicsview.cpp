@@ -7,7 +7,7 @@
 
 Game1GraphicsView::Game1GraphicsView(QWidget *parent) : QGraphicsView(parent)
 {
-
+    scene1 = new Game1Scene;
 }
 
 void Game1GraphicsView::setDifficulty(int diff) {
@@ -15,7 +15,7 @@ void Game1GraphicsView::setDifficulty(int diff) {
     setFixedSize(1280, 720);
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
-    scene1 = new Game1Scene;
+
     scene1->setStackedWidget(q);
     scene1->setDifficulty(difficulty);
     setScene(scene1);
@@ -28,4 +28,8 @@ void Game1GraphicsView::setStackedWidget(QStackedWidget *stack) {
 
 void Game1GraphicsView::resume() {
     scene1->resume();
+}
+
+Game1Scene *Game1GraphicsView::getScene() {
+    return scene1;
 }

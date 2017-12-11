@@ -21,7 +21,6 @@ public:
     QStringList *getValues();
     QStringList *getVices();
     void checkCollisions();
-
     bool started;
 
 signals:
@@ -32,6 +31,7 @@ private:
     int difficulty;
     QStringList *values = new QStringList;
     QStringList *vices = new QStringList;
+
 
 };
 

@@ -15,6 +15,7 @@ public:
     void setDifficulty(int diff);
     void setStackedWidget(QStackedWidget *stack);
     void resume();
+    Game1Scene *getScene();
 
 signals:
 
