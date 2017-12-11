@@ -28,4 +28,5 @@ HEADERS += \
     $$PWD/o0requestparameter.h \
     $$PWD/o0abstractstore.h \
     $$PWD/o0settingsstore.h \
+    $$PWD/o0export.h \
     $$PWD/o2google.h \
