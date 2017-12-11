@@ -48,12 +48,14 @@ void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *fina
         else if ( i == 2 )
             ui->graphicsView_3->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
         }
-    if(finalValues->size()*100 - finalVices->length()*200 < 0)
+
+    if((finalValues->size()*100 - finalVices->length()*200) < 0)
         score = 0;
     else
         score = finalValues->size()*100 - finalVices->length()*200;
+
     ui->scoreValue->setText(std::to_string(score).c_str());
-    if(score>200)
+    if(score>400)
         ui->response->setText("Welcome to Earth!\n You have gained enough values to join us");
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");

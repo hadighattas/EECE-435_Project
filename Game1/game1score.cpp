@@ -19,17 +19,17 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
     this->timeLeft = timeLeft;
     this->finalValues = finalValues;
     this->finalVices = finalVices;
-    
+
     ui->timeLeftValue->setText((std::to_string(timeLeft).c_str())+ ((QString)" seconds"));
-    
+
     for (int i = 0; i < this->finalValues->length(); i++) {
         ui->textValues->append(this->finalValues->at(i) + '\n');
    //     ui->textValues->setTextColor(QColor(Qt::white));
     }
-    
+
     for (int i = 0; i < this->finalVices->length(); i++)
         ui->textVices->append(this->finalVices->at(i) + '\n');
-    
+
     for (int i = 0; i < lives; i++) {
         if( i == 0 )
             ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
@@ -44,15 +44,19 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
         else if ( i == 5 )
             ui->graphicsView_6->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
     }
-    if(finalValues->size()*100-finalVices->length()*200+25*timeLeft<0)
-        score=0;
+
+    if((finalValues->size()*100 - finalVices->length()*150 + 5*timeLeft) < 0)
+        score = 0;
     else
-        score=finalValues->size()*100-finalVices->length()*200+5*timeLeft;
+        score = finalValues->size()*100 - finalVices->length()*150 + 5*timeLeft;
+
     ui->scoreValue->setText(std::to_string(score).c_str());
-    if(score>300)
+
+    if(score > 300)
         ui->response->setText("Welcome to Earth!\n You have gained enough values to join us");
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
+
     theUser.addGameScore(1, score);
 }
 

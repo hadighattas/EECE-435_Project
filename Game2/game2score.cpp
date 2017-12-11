@@ -14,16 +14,20 @@ Game2Score::Game2Score(QWidget *parent) :
     ui->honestyProgressBar->setValue(getPercentage(honesty));
     ui->courageProgressBar->setValue(getPercentage(courage));
     ui->forgivingnessProgressBar->setValue(getPercentage(forgivingness));
+
     if (stateOfEngineer == 8)
         ui->character->setStyleSheet("border: 0px;\nbackground:url(Shape11-400.png)");
     else if (stateOfDoctor == 8)
         ui->character->setStyleSheet("border: 0px;\nbackground:url(Shape12-400.png)");
+
     ui->moneyText->setText(QString::number(moneyGlobal));
     ui->textBrowser->setTextColor(QColor(Qt::white));
+
     if (sum >= 350)
         ui->textBrowser->setText("Congratulations!\nYou have accumulated enough values to join Earth!");
     else
         ui->textBrowser->setText("Unfortunately, you have not accumulated enough values to\npass the training.\nYou are not accepted on Earth :(");
+
     ui->money->setPixmap(QPixmap("Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->textBrowser->setFont(QFont("asap condensed", 18, QFont::Bold, false));
     theUser.addGameScore(2, sum);
