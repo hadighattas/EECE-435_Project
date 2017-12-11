@@ -230,6 +230,8 @@ void Game1Scene::endGame() {
     q->addWidget(game1score);
     q->setCurrentWidget(game1score);
     game1Index = 100;
+    clear();
+    deleteLater();
 }
 
 /**

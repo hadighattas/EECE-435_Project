@@ -198,6 +198,7 @@ void ThirdSceneEngineer::changeScene() {
     stateOfEngineer = 3;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 void ThirdSceneEngineer::rotatePhone() {

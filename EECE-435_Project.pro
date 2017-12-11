@@ -24,7 +24,6 @@ SOURCES += main.cpp\
     loginmenu.cpp \
     signupmenu.cpp \
     mainmenu.cpp \
-    gametemplate.cpp \
     Game1/game1menu.cpp \
     Game1/game1scene.cpp \
     Game1/game1graphicsview.cpp \
@@ -72,7 +71,6 @@ HEADERS  += mainwindow.h \
     loginmenu.h \
     signupmenu.h \
     mainmenu.h \
-    gametemplate.h \
     Game1/game1menu.h \
     Game1/game1scene.h \
     Game1/game1graphicsview.h \
@@ -120,7 +118,6 @@ FORMS    += mainwindow.ui \
     loginmenu.ui \
     signupmenu.ui \
     mainmenu.ui \
-    gametemplate.ui \
     Game1/game1menu.ui \
     Game1/game1score.ui \
     Game2/game2menu.ui \

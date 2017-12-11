@@ -34,6 +34,7 @@ void LoginMenu::on_loginButton_clicked()
     bool result = user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
     if(result){
         MainMenu *mainMenu = new MainMenu;
+        theUser = user;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);
         q->setCurrentWidget(mainMenu);
@@ -41,6 +42,8 @@ void LoginMenu::on_loginButton_clicked()
         mainIndex = q->indexOf(mainMenu);
         system(s.c_str());
     }
+    else
+        ui->message->setText("Incorrect username or password");
 }
 
 void LoginMenu::on_backButton_clicked()

@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include <QtWidgets>
-#include "gametemplate.h"
 #include "welcomemenu.h"
 #include "Game1/game1menu.h"
 #include "Game2/game2menu.h"

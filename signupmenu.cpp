@@ -69,7 +69,7 @@ void SignUpMenu::on_emailLineEdit_textChanged(const QString &arg1)
  */
 void SignUpMenu::on_usernameLineEdit_textChanged(const QString &arg1)
 {
-    if (user.exists("any", ui->usernameLineEdit->text())) {
+    if (user.exists("any", ui->usernameLineEdit->text()) && !(ui->usernameLineEdit->text().contains(" "))) {
         ui->message->setText("Username not available");
         userNameValid = false;
     }
@@ -137,6 +137,10 @@ void SignUpMenu::on_signupButton_clicked()
                     ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(),
                     Gender);
         user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
+        theUser = user;
+        theUser.addGameScore(1, 1000);
+        theUser.addGameScore(3, 900);
+        theUser.addGameScore(1, 900);
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);

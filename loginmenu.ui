@@ -78,7 +78,7 @@ border:2px solid dark-grey;
    <property name="geometry">
     <rect>
      <x>605</x>
-     <y>480</y>
+     <y>500</y>
      <width>70</width>
      <height>27</height>
     </rect>
@@ -185,6 +185,34 @@ color:white;
    </property>
    <property name="autoDefault">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="message">
+   <property name="geometry">
+    <rect>
+     <x>425</x>
+     <y>440</y>
+     <width>431</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Asap Condensed</family>
+     <pointsize>13</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: red;
+background: transparent;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

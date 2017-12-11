@@ -6,8 +6,6 @@ DoctorGraphicsView::DoctorGraphicsView(QWidget *parent) :
     setFixedSize(1280, 720);
     setHorizontalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
     setVerticalScrollBarPolicy((Qt::ScrollBarAlwaysOff));
-
-
 }
 
 void DoctorGraphicsView::setStackedWidget(QStackedWidget *stack) {

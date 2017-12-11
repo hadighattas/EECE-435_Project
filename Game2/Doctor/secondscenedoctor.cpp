@@ -149,6 +149,7 @@ void SecondSceneDoctor::changeScene() {
     stateOfDoctor = 2;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 /**

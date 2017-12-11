@@ -1,6 +1,5 @@
 #include "helper.h"
 
-
 void Helper::processArgs() {
     connect(&fbdemo_, SIGNAL(linkingFailed()), this, SLOT(onLinkingFailed()));
     connect(&fbdemo_, SIGNAL(linkingSucceeded()), this, SLOT(onLinkingSucceeded()));
@@ -16,6 +15,10 @@ void Helper::onLinkingSucceeded() {
     connect(&fbdemo_, SIGNAL(replied()), this, SLOT(validate()));
 }
 
+/**
+ * @brief Helper::getResponse Get JsonDocument of fbdemo
+ * @return
+ */
 QJsonDocument Helper::getResponse() {
     return fbdemo_.getResponse();
 }

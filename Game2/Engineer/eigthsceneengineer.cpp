@@ -143,6 +143,7 @@ void EigthSceneEngineer::changeScene() {
     stateOfEngineer = 8;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 /**

@@ -14,6 +14,7 @@ DoctorScene::DoctorScene(QObject *parent) :
     QGraphicsScene(parent)
 {
     stateOfDoctor = 0;
+    moneyGlobal = 10000;
     setBackgroundBrush(QBrush(QImage("SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
@@ -121,11 +122,15 @@ void DoctorScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         view->setScene(seventh);
     }
     else if ((item == next || item == arrow) && stateOfDoctor == 8) {
+        stateOfDoctor = 0;
+        moneyGlobal = 10000;
         score = new Game2Score;
         timerTime->stop();
         score->setStackedWidget(q);
         q->addWidget(score);
         q->setCurrentWidget(score);
+        clear();
+        deleteLater();
     }
 }
 

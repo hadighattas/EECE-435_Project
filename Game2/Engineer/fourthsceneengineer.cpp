@@ -178,4 +178,5 @@ void FourthSceneEngineer::changeScene() {
     stateOfEngineer = 4;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }

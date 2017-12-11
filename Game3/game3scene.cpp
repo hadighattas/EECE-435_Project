@@ -340,4 +340,6 @@ void Game3Scene::endGame() {
     q->addWidget(game3score);
     q->setCurrentWidget(game3score);
     game3Index = 100;
+    clear();
+    deleteLater();
 }

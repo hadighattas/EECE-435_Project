@@ -76,6 +76,7 @@ void ThirdSceneDoctor::changeScene() {
     stateOfDoctor = 3;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 void ThirdSceneDoctor::showResult() {

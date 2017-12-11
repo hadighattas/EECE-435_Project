@@ -174,5 +174,5 @@ void SecondSceneEngineer::changeScene() {
     stateOfEngineer = 2;
     QSound::play("ComputerSciFi.wav");
     clear();
-    delete this;
+    deleteLater();
 }

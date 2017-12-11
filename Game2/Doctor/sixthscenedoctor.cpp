@@ -157,6 +157,7 @@ void SixthSceneDoctor::changeScene() {
     stateOfDoctor = 6;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 void SixthSceneDoctor::rotatePhone() {

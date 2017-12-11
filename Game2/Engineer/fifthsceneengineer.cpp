@@ -162,6 +162,7 @@ void FifthSceneEngineer::changeScene() {
     stateOfEngineer = 5;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 /**

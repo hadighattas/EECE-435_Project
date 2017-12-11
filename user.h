@@ -6,6 +6,7 @@
 #include <QFile>
 #include <fstream>
 #include <QTextStream>
+#include <string>
 
 using namespace std;
 
@@ -17,9 +18,7 @@ public:
                 QString password, QString age, QString gender);
     bool login(QString username, QString password);
     bool exists(QString email, QString username);
-    void addGame1Score(int score1);
-    void addGame2Score(int score2);
-    void addGame3Score(int score3);
+    void addGameScore(int game, int score);
 
 private:
     QString firstName;

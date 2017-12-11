@@ -47,6 +47,12 @@ void MainMenu::on_game3Button_clicked()
 void MainMenu::on_signOutButton_clicked()
 {
     q->removeWidget(this);
+    for(int i = q->count(); i >= 0; i--)
+    {
+        QWidget* widget = q->widget(i);
+        q->removeWidget(widget);
+        widget->deleteLater();
+    }
     WelcomeMenu *welcomemenu=new WelcomeMenu;
     welcomemenu->setStackedWidget(q);
     q->addWidget(welcomemenu);

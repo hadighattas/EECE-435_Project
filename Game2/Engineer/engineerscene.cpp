@@ -14,6 +14,7 @@ EngineerScene::EngineerScene(QObject *parent) :
     QGraphicsScene(parent)
 {
     stateOfEngineer = 0;
+    moneyGlobal = 10000;
     setBackgroundBrush(QBrush(QImage("SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
@@ -140,12 +141,16 @@ void EngineerScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
         view->setScene(eigth);
     }
     else if ((item == next || item == arrow) && stateOfEngineer == 8) {
+        stateOfEngineer = 0;
+        moneyGlobal = 10000;
         score = new Game2Score;
         timerTime->stop();
         score->setStackedWidget(q);
         q->addWidget(score);
         q->setCurrentWidget(score);
         game2Index = 100;
+        clear();
+        deleteLater();
     }
     else if (item == exit) {
         q->setCurrentIndex(mainIndex);

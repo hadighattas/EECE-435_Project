@@ -137,6 +137,7 @@ void FifthSceneDoctor::changeScene() {
     stateOfDoctor = 5;
     QSound::play("ComputerSciFi.wav");
     clear();
+    deleteLater();
 }
 
 void FifthSceneDoctor::showResult() {
