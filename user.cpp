@@ -206,7 +206,7 @@ int User::averageGlobalScore(int game) {
        while (!in.atEnd())
        {
           QString line = in.readLine();
-          QStringList data = line .split(" ", QString::SkipEmptyParts);
+          QStringList data = line.split(" ", QString::SkipEmptyParts);
           if(data.length()>1){
               if (data.at(0) == gameName) {
                   for(int i = 1; i < data.length(); i++)
