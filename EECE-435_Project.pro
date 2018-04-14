@@ -7,8 +7,6 @@
 QT       += core gui
 QT       += network
 CONFIG   += c++11
-
-
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets multimedia
 
 DEFINES += O0_EXPORT=
@@ -16,7 +14,6 @@ include(./OAuth/src/src.pri)
 
 TARGET = EECE-435_Project
 TEMPLATE = app
-
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -65,7 +62,8 @@ SOURCES += main.cpp\
     OAuth/fbdemo.cpp\
     OAuth/helper.cpp \
     globalindices.cpp \
-    profile.cpp
+    profile.cpp \
+    firebasehandler.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -113,7 +111,8 @@ HEADERS  += mainwindow.h \
     OAuth/fbdemo.h\
     OAuth/helper.h \
     globalindices.h \
-    profile.h
+    profile.h \
+    firebasehandler.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \
