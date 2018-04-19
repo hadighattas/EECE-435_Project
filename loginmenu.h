@@ -36,7 +36,7 @@ private slots:
 private:
     Ui::LoginMenu *ui;
     QStackedWidget *q;
-    User user;
+    User *user;
 
 };
 

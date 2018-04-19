@@ -26,6 +26,7 @@ void MainMenu::on_game1Button_clicked()
     ui->stackedWidget_2->addWidget(game1menu);
     ui->stackedWidget_2->setCurrentWidget(game1menu);
 
+    theUser.addGameScore(1, 400);
 }
 
 void MainMenu::on_game2Button_clicked()

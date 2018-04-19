@@ -19,7 +19,7 @@ public:
     explicit User();
     bool signUp(QString firstName, QString lastName, QString email, QString username,
                 QString password, QString age, QString gender);
-    bool login(QString username, QString password);
+    bool login(QString email, QString password);
     bool exists(QString email, QString username);
     void addGameScore(int game, int score);
     QStringList getGame1Scores();
@@ -28,6 +28,7 @@ public:
     int averageGlobalScore(int game);
 
 private:
+    FirebaseHandler *fbh = new FirebaseHandler;
     QString firstName;
     QString lastName;
     QString email;

@@ -11,6 +11,8 @@
 #include "profile.h"
 #include <cstring>
 
+#include "globalindices.h"
+
 namespace Ui {
 class MainMenu;
 }

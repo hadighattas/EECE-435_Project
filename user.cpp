@@ -35,8 +35,7 @@ bool User::signUp(QString firstName, QString lastName, QString email, QString us
     game2Scores.append("game2");
     game3Scores.append("game3");
 
-    FirebaseHandler fbh;
-    fbh.signUp(firstName, lastName, email, username, password, age, gender);
+    fbh->signUp(firstName, lastName, email, username, password, age, gender);
 
     return true;
 }
@@ -47,43 +46,29 @@ bool User::signUp(QString firstName, QString lastName, QString email, QString us
  * @return
  */
 
-bool User::login(QString username, QString password) {
-    QFile inputFile("users.txt");
-    if (inputFile.open(QIODevice::ReadOnly))
-    {
+bool User::login(QString email, QString password) {
+    this->email = email;
+    this->password = password;
        game1Scores.clear();
        game2Scores.clear();
        game3Scores.clear();
        game1Scores.append("game1");
        game2Scores.append("game2");
        game3Scores.append("game3");
-       QTextStream in(&inputFile);
-       while (!in.atEnd())
-       {
-          QString line = in.readLine();
-          QStringList data = line .split("|", QString::SkipEmptyParts);
-          if (data.at(0) ==  username) {
-              if (data.at(1) == password) {
-                  this->username = username;
-                  this->password = password;
-                  this->email = data.at(2);
-                  this->firstName = data.at(3);
-                  this->lastName = data.at(4);
-                  this->age = data.at(5);
-                  this->gender = data.at(6);
-                  line = in.readLine();
-                  game1Scores = line.split(" ", QString::SkipEmptyParts);
-                  line = in.readLine();
-                  game2Scores = line.split(" ", QString::SkipEmptyParts);
-                  line = in.readLine();
-                  game3Scores = line.split(" ", QString::SkipEmptyParts);
-                  return true;
-              }
-          }
-       }
-       inputFile.close();
-    }
-    return false;
+
+       fbh->signIn(email, password);
+       fbh->getUserData();
+       game1Scores.append(fbh->getScore1());
+       game2Scores.append(fbh->getScore2());
+       game3Scores.append(fbh->getScore3());
+       QStringList info = fbh->getInfo();
+       this->firstName = info[0];
+       this->lastName = info[1];
+       this->username = info[2];
+       this->age = info[3];
+       this->gender = info[4];
+
+       return true;
 }
 
 /**
@@ -119,7 +104,7 @@ void User::addGameScore(int game, int score) {
         game1Scores.append(scoreString);
         currentList = game1Scores;
     }
-    else if (game ==2){
+    else if (game == 2){
         game2Scores.append(scoreString);
         currentList = game2Scores;
     }
@@ -127,53 +112,56 @@ void User::addGameScore(int game, int score) {
         game3Scores.append(scoreString);
         currentList = game3Scores;
     }
-    QFile inputFile("users.txt");
-    QString line;
-    QString modifiedLine;
-    if (inputFile.open(QIODevice::ReadOnly))
-    {
-       QTextStream in(&inputFile);
-       while (!in.atEnd())
-       {
-          modifiedLine = in.readLine();
-          char *temp = strtok((char*)(modifiedLine.toStdString().c_str()), "|");
-          if(temp != NULL){
-              if(strcmp(temp, this->username.toStdString().c_str()) == 0) {
-                  modifiedLine = in.readLine();
-                  if (game > 1)
-                      modifiedLine = in.readLine();
-                  if (game > 2)
-                      modifiedLine = in.readLine();
-                  break;
-              }
-          }
-       }
-    }
-    inputFile.close();
-    ofstream temp;
-    temp.open("temp.txt");
-    QFile inputFile2("users.txt");
-    if (inputFile2.open(QIODevice::ReadOnly)) {
-        QTextStream in(&inputFile2);
-        while (!in.atEnd())
-        {
-            line = in.readLine();
-            if (line != modifiedLine) {
-                temp << line.toStdString() << endl;
-            }
-            else {
-                QString newModifiedLine;
-                for (int i = 0; i < currentList.size(); i++) {
-                    newModifiedLine.append(currentList.at(i) + " ");
-                }
-                temp << newModifiedLine.toStdString() << endl;
-            }
-        }
-    }
-    inputFile2.close();
-    temp.close();
-    remove("users.txt");
-    rename("temp.txt","users.txt");
+
+    fbh->addScore(game, score);
+
+//    QFile inputFile("users.txt");
+//    QString line;
+//    QString modifiedLine;
+//    if (inputFile.open(QIODevice::ReadOnly))
+//    {
+//       QTextStream in(&inputFile);
+//       while (!in.atEnd())
+//       {
+//          modifiedLine = in.readLine();
+//          char *temp = strtok((char*)(modifiedLine.toStdString().c_str()), "|");
+//          if(temp != NULL){
+//              if(strcmp(temp, this->username.toStdString().c_str()) == 0) {
+//                  modifiedLine = in.readLine();
+//                  if (game > 1)
+//                      modifiedLine = in.readLine();
+//                  if (game > 2)
+//                      modifiedLine = in.readLine();
+//                  break;
+//              }
+//          }
+//       }
+//    }
+//    inputFile.close();
+//    ofstream temp;
+//    temp.open("temp.txt");
+//    QFile inputFile2("users.txt");
+//    if (inputFile2.open(QIODevice::ReadOnly)) {
+//        QTextStream in(&inputFile2);
+//        while (!in.atEnd())
+//        {
+//            line = in.readLine();
+//            if (line != modifiedLine) {
+//                temp << line.toStdString() << endl;
+//            }
+//            else {
+//                QString newModifiedLine;
+//                for (int i = 0; i < currentList.size(); i++) {
+//                    newModifiedLine.append(currentList.at(i) + " ");
+//                }
+//                temp << newModifiedLine.toStdString() << endl;
+//            }
+//        }
+//    }
+//    inputFile2.close();
+//    temp.close();
+//    remove("users.txt");
+//    rename("temp.txt","users.txt");
 }
 
 QStringList User::getGame1Scores() {

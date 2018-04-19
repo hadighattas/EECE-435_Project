@@ -35,16 +35,17 @@ void LoginMenu::on_loginButton_clicked()
         ui->message->setText("Please enter username and password");
         return;
     }
-    bool result = user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
+    bool result = theUser.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
     if(result){
         MainMenu *mainMenu = new MainMenu;
-        theUser = user;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);
         q->setCurrentWidget(mainMenu);
         string s="notify-send 'Welcome back "+ui->usernameLineEdit->text().toStdString()+"' 'You are now logged in' '-t' 200";
         mainIndex = q->indexOf(mainMenu);
         system(s.c_str());
+
+
     }
     else
         ui->message->setText("Incorrect username or password");
