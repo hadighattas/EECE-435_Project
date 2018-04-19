@@ -9,6 +9,8 @@
 #include <string>
 #include <QDebug>
 
+#include "firebasehandler.h"
+
 using namespace std;
 
 class User

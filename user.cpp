@@ -30,16 +30,14 @@ bool User::signUp(QString firstName, QString lastName, QString email, QString us
     this->username = username;
     this->password = password;
     this->age = age;
-    this->gender = gender;
+    this->gender   = gender;
     game1Scores.append("game1");
     game2Scores.append("game2");
     game3Scores.append("game3");
-    ofstream users;
-    users.open("users.txt", ios::app);
-    users << username.toStdString() << '|' << password.toStdString() << '|' << email.toStdString()
-          << '|' <<  firstName.toStdString() << '|' << lastName.toStdString() << '|' <<
-             age.toStdString() << '|' << gender.toStdString() << "\ngame1 \n" << "game2 \n" << "game3 \n";
-    users.close();
+
+    FirebaseHandler fbh;
+    fbh.signUp(firstName, lastName, email, username, password, age, gender);
+
     return true;
 }
 /**

@@ -8,6 +8,14 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QJsonDocument>
+#include <QString>
+
+#include <QJsonParseError>
+#include <QVariant>
+#include <QJsonValue>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QVariant>
 
 using namespace std;
 class FirebaseHandler : public QObject
@@ -16,15 +24,16 @@ class FirebaseHandler : public QObject
 public:
     explicit FirebaseHandler(QObject *parent = 0);
     void signIn(QString email, QString password);
-    void signUp(QString email, QString password);
+    void signUp(QString firstName, QString lastName, QString email, QString username, QString password, QString age, QString gender);
 
 private:
-    QString urlSignIn, urlSignUp;
+    QString urlSignIn, urlSignUp, urlUsers;
 
 signals:
 
 public slots:
     void replyFinished(QNetworkReply*);
+    void addToDatabase(QNetworkReply*);
 
 };
 
