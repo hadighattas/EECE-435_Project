@@ -45,13 +45,13 @@ void Game3Menu::changeCharacter(){
     * Changing character according to level of difficulty.\n
     */
     if(ui->easyRadioButton->isChecked()){
-        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(qrl:/images2/Shape4-500.png);border:0px;");
+        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(:/images2/Shape4-500.png);border:0px;");
     }
     else if(ui->normalRadioButton->isChecked()){
-        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(qrl:/images2/Shape5-500.png);border:0px;");
+        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(:/images2/Shape5-500.png);border:0px;");
     }
     else if(ui->hardRadioButton->isChecked()){
-        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(qrl:/images2/Shape6-500.png);border:0px;");
+        ui->graphicsView->setStyleSheet("background: transparent;background-image:url(:/images2/Shape6-500.png);border:0px;");
     }
 }
 void Game3Menu::setStackedWidget(QStackedWidget *stack){

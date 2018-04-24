@@ -43,6 +43,8 @@ private:
     QStringList score1, score2, score3;
     int avgScore1, avgScore2, avgScore3;
     int lastGamePlayed, lastScore;
+    int called;
+    bool done;
 
 signals:
 

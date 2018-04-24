@@ -16,7 +16,7 @@ SignUpMenu::SignUpMenu(QWidget *parent) :
     ui->setupUi(this);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
     ui->confPasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->fbSignUp->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/SignUp.png)");
+    ui->fbSignUp->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/SignUp.png)");
 }
 
 SignUpMenu::~SignUpMenu()
@@ -55,7 +55,7 @@ void SignUpMenu::on_emailLineEdit_textChanged(const QString &arg1)
 {
     if(!this->validateEmail(arg1)) {
         emailValid = false;
-        ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/x.png)");
+        ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/x.png)");
     }
     else{
         emailValid = true;

@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->setFixedSize(QSize(1280,720));
     ui->setupUi(this);
-    ui->centralWidget->setStyleSheet("background-image: url(qrl:/images2/MenuBackground.jpg); background-color:black;");
+    ui->centralWidget->setStyleSheet("background-image: url(:/images2/MenuBackground.jpg); background-color:black;");
 //    FirebaseHandler *handler = new FirebaseHandler;
 //    handler->signUp(QString::fromStdString("morgane"), QString::fromStdString("ayle"), QString::fromStdString("morganea.97@hotmail.com"),
 //                    QString::fromStdString("morgane"), QString::fromStdString("123456"), QString::fromStdString("20"),

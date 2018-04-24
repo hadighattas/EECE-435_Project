@@ -10,6 +10,9 @@ FirebaseHandler::FirebaseHandler(QObject *parent) :
     score1 = {};
     score2 = {};
     score3 = {};
+    called = 1;
+
+    done = false;
 }
 
 void FirebaseHandler::signIn(QString email, QString password){
@@ -164,6 +167,8 @@ QStringList FirebaseHandler::getScore1() {
     }
 
     void FirebaseHandler::addScore(int game, int score) {
+        called++;
+        if (called % 2 == 0) {
         QString scoreString = QString::number(score);
 
         QStringList scoreList;
@@ -194,6 +199,8 @@ QStringList FirebaseHandler::getScore1() {
 
         QString url = urlUsers + "/" + this->localId + "/score" + QString::number(game) + ".json";
         request.setUrl(url);
+
+        qDebug() << QString::number(called);
         connect(manager, SIGNAL(finished(QNetworkReply*)), this,
                              SLOT(replyFinished(QNetworkReply*)));
         QByteArray output;
@@ -212,6 +219,7 @@ QStringList FirebaseHandler::getScore1() {
         //Debug() << "scores:" << output;
 
         reply = manager->put(request, output);
+        }
     }
 
 

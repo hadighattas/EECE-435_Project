@@ -42,11 +42,11 @@ void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *fina
      */
     for (int i = 0; i < lives; i++) {
         if( i == 0 )
-            ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/Shape10-50.png)");
+            ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 1 )
-            ui->graphicsView_2->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/Shape10-50.png)");
+            ui->graphicsView_2->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 2 )
-            ui->graphicsView_3->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/Shape10-50.png)");
+            ui->graphicsView_3->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         }
 
     if((finalValues->size()*100 - finalVices->length()*200) < 0)
