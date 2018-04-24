@@ -30,7 +30,7 @@ Game2Score::Game2Score(QWidget *parent) :
 
     ui->money->setPixmap(QPixmap(":/images2/Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     ui->textBrowser->setFont(QFont("asap condensed", 18, QFont::Bold, false));
-    theUser.addGameScore(2, sum);
+    theUser->addGameScore(2, sum);
 }
 
 Game2Score::~Game2Score()

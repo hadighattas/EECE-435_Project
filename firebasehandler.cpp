@@ -34,11 +34,16 @@ void FirebaseHandler::signIn(QString email, QString password){
 
 void FirebaseHandler::loginFinished(QNetworkReply* reply) {
     QString strReply = (QString)reply->readAll();
-    //qDebug() << "Reply:" << strReply;
+    qDebug() << "Reply:" << strReply;
     QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
     QString localId = jsonObj["localId"].toString();
     this->localId = localId;
+
+    if (!localId.isEmpty())
+        emit loginResult(true);
+    else
+        emit loginResult(false);
 }
 
 void FirebaseHandler::storeUserData(QString firstName, QString lastName, QString email, QString username, QString password, QString age, QString gender) {

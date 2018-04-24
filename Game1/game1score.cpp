@@ -57,7 +57,7 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
 
-    theUser.addGameScore(1, score);
+    theUser->addGameScore(1, score);
 }
 
 void Game1Score::setStackedWidget(QStackedWidget *stack) {

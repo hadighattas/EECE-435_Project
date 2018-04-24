@@ -67,7 +67,7 @@ void MainMenu::on_profileButton_clicked()
     ui->stackedWidget_2->addWidget(profile);
     ui->stackedWidget_2->setCurrentWidget(profile);
 
-    theUser.averageGlobalScore(1);
-    theUser.averageGlobalScore(2);
-    theUser.averageGlobalScore(3);
+    theUser->averageGlobalScore(1);
+    theUser->averageGlobalScore(2);
+    theUser->averageGlobalScore(3);
 }

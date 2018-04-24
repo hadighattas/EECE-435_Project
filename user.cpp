@@ -1,13 +1,9 @@
-/**
- * \file user.cpp
- * \brief User class that performs operations on user data in txt file
- *
-*/
 #include "user.h"
 
-User *user = new User;
+User *user;
 
-User::User(){
+User::User(QObject *parent) : QObject(parent)
+{
 
 }
 
@@ -49,21 +45,37 @@ bool User::signUp() {
  */
 
 bool User::login(QString email, QString password) {
+    qDebug() << "before connect";
+
+    connect(fbh, SIGNAL(loginResult(bool)), this, SLOT(loginResponse(bool)));
+
+    qDebug() << "connect successful";
+
     this->email = email;
     this->password = password;
 
-       fbh->signIn(email, password);
-       fbh->getUserData();
-       fbh->getGlobalScores();
+    fbh->signIn(email, password);
 
-       QStringList info = fbh->getInfo();
-       this->firstName = info[0];
-       this->lastName = info[1];
-       this->username = info[2];
-       this->age = info[3];
-       this->gender = info[4];
+    return true;
+}
 
-       return true;
+void User::loginResponse(bool success) {
+    if (success) {
+        fbh->getUserData();
+        fbh->getGlobalScores();
+
+        QStringList info = fbh->getInfo();
+        this->firstName = info[0];
+        this->lastName = info[1];
+        this->username = info[2];
+        this->age = info[3];
+        this->gender = info[4];
+
+        emit loginUserResult(true);
+    }
+    else
+        emit loginUserResult(false);
+
 }
 
 /**

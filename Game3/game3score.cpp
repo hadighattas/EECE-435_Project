@@ -60,7 +60,7 @@ void Game3Score::setScore(int lives, QStringList *finalValues, QStringList *fina
     else
         ui->response->setText("You have not gained enough values \nto join us on Earth :(");
 
-    theUser.addGameScore(3, score);
+    theUser->addGameScore(3, score);
 }
 
 void Game3Score::on_exitButton_clicked()

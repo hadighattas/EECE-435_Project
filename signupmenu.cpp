@@ -69,7 +69,7 @@ void SignUpMenu::on_emailLineEdit_textChanged(const QString &arg1)
  */
 void SignUpMenu::on_usernameLineEdit_textChanged(const QString &arg1)
 {
-    if (user.exists("any", ui->usernameLineEdit->text()) && !(ui->usernameLineEdit->text().contains(" "))) {
+    if (user->exists("any", ui->usernameLineEdit->text()) && !(ui->usernameLineEdit->text().contains(" "))) {
         ui->message->setText("Username not available");
         userNameValid = false;
     }
@@ -122,7 +122,7 @@ void SignUpMenu::on_signupButton_clicked()
         /**
           * Check if user is already signed up with email
         */
-        if (user.exists(ui->emailLineEdit->text(), ui->usernameLineEdit->text())) {
+        if (user->exists(ui->emailLineEdit->text(), ui->usernameLineEdit->text())) {
             ui->message->setText("You already have an account");
             return;
         }
@@ -133,9 +133,9 @@ void SignUpMenu::on_signupButton_clicked()
             ui->message->setText("Passwords do not match");
             return;
         }
-        user.storeData(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(), ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(), Gender);
-        user.signUp();
-        user.login(ui->emailLineEdit->text(), ui->passwordLineEdit->text());
+        user->storeData(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(), ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(), Gender);
+        user->signUp();
+        user->login(ui->emailLineEdit->text(), ui->passwordLineEdit->text());
         theUser = user;
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);

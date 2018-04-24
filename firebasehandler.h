@@ -47,6 +47,8 @@ private:
     bool done;
 
 signals:
+    void loginResult(bool);
+
 
 public slots:
     void loginFinished(QNetworkReply*);

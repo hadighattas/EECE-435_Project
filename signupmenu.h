@@ -49,7 +49,7 @@ private slots:
 private:
     Ui::SignUpMenu *ui;
     QStackedWidget *q;
-    User user;
+    User *user = new User;
     Helper helper;
     bool fbDisabled = false;
     bool userNameValid, emailValid = false;

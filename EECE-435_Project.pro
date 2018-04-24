@@ -29,7 +29,6 @@ SOURCES += main.cpp\
     Game1/obstaclegroup.cpp \
     Game1/global.cpp \
     Game1/game1score.cpp \
-    user.cpp \
     Game2/game2menu.cpp \
     Game2/Engineer/engineergraphicsview.cpp \
     Game2/Engineer/engineerscene.cpp \
@@ -63,7 +62,8 @@ SOURCES += main.cpp\
     OAuth/helper.cpp \
     globalindices.cpp \
     profile.cpp \
-    firebasehandler.cpp
+    firebasehandler.cpp \
+    user.cpp
 
 HEADERS  += mainwindow.h \
     welcomemenu.h \
@@ -78,7 +78,6 @@ HEADERS  += mainwindow.h \
     Game1/obstaclegroup.h \
     Game1/global.h \
     Game1/game1score.h \
-    user.h \
     Game2/game2menu.h \
     Game2/Engineer/engineergraphicsview.h \
     Game2/Engineer/engineerscene.h \
@@ -112,7 +111,8 @@ HEADERS  += mainwindow.h \
     OAuth/helper.h \
     globalindices.h \
     profile.h \
-    firebasehandler.h
+    firebasehandler.h \
+    user.h
 
 FORMS    += mainwindow.ui \
     welcomemenu.ui \

@@ -35,8 +35,13 @@ void LoginMenu::on_loginButton_clicked()
         ui->message->setText("Please enter username and password");
         return;
     }
-    bool result = theUser.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
-    if(result){
+    bool result = user->login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
+    theUser = user;
+    connect(user, SIGNAL(loginUserResult(bool)), this, SLOT(displayLoginResult(bool)));
+}
+
+void LoginMenu::displayLoginResult(bool success) {
+    if (success) {
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);

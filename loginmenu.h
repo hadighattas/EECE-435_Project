@@ -24,6 +24,7 @@ public:
 
 
 private slots:
+    void displayLoginResult(bool);
 
     void on_passwordLineEdit_returnPressed();
 
@@ -36,7 +37,7 @@ private slots:
 private:
     Ui::LoginMenu *ui;
     QStackedWidget *q;
-    User *user;
+    User *user = new User;
 
 };
 
