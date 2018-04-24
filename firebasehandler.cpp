@@ -4,8 +4,12 @@ FirebaseHandler::FirebaseHandler(QObject *parent) :
     QObject(parent)
 {
     urlUsers = "https://aliens-vs-vices.firebaseio.com/users";
+    urlGlobal = "https://aliens-vs-vices.firebaseio.com/global";
     urlSignIn = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyCvP6AzTlc_nVkleSQjQHa9pGXrXVeM2fw";
     urlSignUp = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyCvP6AzTlc_nVkleSQjQHa9pGXrXVeM2fw";
+    score1 = {};
+    score2 = {};
+    score3 = {};
 }
 
 void FirebaseHandler::signIn(QString email, QString password){
@@ -27,26 +31,24 @@ void FirebaseHandler::signIn(QString email, QString password){
 
 void FirebaseHandler::loginFinished(QNetworkReply* reply) {
     QString strReply = (QString)reply->readAll();
-    qDebug() << "Reply:" << strReply;
+    //qDebug() << "Reply:" << strReply;
     QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
     QString localId = jsonObj["localId"].toString();
-    qDebug() << "localId:" << localId;
     this->localId = localId;
 }
 
-
-void FirebaseHandler::signUp(QString firstName, QString lastName, QString email, QString username,
-                             QString password, QString age, QString gender) {
+void FirebaseHandler::storeUserData(QString firstName, QString lastName, QString email, QString username, QString password, QString age, QString gender) {
     this->firstName = firstName;
     this->lastName = lastName;
     this->username = username;
     this->age = age;
     this->gender = gender;
-    this->score1 = {};
-    this->score2 = {};
-    this->score3 = {};
+    this->email = email;
+    this->password = password;
+}
 
+void FirebaseHandler::signUp() {
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkRequest request;
     QNetworkReply *reply = NULL;
@@ -64,11 +66,6 @@ void FirebaseHandler::signUp(QString firstName, QString lastName, QString email,
     reply = manager->post(request, hi);
 }
 
-//void FirebaseHandler::getScore(QString localId) {
-
-//}
-
-
 void FirebaseHandler::addToDatabase(QNetworkReply *reply)
 {
     QString strReply = (QString)reply->readAll();
@@ -76,7 +73,7 @@ void FirebaseHandler::addToDatabase(QNetworkReply *reply)
     QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
     QString localId = jsonObj["localId"].toString();
-    qDebug() << "localId" << localId;
+    this->localId = localId;
 
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkRequest request;
@@ -94,19 +91,15 @@ void FirebaseHandler::addToDatabase(QNetworkReply *reply)
     connect(manager, SIGNAL(finished(QNetworkReply*)), this,
                          SLOT(replyFinished(QNetworkReply*)));
     QByteArray hi = "{\"first\": \"" + firstName.toUtf8() + "\", \"last\": \"" + lastName.toUtf8() + "\", \"username\": \"" + username.toUtf8()
-            + "\", \"age\": \"" + age.toUtf8() + "\", \"gender\": \"" + gender.toUtf8() + "\", \"score1\": \"0\", \"score2\": \"0\", \"score3\": \"0\"}";
+            + "\", \"age\": \"" + age.toUtf8() + "\", \"gender\": \"" + gender.toUtf8() + "\"}";
+    qDebug() << "hi:" << hi;
     reply2 = manager->put(request, hi);
 }
 
 void FirebaseHandler::replyFinished(QNetworkReply *reply)
 {
-//    QString strReply = (QString)reply->readAll();
-//    qDebug() << strReply;
-//    QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
-//    QJsonObject jsonObj = jsonResponse.object();
-//    QString localId = jsonObj["localId"].toString();
-//    qDebug() << "localId" << localId;
-//    this->localId = localId;
+    QString strReply = (QString)reply->readAll();
+    qDebug() << strReply;
 }
 
 void FirebaseHandler::getUserData() {
@@ -129,12 +122,11 @@ void FirebaseHandler::getUserData() {
 
 void FirebaseHandler::replyGetData(QNetworkReply *reply) {
     QString strReply = (QString)reply->readAll();
-    qDebug() << strReply;
+    //qDebug() << strReply;
     QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
 
     QString item = localId;
-    qDebug() << "item:" << item;
     QJsonObject jsonObj2 = jsonObj[item].toObject();
     this->firstName = jsonObj2["first"].toString();
     this->lastName = jsonObj2["last"].toString();
@@ -142,17 +134,16 @@ void FirebaseHandler::replyGetData(QNetworkReply *reply) {
     this->age = jsonObj2["age"].toString();
     this->gender = jsonObj2["gender"].toString();
 
-    QJsonObject jsonObj3 = jsonObj2["score1"].toObject();
-    score1.append(jsonObj3["0"].toString());
-    qDebug() << "score1:" << score1;
-//    array = jsonObj2["score2"].toArray();
-//    foreach (const QJsonValue & value, array) {
-//        score2.append(value.toString());
-//    }
-//    array = jsonObj2["score3"].toArray();
-//    foreach (const QJsonValue & value, array) {
-//        score3.append(value.toString());
-//    }
+    this->score1 = jsonObj2["score1"].toString().split(",");
+    if (this->score1.at(0) == "")
+        this->score1.clear();
+    this->score2 = jsonObj2["score2"].toString().split(",");
+    if (this->score2.at(0) == "")
+        this->score2.clear();
+    this->score3 = jsonObj2["score3"].toString().split(",");
+    if (this->score3.at(0) == "")
+        this->score3.clear();
+
 }
 
 QStringList FirebaseHandler::getInfo() {
@@ -189,7 +180,44 @@ QStringList FirebaseHandler::getScore1() {
             scoreList = score3;
         }
 
-        qDebug() << "scoreList:" << scoreList;
+        //qDebug() << "scoreList:" << scoreList;
+
+        QNetworkAccessManager *manager = new QNetworkAccessManager();
+        QNetworkRequest request;
+        QNetworkReply *reply = NULL;
+
+        QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+        config.setProtocol(QSsl::TlsV1_2);
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+        request.setHeader(QNetworkRequest::ServerHeader, "application/json");
+        request.setSslConfiguration(config);
+
+        QString url = urlUsers + "/" + this->localId + "/score" + QString::number(game) + ".json";
+        request.setUrl(url);
+        connect(manager, SIGNAL(finished(QNetworkReply*)), this,
+                             SLOT(replyFinished(QNetworkReply*)));
+        QByteArray output;
+        output.append("\"");
+        output.append(scoreList.at(0));
+        if (!(scoreList.size() == 1)) {
+            scoreList.removeAt(0);
+            foreach (const QString &str, scoreList)
+            {
+                output.append(",");
+                output.append(str);
+            }
+        }
+        output.append("\"");
+
+        //Debug() << "scores:" << output;
+
+        reply = manager->put(request, output);
+    }
+
+
+    void FirebaseHandler::modifyGlobal(int game, int score) {
+        lastGamePlayed = game;
+        lastScore = score;
 
         QNetworkAccessManager *manager = new QNetworkAccessManager();
         QNetworkRequest request;
@@ -200,25 +228,84 @@ QStringList FirebaseHandler::getScore1() {
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
         request.setSslConfiguration(config);
 
-        qDebug() << "localId2:" << localId;
-        QString url = urlUsers + "/" + this->localId + "/score" + QString::number(game) + ".json";
-        qDebug() << "url:" << url;
+        QString url = urlGlobal + "/score" + QString::number(game) + ".json";
         request.setUrl(url);
+        connect(manager, SIGNAL(finished(QNetworkReply*)), this,
+                             SLOT(putModifyGlobal(QNetworkReply*)));
+        reply = manager->get(request);
+    }
+
+    void FirebaseHandler::putModifyGlobal(QNetworkReply *reply) {
+        QString strReply = (QString)reply->readAll();
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+        QJsonObject jsonObj = jsonResponse.object();
+
+        int average = jsonObj["average"].toInt();
+        int count = jsonObj["count"].toInt();
+
+        int newAverageInt = (average*count + lastScore)/(count+1);
+        if (lastGamePlayed == 1)
+            avgScore1 = newAverageInt;
+        else if (lastGamePlayed == 2)
+            avgScore2 = newAverageInt;
+        else if (lastGamePlayed == 3)
+            avgScore3 = newAverageInt;
+
+        QString newAverage = QString::number(newAverageInt);
+        QString newCount = QString::number(count+1);
+
+        QNetworkAccessManager *manager = new QNetworkAccessManager();
+        QNetworkRequest request;
+        QNetworkReply *reply2 = NULL;
+
+        QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+        config.setProtocol(QSsl::TlsV1_2);
         request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-        request.setHeader(QNetworkRequest::ServerHeader, "application/json");
+        request.setSslConfiguration(config);
+
+        QString url = urlGlobal + "/score" + QString::number(lastGamePlayed) + ".json";
+        request.setUrl(url);
         connect(manager, SIGNAL(finished(QNetworkReply*)), this,
                              SLOT(replyFinished(QNetworkReply*)));
-        QByteArray output;
-        output = "[";
-        foreach (const QString &str, scoreList)
-        {
-            output.append(str);
-            output.append(",");
-        }
-        output.remove(-1, 1);
-        output.append("]");
+        QByteArray hi = "{\"average\":" + newAverage.toUtf8() + ",\"count\":" + newCount.toUtf8() + "}";
+        reply2 = manager->put(request, hi);
+    }
 
-        qDebug() << "scores:" << output;
+    void FirebaseHandler::getGlobalScores() {
+        QNetworkAccessManager *manager = new QNetworkAccessManager();
+        QNetworkRequest request;
+        QNetworkReply *reply = NULL;
 
-        reply = manager->put(request, output);
+        QSslConfiguration config = QSslConfiguration::defaultConfiguration();
+        config.setProtocol(QSsl::TlsV1_2);
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+        request.setSslConfiguration(config);
+
+        QString url = urlGlobal + ".json";
+        request.setUrl(url);
+        connect(manager, SIGNAL(finished(QNetworkReply*)), this,
+                             SLOT(replyGetGlobalScores(QNetworkReply*)));
+        reply = manager->get(request);
+    }
+
+    void FirebaseHandler::replyGetGlobalScores(QNetworkReply *reply) {
+        QString strReply = (QString)reply->readAll();
+        QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+        QJsonObject jsonObj = jsonResponse.object();
+
+        QJsonObject score1 = jsonObj["score1"].toObject();
+        QJsonObject score2 = jsonObj["score2"].toObject();
+        QJsonObject score3 = jsonObj["score3"].toObject();
+
+        avgScore1 = score1["average"].toInt();
+        avgScore2 = score2["average"].toInt();
+        avgScore3 = score3["average"].toInt();
+    }
+
+    int FirebaseHandler::getGlobalScore(int game) {
+        if (game == 1)
+            return avgScore1;
+        else if (game == 2)
+            return avgScore2;
+        return avgScore3;
     }

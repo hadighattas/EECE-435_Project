@@ -15,13 +15,13 @@ Obstacle::Obstacle(QObject *parent) :
 void Obstacle::setIdentity(int id) {
     this->identity = id;
     if (identity == 0)
-        setPixmap((QPixmap("Shape7-65.png")));
+        setPixmap((QPixmap(":/images2/Shape7-65.png")));
     else if (identity == 1)
-        setPixmap((QPixmap("Shape8-65left.png")));
+        setPixmap((QPixmap(":/images2/Shape8-65left.png")));
     else if (identity == 2)
-        setPixmap((QPixmap("Shape8-65right.png")));
+        setPixmap((QPixmap(":/images2/Shape8-65right.png")));
     else if (identity == 3)
-        setPixmap((QPixmap("Shape7-65.png")));
+        setPixmap((QPixmap(":/images2/Shape7-65.png")));
 }
 
 int Obstacle::getIdentity() {

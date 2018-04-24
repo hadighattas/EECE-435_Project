@@ -8,18 +8,18 @@
 SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("HospitalLobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/HospitalLobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(470, 400);
     addItem(character);
 
-    your_brother = new QGraphicsPixmapItem(QPixmap("Brother.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    your_brother = new QGraphicsPixmapItem(QPixmap(":/images2/Brother.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     your_brother->setPos(830, 360);
     addItem(your_brother);
 
-    stranger = new QGraphicsPixmapItem(QPixmap("Stranger.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    stranger = new QGraphicsPixmapItem(QPixmap(":/images2/Stranger.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     stranger->setPos(1000, 450);
     addItem(stranger);
 
@@ -45,7 +45,7 @@ SecondSceneDoctor::SecondSceneDoctor(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -147,7 +147,7 @@ void SecondSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 2;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -201,14 +201,14 @@ void SecondSceneDoctor::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
     else if (clickState == 1) {
          QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
          if (item == your_brother) {
-             your_brother->setPixmap(QPixmap("BrotherGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_brother->setPixmap(QPixmap(":/images2/BrotherGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
          else if (item == stranger) {
-             stranger->setPixmap(QPixmap("StrangerGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             stranger->setPixmap(QPixmap(":/images2/StrangerGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
          else {
-             your_brother->setPixmap(QPixmap("Brother.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-             stranger->setPixmap(QPixmap("Stranger.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_brother->setPixmap(QPixmap(":/images2/Brother.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             stranger->setPixmap(QPixmap(":/images2/Stranger.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
     }
 }

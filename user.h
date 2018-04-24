@@ -17,8 +17,7 @@ class User
 {
 public:
     explicit User();
-    bool signUp(QString firstName, QString lastName, QString email, QString username,
-                QString password, QString age, QString gender);
+    bool signUp();
     bool login(QString email, QString password);
     bool exists(QString email, QString username);
     void addGameScore(int game, int score);
@@ -26,6 +25,8 @@ public:
     QStringList getGame2Scores();
     QStringList getGame3Scores();
     int averageGlobalScore(int game);
+    void storeData(QString firstName, QString lastName, QString email, QString username,
+                   QString password, QString age, QString gender);
 
 private:
     FirebaseHandler *fbh = new FirebaseHandler;
@@ -36,7 +37,6 @@ private:
     QString password;
     QString age;
     QString gender;
-    QStringList game1Scores, game2Scores, game3Scores;
 };
 
 extern User *user;

@@ -8,10 +8,10 @@
 ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("ConferenceRoomCharacters.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/ConferenceRoomCharacters.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(950, 350);
     addItem(character);
 
@@ -38,7 +38,7 @@ ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -48,9 +48,9 @@ ThirdSceneEngineer::ThirdSceneEngineer(QObject *parent) :
     response = 0;
 
     //initializing sounds to be played later
-    tick = new QSound("Tick.wav");
-    ringtone = new QSound("Ringtone.wav");
-    viber = new QSound("Vibration.wav");
+    tick = new QSound(":/sounds/Tick.wav");
+    ringtone = new QSound(":/sounds/Ringtone.wav");
+    viber = new QSound(":/sounds/Vibration.wav");
 }
 
 /**
@@ -73,7 +73,7 @@ void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
             setBackgroundBrush(QBrush(QImage("ConferenceRoomBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
 
             //adding phone
-            phone = new QGraphicsPixmapItem(QPixmap("PhoneIncoming.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            phone = new QGraphicsPixmapItem(QPixmap(":/images2/PhoneIncoming.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             phone->setPos(60, 120);
             phone->setTransformationMode(Qt::SmoothTransformation);
             phone->setTransformOriginPoint(115, 250);
@@ -196,7 +196,7 @@ void ThirdSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 3;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

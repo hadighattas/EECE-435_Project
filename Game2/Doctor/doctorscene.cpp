@@ -15,15 +15,15 @@ DoctorScene::DoctorScene(QObject *parent) :
 {
     stateOfDoctor = 0;
     moneyGlobal = 10000;
-    setBackgroundBrush(QBrush(QImage("SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
+    setBackgroundBrush(QBrush(QImage(":/images2/SpaceBackground.png").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
     //adding character on map
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(55, 55, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(55, 55, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(370, 320);
     addItem(character);
 
-    arrow = new QGraphicsPixmapItem((QPixmap("arrow.png")));
+    arrow = new QGraphicsPixmapItem((QPixmap(":/images2/arrow.png")));
     arrow->setPos(955, 510);
     addItem(arrow);
     flag = true;
@@ -65,7 +65,7 @@ DoctorScene::DoctorScene(QObject *parent) :
     connect(timerTime, SIGNAL(timeout()), this, SLOT(updateTime()));
     timerTime->start(500);
 
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
 
     updateTime();
 
@@ -162,11 +162,11 @@ void DoctorScene::updateTime(){
     */
     time->setPlainText(QTime::currentTime().toString());
     if (flag == true) {
-        arrow->setPixmap((QPixmap("arrowGlow.png")));
+        arrow->setPixmap((QPixmap(":/images2/arrowGlow.png")));
         flag = false;
     }
     else {
-        arrow->setPixmap((QPixmap("arrow.png")));
+        arrow->setPixmap((QPixmap(":/images2/arrow.png")));
         flag = true;
     }
 

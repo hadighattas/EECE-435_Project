@@ -8,12 +8,12 @@
 FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Lobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Lobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
     addAliens();
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(928, 250);
     addItem(character);
 
@@ -22,7 +22,6 @@ FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
     box->setRect(40, 0, 1200, 80);
     box->setBrush(Qt::white);
     pen.setWidth(7);
-    pen.setColor(Qt::black);
     box->setPen(pen);
     addItem(box);
 
@@ -42,7 +41,7 @@ FirstSceneDoctor::FirstSceneDoctor(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -177,7 +176,7 @@ void FirstSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 1;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

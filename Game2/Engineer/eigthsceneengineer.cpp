@@ -8,10 +8,10 @@
 EigthSceneEngineer::EigthSceneEngineer(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("CubiclesEmpty.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/CubiclesEmpty.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(980, 450);
     addItem(character);
 
@@ -38,7 +38,7 @@ EigthSceneEngineer::EigthSceneEngineer(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1190, 35);
     addItem(enter);
 
@@ -46,7 +46,7 @@ EigthSceneEngineer::EigthSceneEngineer(QObject *parent) :
     enterState = 0;
 
     //declare sound
-    rocket = new QSound("Rocket.wav");
+    rocket = new QSound(":/sounds/Rocket.wav");
 }
 
 /**
@@ -141,7 +141,7 @@ void EigthSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 8;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -160,9 +160,9 @@ void EigthSceneEngineer::showResult() {
     removeItem(option2);
     removeItem(option2Text);
 
-    setBackgroundBrush(QBrush(QImage("SpaceShuttle.png").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/SpaceShuttle.png").scaledToWidth(1280).scaledToHeight(720)));
 
-    vasa = new QGraphicsPixmapItem(QPixmap("VASA.png").scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    vasa = new QGraphicsPixmapItem(QPixmap(":/images2/VASA.png").scaled(180, 180, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     vasa->setPos(1095, 150);
     addItem(vasa);
 

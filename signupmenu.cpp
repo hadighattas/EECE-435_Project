@@ -16,7 +16,7 @@ SignUpMenu::SignUpMenu(QWidget *parent) :
     ui->setupUi(this);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
     ui->confPasswordLineEdit->setEchoMode(QLineEdit::Password);
-    ui->fbSignUp->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(SignUp.png)");
+    ui->fbSignUp->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/SignUp.png)");
 }
 
 SignUpMenu::~SignUpMenu()
@@ -55,7 +55,7 @@ void SignUpMenu::on_emailLineEdit_textChanged(const QString &arg1)
 {
     if(!this->validateEmail(arg1)) {
         emailValid = false;
-        ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(x.png)");
+        ui->emailValidateView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(qrl:/images2/x.png)");
     }
     else{
         emailValid = true;
@@ -133,18 +133,15 @@ void SignUpMenu::on_signupButton_clicked()
             ui->message->setText("Passwords do not match");
             return;
         }
-        user.signUp(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(),
-                    ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(),
-                    Gender);
-        user.login(ui->usernameLineEdit->text(), ui->passwordLineEdit->text());
+        user.storeData(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(), ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(), Gender);
+        user.signUp();
+        user.login(ui->emailLineEdit->text(), ui->passwordLineEdit->text());
         theUser = user;
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);
         q->setCurrentWidget(mainMenu);
         mainIndex = q->indexOf(mainMenu);
-        string s="notify-send 'Welcome "+ui->usernameLineEdit->text().toStdString()+"' 'You have successfully signed up.' '-t' 100";
-        system(s.c_str());
     }
 }
 

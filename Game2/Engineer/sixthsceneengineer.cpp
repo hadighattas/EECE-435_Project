@@ -8,10 +8,10 @@
 SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Cubicles.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Cubicles.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape11-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(980, 450);
     addItem(character);
 
@@ -40,14 +40,14 @@ SixthSceneEngineer::SixthSceneEngineer(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
     //enterstate determines if we want to read the enter key, and what to do if we do
     enterState = 0;
 
-    notification = new QSound("Notification.wav");
+    notification = new QSound(":/sounds/Notification.wav");
 }
 
 /**
@@ -65,7 +65,7 @@ void SixthSceneEngineer::keyPressEvent(QKeyEvent *event) {
     */
     if (enterState == 0) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-            setBackgroundBrush(QBrush(QImage("CubiclesBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
+            setBackgroundBrush(QBrush(QImage(":/images2/CubiclesBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
             box->setRect(40, 0, 1200, 100);
             story->setPlainText("Suddenly you receive this notification on your phone.\nYou know the money does not belong to you and was transferred by error.\nWhat should you do?");
             removeItem(enter);
@@ -73,7 +73,7 @@ void SixthSceneEngineer::keyPressEvent(QKeyEvent *event) {
             notification->play();
 
             //adding phone
-            phone = new QGraphicsPixmapItem(QPixmap("MessagePhone.png").scaled(230, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            phone = new QGraphicsPixmapItem(QPixmap(":/images2/MessagePhone.png").scaled(230, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             phone->setPos(60, 120);
             addItem(phone);
 
@@ -165,7 +165,7 @@ void SixthSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 6;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

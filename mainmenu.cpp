@@ -25,8 +25,6 @@ void MainMenu::on_game1Button_clicked()
     game1menu->setStackedWidget(q);
     ui->stackedWidget_2->addWidget(game1menu);
     ui->stackedWidget_2->setCurrentWidget(game1menu);
-
-    theUser.addGameScore(1, 400);
 }
 
 void MainMenu::on_game2Button_clicked()
@@ -54,7 +52,7 @@ void MainMenu::on_signOutButton_clicked()
         q->removeWidget(widget);
         widget->deleteLater();
     }
-    WelcomeMenu *welcomemenu=new WelcomeMenu;
+    WelcomeMenu *welcomemenu = new WelcomeMenu;
     welcomemenu->setStackedWidget(q);
     q->addWidget(welcomemenu);
     q->setCurrentWidget(welcomemenu);
@@ -69,4 +67,7 @@ void MainMenu::on_profileButton_clicked()
     ui->stackedWidget_2->addWidget(profile);
     ui->stackedWidget_2->setCurrentWidget(profile);
 
+    theUser.averageGlobalScore(1);
+    theUser.averageGlobalScore(2);
+    theUser.averageGlobalScore(3);
 }

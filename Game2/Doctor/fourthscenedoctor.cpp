@@ -3,10 +3,10 @@
 FourthSceneDoctor::FourthSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("HospitalOffice.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/HospitalOffice.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(950, 350);
     addItem(character);
 
@@ -29,7 +29,7 @@ FourthSceneDoctor::FourthSceneDoctor(QObject *parent) :
     briefcase = new QGraphicsPixmapItem;
     records = new QGraphicsPixmapItem;
     water = new QGraphicsPixmapItem;
-    waterSound = new QSound("Water.wav");
+    waterSound = new QSound(":/sounds/Water.wav");
     waterSound->setLoops(2);
 
     countTimer = 30;
@@ -37,7 +37,7 @@ FourthSceneDoctor::FourthSceneDoctor(QObject *parent) :
     connect(waterTimer, SIGNAL(timeout()), this, SLOT(updateScene()));
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -55,17 +55,17 @@ void FourthSceneDoctor::keyPressEvent(QKeyEvent *event) {
 
             pen.setWidth(5);
 
-            records->setPixmap(QPixmap("Records.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            records->setPixmap(QPixmap(":/images2/Records.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             records->setPos(440, 285);
             addItem(records);
 
-            briefcase->setPixmap(QPixmap("Briefcase.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            briefcase->setPixmap(QPixmap(":/images2/Briefcase.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             briefcase->setPos(690, 285);
             addItem(briefcase);
 
             enterState = 1;
 
-            water->setPixmap(QPixmap("Water.png").scaled(1279, 576, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            water->setPixmap(QPixmap(":/images2/Water.png").scaled(1279, 576, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             water->setPos(0, 660);
             waterTimer->start(250);
             waterSound->play();
@@ -98,7 +98,7 @@ void FourthSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 4;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

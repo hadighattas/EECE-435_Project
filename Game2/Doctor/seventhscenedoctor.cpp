@@ -8,10 +8,10 @@
 SeventhSceneDoctor::SeventhSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("OperationRoom2.png").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/OperationRoom2.png").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(700, 400);
     addItem(character);
 
@@ -65,11 +65,11 @@ SeventhSceneDoctor::SeventhSceneDoctor(QObject *parent) :
     option3Text->setPos(490, 370);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
-    breakingSound = new QSound("BreakingSound.wav");
+    breakingSound = new QSound(":/sounds/BreakingSound.wav");
 
     clickState = 0;
     enterState = 0;
@@ -94,7 +94,7 @@ void SeventhSceneDoctor::keyPressEvent(QKeyEvent *event) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             breakingSound->play();
             story->setPlainText("You accidentally break an object in the room.\nWhat should you do?");
-            setBackgroundBrush(QBrush(QImage("OperationRoomObject.png").scaledToWidth(1280).scaledToHeight(720)));
+            setBackgroundBrush(QBrush(QImage(":/images2/OperationRoomObject.png").scaledToWidth(1280).scaledToHeight(720)));
             removeItem(enter);
 
             pen.setWidth(5);
@@ -129,7 +129,7 @@ void SeventhSceneDoctor::keyPressEvent(QKeyEvent *event) {
         if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
             breakingSound->play();
             story->setPlainText("The nurse accidentally breaks one of your tools.\nWhat should you do?");
-            setBackgroundBrush(QBrush(QImage("OperationRoomObject.png").scaledToWidth(1280).scaledToHeight(720)));
+            setBackgroundBrush(QBrush(QImage(":/images2/OperationRoomObject.png").scaledToWidth(1280).scaledToHeight(720)));
             removeItem(enter);
 
             pen.setWidth(5);
@@ -219,7 +219,7 @@ void SeventhSceneDoctor::secondScenario() {
      * Adds graphics for second scenario.\n
      * enterState is set to 2 so that enter key shows options of second scenario.\n
      */
-    setBackgroundBrush(QBrush(QImage("OperationRoom2.png").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/OperationRoom2.png").scaledToWidth(1280).scaledToHeight(720)));
 
     character->setPos(250, 400);
     addItem(enter);
@@ -230,7 +230,7 @@ void SeventhSceneDoctor::secondScenario() {
     removeItem(option2Text);
     removeItem(option3Text);
 
-    nurse = new QGraphicsPixmapItem(QPixmap("Nurse.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    nurse = new QGraphicsPixmapItem(QPixmap(":/images2/Nurse.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     nurse->setPos(700, 400);
     addItem(nurse);
 
@@ -251,7 +251,7 @@ void SeventhSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 8;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

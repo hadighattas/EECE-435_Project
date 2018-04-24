@@ -3,10 +3,10 @@
 SixthSceneDoctor::SixthSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Vacation.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Vacation.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("DoctorVacation.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/DoctorVacation.png").scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(530, 395);
     addItem(character);
 
@@ -32,7 +32,7 @@ SixthSceneDoctor::SixthSceneDoctor(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -40,8 +40,8 @@ SixthSceneDoctor::SixthSceneDoctor(QObject *parent) :
     enterState = 0;
     response = 0;
 
-    ringtone = new QSound("Ringtone.wav");
-    viber = new QSound("Vibration.wav");
+    ringtone = new QSound(":/sounds/Ringtone.wav");
+    viber = new QSound(":/sounds/Vibration.wav");
 
 }
 
@@ -52,7 +52,7 @@ void SixthSceneDoctor::keyPressEvent(QKeyEvent *event) {
             removeItem(enter);
 
             //adding phone
-            phone = new QGraphicsPixmapItem(QPixmap("PhonePatient.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            phone = new QGraphicsPixmapItem(QPixmap(":/images2/PhonePatient.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             phone->setPos(60, 120);
             phone->setTransformationMode(Qt::SmoothTransformation);
             phone->setTransformOriginPoint(115, 250);
@@ -155,7 +155,7 @@ void SixthSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 6;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }

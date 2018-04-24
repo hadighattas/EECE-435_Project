@@ -6,6 +6,8 @@
 #include <QStringList>
 #include <string>
 
+#include "../globalindices.h"
+
 namespace Ui {
 class Game3Score;
 }

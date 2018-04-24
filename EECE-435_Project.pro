@@ -126,3 +126,6 @@ FORMS    += mainwindow.ui \
     Game3/game3menu.ui \
     Game3/game3score.ui \
     profile.ui
+
+RESOURCES += \
+    resources.qrc

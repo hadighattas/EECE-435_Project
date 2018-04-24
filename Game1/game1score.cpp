@@ -32,17 +32,17 @@ void Game1Score::setScore(int lives, int timeLeft, QStringList *finalValues, QSt
 
     for (int i = 0; i < lives; i++) {
         if( i == 0 )
-            ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 1 )
-            ui->graphicsView_2->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView_2->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 2 )
-            ui->graphicsView_3->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView_3->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 3 )
-            ui->graphicsView_4->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView_4->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 4 )
-            ui->graphicsView_5->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView_5->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
         else if ( i == 5 )
-            ui->graphicsView_6->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(Shape10-50.png)");
+            ui->graphicsView_6->setStyleSheet("background:transparent;\nborder:0px;\nbackground-image: url(:/images2/Shape10-50.png)");
     }
 
     if((finalValues->size()*100 - finalVices->length()*150 + 5*timeLeft) < 0)
@@ -64,7 +64,7 @@ void Game1Score::setStackedWidget(QStackedWidget *stack) {
     this->q = stack;
 }
 
-void Game1Score::on_loginButton_clicked()
+void Game1Score::on_exitButton_clicked()
 {
     q->setCurrentIndex(mainIndex);
     q->show();

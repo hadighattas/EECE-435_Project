@@ -8,19 +8,19 @@
 FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Cubicles.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Cubicles.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
     //adding characters
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape11-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(1060, 470);
     addItem(character);
 
-    your_friend = new QGraphicsPixmapItem(QPixmap("Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    your_friend = new QGraphicsPixmapItem(QPixmap(":/images2/Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     your_friend->setPos(90, 460);
     addItem(your_friend);
 
-    your_colleague = new QGraphicsPixmapItem(QPixmap("Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    your_colleague = new QGraphicsPixmapItem(QPixmap(":/images2/Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     your_colleague->setPos(530, 465);
     addItem(your_colleague);
 
@@ -49,7 +49,7 @@ FifthSceneEngineer::FifthSceneEngineer(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -160,7 +160,7 @@ void FifthSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 5;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -179,14 +179,14 @@ void FifthSceneEngineer::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
     else if (clickState == 1) {
          QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
          if (item == your_friend) {
-             your_friend->setPixmap(QPixmap("FriendGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_friend->setPixmap(QPixmap(":/images2/FriendGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
          else if (item == your_colleague) {
-             your_colleague->setPixmap(QPixmap("ColleagueGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_colleague->setPixmap(QPixmap(":/images2/ColleagueGlow.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
          else {
-             your_friend->setPixmap(QPixmap("Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-             your_colleague->setPixmap(QPixmap("Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_friend->setPixmap(QPixmap(":/images2/Friend.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             your_colleague->setPixmap(QPixmap(":/images2/Colleague.png").scaled(240, 240, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
     }
 }

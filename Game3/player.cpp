@@ -21,13 +21,13 @@ void Player::setDifficulty(int diff) {
      */
     this->difficulty = diff;
     if (difficulty == 0) {
-        setPixmap((QPixmap("Shape4-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        setPixmap((QPixmap(":/images2/Shape4-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
     else if (difficulty == 1) {
-        setPixmap((QPixmap("Shape5-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        setPixmap((QPixmap(":/images2/Shape5-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
     else if (difficulty == 2) {
-        setPixmap((QPixmap("Shape6-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        setPixmap((QPixmap(":/images2/Shape6-150.png")).scaled(60, 60, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
 }
 

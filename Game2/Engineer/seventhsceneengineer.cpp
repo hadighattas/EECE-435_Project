@@ -8,14 +8,14 @@
 SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Lobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Lobby.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape11-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape11-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(928, 250);
     addItem(character);
 
-    blindCharacter = new QGraphicsPixmapItem(QPixmap("Blind.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    blindCharacter = new QGraphicsPixmapItem(QPixmap(":/images2/Blind.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     blindCharacter->setPos(245, 170);
     addItem(blindCharacter);
 
@@ -46,7 +46,7 @@ SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
@@ -54,8 +54,8 @@ SeventhSceneEngineer::SeventhSceneEngineer(QObject *parent) :
     response = 0;
     timePassed = 0;
 
-    fireAlarm = new QSound("FireAlarm.wav");
-    fireSound = new QSound("FireSound.wav");
+    fireAlarm = new QSound(":/sounds/FireAlarm.wav");
+    fireSound = new QSound(":/sounds/FireSound.wav");
 }
 
 /**
@@ -107,7 +107,7 @@ void SeventhSceneEngineer::keyPressEvent(QKeyEvent *event) {
 
             enterState = 1;
 
-            fire->setPixmap(QPixmap("Fire.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            fire->setPixmap(QPixmap(":/images2/Fire.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             fire->setPos(425, 200);
             addItem(fire);
 
@@ -157,7 +157,7 @@ void SeventhSceneEngineer::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfEngineer = 7;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -201,7 +201,7 @@ void SeventhSceneEngineer::showResult() {
     else if (response == 2) {
         story->setPlainText("Congratulations!\nYou saved yourself and\nyour colleague.\nEveryone now thinks of\nyou as a hero!");
         blindCharacter->setPos(950, 400);
-        blindCharacter->setPixmap(QPixmap("Blind.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        blindCharacter->setPixmap(QPixmap(":/images2/Blind.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
 
     enterState = 2;
@@ -218,7 +218,7 @@ void SeventhSceneEngineer::updateScene() {
      */
     timePassed++;
     QPixmap oldPixmap = fire->pixmap();
-    fire->setPixmap(QPixmap("Fire.png").scaled(oldPixmap.width() + 12, oldPixmap.height() + 12, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    fire->setPixmap(QPixmap(":/images2/Fire.png").scaled(oldPixmap.width() + 12, oldPixmap.height() + 12, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     fire->setPos(fire->x(), fire->y() - 5);
     if (timePassed == 15) {
         showResult();

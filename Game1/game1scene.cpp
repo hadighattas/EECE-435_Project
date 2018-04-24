@@ -19,10 +19,10 @@
 Game1Scene::Game1Scene(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("Game1Background.jpg").scaledToHeight(720).scaledToWidth(1280)));
+    setBackgroundBrush(QBrush(QImage(":/images2/Game1Background.jpg").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
 
-    blurr = new QGraphicsPixmapItem(QPixmap("Game1BackgroundBlurred.jpg").scaled(1280, 720));
+    blurr = new QGraphicsPixmapItem(QPixmap(":/images2/Game1BackgroundBlurred.jpg").scaled(1280, 720));
     blurr->setPos(1,1);
     blurr->setZValue(20);
     addItem(blurr);
@@ -48,7 +48,7 @@ Game1Scene::Game1Scene(QObject *parent) :
     timerFrame = new QTimer(this);
     connect(timerFrame, SIGNAL(timeout()), this, SLOT(updateLives()));
 
-    human = new QGraphicsPixmapItem((QPixmap("Shape9-75.png")).scaled(75, 75));
+    human = new QGraphicsPixmapItem((QPixmap(":/images2/Shape9-75.png")).scaled(75, 75));
     human->setPos(623, 586);
     addItem(human);
 
@@ -73,7 +73,7 @@ Game1Scene::Game1Scene(QObject *parent) :
     addItem(exit);
 
     for(int i = 0; i < 3; i++){
-        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap(":/images2/Shape10-50.png"));
         life->setPos(150 + 60*i, 0);
         addItem(life);
     }
@@ -245,7 +245,7 @@ void Game1Scene::updateLives() {
     character->checkCollisions();
     if (livesCount < 6) {
         if(character->getValues()->size() > valuesNumber){
-            QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+            QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap(":/images2/Shape10-50.png"));
             life->setPos(150 + 60*(livesCount), 0);
             livesCount++;
             addItem(life);

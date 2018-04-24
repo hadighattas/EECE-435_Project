@@ -8,18 +8,18 @@
 ThirdSceneDoctor::ThirdSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("HospitalLobbyBlurred.png").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/HospitalLobbyBlurred.png").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(100, 500);
     addItem(character);
 
-    money = new QGraphicsPixmapItem(QPixmap("Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    money = new QGraphicsPixmapItem(QPixmap(":/images2/Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     money->setPos(440, 285);
     addItem(money);
 
-    moneyStack = new QGraphicsPixmapItem(QPixmap("MoneyStack.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    moneyStack = new QGraphicsPixmapItem(QPixmap(":/images2/MoneyStack.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     moneyStack->setPos(690, 285);
     addItem(moneyStack);
 
@@ -59,13 +59,13 @@ void ThirdSceneDoctor::mousePressEvent(QGraphicsSceneMouseEvent *event){
         helping += 1;
         moneyGlobal += 1000;
         response = 0;
-        QSound::play("ChaChing.wav");
+        QSound::play(":/sounds/ChaChing.wav");
         showResult();
     }
     else if (item == moneyStack) {
         moneyGlobal += 6000;
         response = 1;
-        QSound::play("ChaChing.wav");
+        QSound::play(":/sounds/ChaChing.wav");
         showResult();
     }
 }
@@ -74,7 +74,7 @@ void ThirdSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 3;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -84,7 +84,7 @@ void ThirdSceneDoctor::showResult() {
     removeItem(moneyStack);
     box->setRect(490, 260, 300, 200);
 
-    enter->setPixmap(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter->setPixmap(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(740, 410);
     enter->setZValue(2);
     addItem(enter);
@@ -102,14 +102,14 @@ void ThirdSceneDoctor::showResult() {
 void ThirdSceneDoctor::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
     QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
     if (item == money) {
-        money->setPixmap(QPixmap("MoneyGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        money->setPixmap(QPixmap(":/images2/MoneyGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
     else if (item == moneyStack) {
-        moneyStack->setPixmap(QPixmap("MoneyStackGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        moneyStack->setPixmap(QPixmap(":/images2/MoneyStackGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
     else {
-        money->setPixmap(QPixmap("Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        moneyStack->setPixmap(QPixmap("MoneyStack.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        money->setPixmap(QPixmap(":/images2/Money.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        moneyStack->setPixmap(QPixmap(":/images2/MoneyStack.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
 }
 

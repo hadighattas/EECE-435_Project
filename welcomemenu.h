@@ -24,8 +24,6 @@ private slots:
 
     void on_signupButton_clicked();
 
-    void on_guestButton_clicked();
-
 private:
     Ui::WelcomeMenu *ui;
     QStackedWidget *q;

@@ -41,11 +41,7 @@ void LoginMenu::on_loginButton_clicked()
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);
         q->setCurrentWidget(mainMenu);
-        string s="notify-send 'Welcome back "+ui->usernameLineEdit->text().toStdString()+"' 'You are now logged in' '-t' 200";
         mainIndex = q->indexOf(mainMenu);
-        system(s.c_str());
-
-
     }
     else
         ui->message->setText("Incorrect username or password");

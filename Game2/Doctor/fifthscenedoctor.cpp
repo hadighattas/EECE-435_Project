@@ -3,10 +3,10 @@
 FifthSceneDoctor::FifthSceneDoctor(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("OperationRoomDark.jpg").scaledToWidth(1280).scaledToHeight(720)));
+    setBackgroundBrush(QBrush(QImage(":/images2/OperationRoomDark.jpg").scaledToWidth(1280).scaledToHeight(720)));
     setSceneRect(0, 0, 1280, 720);
 
-    character = new QGraphicsPixmapItem(QPixmap("Shape12-400.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    character = new QGraphicsPixmapItem(QPixmap(":/images2/Shape12-400.png").scaled(300, 300, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     character->setPos(700, 400);
     addItem(character);
 
@@ -31,11 +31,11 @@ FifthSceneDoctor::FifthSceneDoctor(QObject *parent) :
     addItem(story);
 
     //adding enter symbol
-    enter = new QGraphicsPixmapItem(QPixmap("enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    enter = new QGraphicsPixmapItem(QPixmap(":/images2/enter-200.png").scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
     enter->setPos(1150, 30);
     addItem(enter);
 
-    footsteps = new QSound("Footsteps.wav");
+    footsteps = new QSound(":/sounds/Footsteps.wav");
     footsteps->setLoops(2);
 
     response = 0;
@@ -73,11 +73,11 @@ void FifthSceneDoctor::keyPressEvent(QKeyEvent *event) {
 
             pen.setWidth(5);
 
-            medicine->setPixmap(QPixmap("Medicine.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            medicine->setPixmap(QPixmap(":/images2/Medicine.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             medicine->setPos(300, 460);
             addItem(medicine);
 
-            exit->setPixmap(QPixmap("Exit.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            exit->setPixmap(QPixmap(":/images2/Exit.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             exit->setPos(1070, 570);
             addItem(exit);
 
@@ -135,7 +135,7 @@ void FifthSceneDoctor::changeScene() {
     QGraphicsView *view = views().at(0);
     view->setScene((QGraphicsScene*)this->parent());
     stateOfDoctor = 5;
-    QSound::play("ComputerSciFi.wav");
+    QSound::play(":/sounds/ComputerSciFi.wav");
     clear();
     deleteLater();
 }
@@ -146,7 +146,7 @@ void FifthSceneDoctor::showResult() {
     removeItem(sec);
 
     if (response == 0) {
-        setBackgroundBrush(QBrush(QImage("OperationRoomDark2.jpg").scaledToWidth(1280).scaledToHeight(720)));
+        setBackgroundBrush(QBrush(QImage(":/images2/OperationRoomDark2.jpg").scaledToWidth(1280).scaledToHeight(720)));
         box->setRect(40, 0, 1200, 80);
         addItem(enter);
         removeItem(exit);
@@ -161,7 +161,7 @@ void FifthSceneDoctor::showResult() {
         story->setPos(495, 280);
 
         removeItem(exit);
-        medicine->setPixmap(QPixmap("MedicineGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        medicine->setPixmap(QPixmap(":/images2/MedicineGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         story->setPlainText("You have decided to\nsteal the medicine.\nYour wife thanks you\nfor risking your job for her.");
         character->setPos(920, 400);
     }
@@ -172,7 +172,7 @@ void FifthSceneDoctor::showResult() {
         story->setPos(495, 280);
 
         removeItem(medicine);
-        exit->setPixmap(QPixmap("ExitGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        exit->setPixmap(QPixmap(":/images2/ExitGlow.png").scaled(170, 170, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         story->setPlainText("You have decided to\nleave without stealing.\nYour wife understands your\nduty of following the rules.");
         character->setPos(810, 340);
     }
@@ -185,14 +185,14 @@ void FifthSceneDoctor::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
     else if (clickState == 1) {
          QGraphicsItem *item = itemAt(event->scenePos(), QTransform());
          if (item == medicine) {
-            medicine->setPixmap(QPixmap("MedicineGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            medicine->setPixmap(QPixmap(":/images2/MedicineGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             }
          else if (item == exit) {
-            exit->setPixmap(QPixmap("ExitGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            exit->setPixmap(QPixmap(":/images2/ExitGlow.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
          else {
-             medicine->setPixmap(QPixmap("Medicine.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-             exit->setPixmap(QPixmap("Exit.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             medicine->setPixmap(QPixmap(":/images2/Medicine.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+             exit->setPixmap(QPixmap(":/images2/Exit.png").scaled(150, 150, Qt::KeepAspectRatio, Qt::SmoothTransformation));
          }
     }
 }

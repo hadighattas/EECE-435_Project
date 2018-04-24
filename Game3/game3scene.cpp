@@ -3,7 +3,7 @@
 Game3Scene::Game3Scene(QObject *parent) :
     QGraphicsScene(parent)
 {
-    setBackgroundBrush(QBrush(QImage("BackgroundGame3.jpg").scaledToHeight(720).scaledToWidth(1280)));
+    setBackgroundBrush(QBrush(QImage(":/images2/BackgroundGame3.jpg").scaledToHeight(720).scaledToWidth(1280)));
     setSceneRect(0, 0, 1280, 720);
     position1 = -1;
     position2 = -1;
@@ -31,11 +31,11 @@ Game3Scene::Game3Scene(QObject *parent) :
     exit->setFont(QFont("asap condensed", 18, QFont::Bold, false));
     addItem(exit);
 
-    flip = new QSound("CardFlip.wav");
-    fail = new QSound("FailSound.wav");
-    win = new QSound("WinningSound.wav");
-    correct = new QSound("Correct.wav");
-    wrong = new QSound("Wrong.wav");
+    flip = new QSound(":/sounds/CardFlip.wav");
+    fail = new QSound(":/sounds/FailSound.wav");
+    win = new QSound(":/sounds/WinningSound.wav");
+    correct = new QSound(":/sounds/Correct.wav");
+    wrong = new QSound(":/sounds/Wrong.wav");
 }
 /**
  * @brief Game3Scene::placeCards
@@ -55,7 +55,7 @@ void Game3Scene::placeCards() {
 
         int x = 100 + 180 * (i%6);
 
-        cards.insert(i ,new QGraphicsPixmapItem (QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
+        cards.insert(i ,new QGraphicsPixmapItem (QPixmap(":/images2/Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation)));
         cards.at(i)->setPos(x, y);
         stateOfCard.insert(i, CLOSED);// initialize state of all cards as closed
         addItem(cards.at(i));
@@ -187,7 +187,7 @@ void Game3Scene::setDifficulty(int diff) {
 
     // showing lives
     for(int i = 0; i < livesCount; i++){
-        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap("Shape10-50.png"));
+        QGraphicsPixmapItem *life = new QGraphicsPixmapItem(QPixmap(":/images2/Shape10-50.png"));
         life->setPos(0, 150 + 60*i);
         lives.insert(i, life);
         addItem(lives.at(i));
@@ -220,14 +220,14 @@ void Game3Scene::keyPressEvent(QKeyEvent *event) {
             position1 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            cards.at(position)->setPixmap(QPixmap(":/images2/CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
         }
         else if (position2 == -1 && stateOfCard.at(position) == CLOSED) {
             flip->play();
             position2 = position;
             stateOfCard.replace(position, OPEN);
             addItem(values.at(position));
-            cards.at(position)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            cards.at(position)->setPixmap(QPixmap(":/images2/CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
             if (values.at(position1)->toPlainText() == values.at(position2)->toPlainText())
                 timerMatch->start(1000);
             else
@@ -266,7 +266,7 @@ void Game3Scene::match() {
             for(int i= 0; i < 18; i++){
                 if(stateOfCard.at(i) == CLOSED){
                     addItem(values.at(i));
-                    cards.at(i)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                    cards.at(i)->setPixmap(QPixmap(":/images2/CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
             }
             timerEndGame->start(3000);
@@ -287,7 +287,7 @@ void Game3Scene::match() {
             for(int i= 0; i < 18; i++){
                 if(stateOfCard.at(i) == CLOSED){
                     addItem(values.at(i));
-                    cards.at(i)->setPixmap(QPixmap("CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                    cards.at(i)->setPixmap(QPixmap(":/images2/CardFront.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
                 }
             }
             timerEndGame->start(3000);
@@ -320,8 +320,8 @@ void Game3Scene::notMatch() {
     removeItem(values.at(position1));
     removeItem(values.at(position2));
 
-    cards.at(position1)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-    cards.at(position2)->setPixmap(QPixmap("Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    cards.at(position1)->setPixmap(QPixmap(":/images2/Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    cards.at(position2)->setPixmap(QPixmap(":/images2/Card.png").scaled(140, 176, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     position1 = -1;
     position2 = -1;
