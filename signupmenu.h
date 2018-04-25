@@ -43,7 +43,7 @@ private slots:
     void on_backButton_clicked();
     void signUpFB();
     void fbFailed();
-
+    void displaySignupResult(int);
     void on_usernameLineEdit_textChanged(const QString &arg1);
 
 private:

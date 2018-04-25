@@ -88,7 +88,7 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="styleSheet">
     <string notr="true">background: transparent;
-background-image:url(./Shape4-500.png);
+background-image:url(:/images2/Shape4-500.png);
 border:0px;</string>
    </property>
   </widget>

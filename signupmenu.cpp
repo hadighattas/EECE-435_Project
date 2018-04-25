@@ -119,13 +119,7 @@ void SignUpMenu::on_signupButton_clicked()
             ui->message->setText("Password too short");
             return;
         }
-        /**
-          * Check if user is already signed up with email
-        */
-        if (user->exists(ui->emailLineEdit->text(), ui->usernameLineEdit->text())) {
-            ui->message->setText("You already have an account");
-            return;
-        }
+
         /**
           * Check if both password and confirm password fields match
         */
@@ -135,8 +129,21 @@ void SignUpMenu::on_signupButton_clicked()
         }
         user->storeData(ui->firstLineEdit->text(), ui->lastLineEdit->text(), ui->emailLineEdit->text(), ui->usernameLineEdit->text(), ui->passwordLineEdit->text(), ui->ageSpinBox->text(), Gender);
         user->signUp();
-        user->login(ui->emailLineEdit->text(), ui->passwordLineEdit->text());
         theUser = user;
+        connect(user, SIGNAL(signupResult(int)), this, SLOT(displaySignupResult(int)));
+
+    }
+}
+
+void SignUpMenu::displaySignupResult(int result) {
+    if (result == EMAIL_EXISTS) {
+        ui->message->setText("You already have an account");
+    }
+    else if (result == FAILED) {
+        ui->message->setText("Signup failed. Please try again.");
+    }
+    else if (result == SUCCESS) {
+        user->login(ui->emailLineEdit->text(), ui->passwordLineEdit->text());
         MainMenu *mainMenu = new MainMenu;
         mainMenu->setStackedWidget(q);
         q->addWidget(mainMenu);

@@ -31,12 +31,17 @@ void User::storeData(QString firstName, QString lastName, QString email, QString
  * @return
  */
 bool User::signUp() {
-
+    connect(fbh, SIGNAL(notifyUserSignup(int)), this, SLOT(firebaseSignupResponse(int)));
     fbh->signUp();
     fbh->getGlobalScores();
 
     return true;
 }
+
+void User::firebaseSignupResponse(int result) {
+    emit signupResult(result);
+}
+
 /**
  * @brief User::login Logs in the user and loads his information
  * @param username
@@ -111,11 +116,13 @@ void User::addGameScore(int game, int score) {
 
 QStringList User::getGame1Scores() {
     QStringList list = fbh->getScore1();
+    qDebug() << "game1score:" << list;
     return list;
 }
 
 QStringList User::getGame2Scores() {
     QStringList list = fbh->getScore2();
+
     return list;
 }
 

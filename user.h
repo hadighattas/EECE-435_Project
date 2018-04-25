@@ -43,9 +43,10 @@ private:
 
 signals:
     void loginUserResult(bool);
+    void signupResult(int);
 
 public slots:
-
+    void firebaseSignupResponse(int);
     void loginResponse(bool success);
 };
 

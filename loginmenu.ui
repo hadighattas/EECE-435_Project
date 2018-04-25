@@ -127,7 +127,7 @@ color:white;
 </string>
    </property>
    <property name="text">
-    <string>USERNAME</string>
+    <string>       EMAIL</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">

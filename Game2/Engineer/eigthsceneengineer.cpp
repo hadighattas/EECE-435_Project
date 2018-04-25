@@ -78,7 +78,7 @@ void EigthSceneEngineer::keyPressEvent(QKeyEvent *event) {
             addItem(option1);
 
             //setting text of first option
-            option1Text->setPlainText("Reschedule the launch at the cost of losing a lot of money.");
+            option1Text->setPlainText("Report the error at the cost of losing a lot of money.");
             option1Text->setDefaultTextColor(QColor(Qt::black));
             option1Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
             option1Text->setPos(210, 290);
@@ -87,11 +87,11 @@ void EigthSceneEngineer::keyPressEvent(QKeyEvent *event) {
             //adding second option
             option2->setBrush(Qt::white);
             option2->setPen(pen);
-            option2->setRect(200, 340, 200, 40);
+            option2->setRect(200, 340, 600, 40);
             addItem(option2);
 
             //setting text of second option
-            option2Text->setPlainText("??????????????????????????.");
+            option2Text->setPlainText("Let someone else find out the error. It's not your responsibility.");
             option2Text->setDefaultTextColor(QColor(Qt::black));
             option2Text->setFont(QFont("Super Webcomic Bros.", 13, QFont::Normal, false));
             option2Text->setPos(210, 350);
@@ -124,7 +124,7 @@ void EigthSceneEngineer::mousePressEvent(QGraphicsSceneMouseEvent *event){
         showResult();
     }
     else if (item == option2 || item == option2Text) {
-        honesty -= 1;
+        honesty -= 1.5;
         response = 1;
         showResult();
     }
@@ -175,7 +175,7 @@ void EigthSceneEngineer::showResult() {
     if (response == 0)
         story->setPlainText("The space shuttle is finally ready to take off!\nYou have the privilege of being one of its first passangers.\nEnjoy the ride :)");
     else if (response == 1)
-        story->setPlainText("");
+        story->setPlainText("The space shuttle is finally ready to take off!\nYou have the privilege of being one of its first passangers.\nEnjoy the ride :)");
 
     enterState = 2;
 }

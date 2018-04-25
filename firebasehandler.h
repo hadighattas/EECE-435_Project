@@ -17,6 +17,10 @@
 #include <QJsonArray>
 #include <QVariant>
 
+#define SUCCESS 0
+#define EMAIL_EXISTS 1
+#define FAILED 3
+
 using namespace std;
 class FirebaseHandler : public QObject
 {
@@ -48,6 +52,7 @@ private:
 
 signals:
     void loginResult(bool);
+    void notifyUserSignup(int);
 
 
 public slots:

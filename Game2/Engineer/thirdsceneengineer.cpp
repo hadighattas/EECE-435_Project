@@ -70,7 +70,7 @@ void ThirdSceneEngineer::keyPressEvent(QKeyEvent *event) {
         if (enterState == 0) {
             story->setPlainText("Your wife calls!\nWhat should you do?");
             removeItem(enter);
-            setBackgroundBrush(QBrush(QImage("ConferenceRoomBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
+            setBackgroundBrush(QBrush(QImage(":/images2/ConferenceRoomBlurred.jpg").scaledToWidth(1280).scaledToHeight(720)));
 
             //adding phone
             phone = new QGraphicsPixmapItem(QPixmap(":/images2/PhoneIncoming.png").scaled(229, 500, Qt::KeepAspectRatio, Qt::SmoothTransformation));

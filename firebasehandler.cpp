@@ -83,6 +83,11 @@ void FirebaseHandler::addToDatabase(QNetworkReply *reply)
     QString localId = jsonObj["localId"].toString();
     this->localId = localId;
 
+    if (localId.isEmpty())
+        emit notifyUserSignup(EMAIL_EXISTS);
+
+    else {
+
     QNetworkAccessManager *manager = new QNetworkAccessManager();
     QNetworkRequest request;
     QNetworkReply *reply2 = NULL;
@@ -102,12 +107,21 @@ void FirebaseHandler::addToDatabase(QNetworkReply *reply)
             + "\", \"age\": \"" + age.toUtf8() + "\", \"gender\": \"" + gender.toUtf8() + "\"}";
     qDebug() << "hi:" << hi;
     reply2 = manager->put(request, hi);
+
+    }
 }
 
 void FirebaseHandler::replyFinished(QNetworkReply *reply)
 {
     QString strReply = (QString)reply->readAll();
     qDebug() << strReply;
+
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
+    QJsonObject jsonObj = jsonResponse.object();
+    if (jsonObj["first"].toString().isEmpty())
+        notifyUserSignup(FAILED);
+    else
+        notifyUserSignup(SUCCESS);
 }
 
 void FirebaseHandler::getUserData() {
@@ -130,25 +144,25 @@ void FirebaseHandler::getUserData() {
 
 void FirebaseHandler::replyGetData(QNetworkReply *reply) {
     QString strReply = (QString)reply->readAll();
-    //qDebug() << strReply;
+    qDebug() << strReply;
     QJsonDocument jsonResponse = QJsonDocument::fromJson(strReply.toUtf8());
     QJsonObject jsonObj = jsonResponse.object();
 
-    QString item = localId;
-    QJsonObject jsonObj2 = jsonObj[item].toObject();
-    this->firstName = jsonObj2["first"].toString();
-    this->lastName = jsonObj2["last"].toString();
-    this->username = jsonObj2["username"].toString();
-    this->age = jsonObj2["age"].toString();
-    this->gender = jsonObj2["gender"].toString();
+    this->firstName = jsonObj["first"].toString();
+    this->lastName = jsonObj["last"].toString();
+    this->username = jsonObj["username"].toString();
+    this->age = jsonObj["age"].toString();
+    this->gender = jsonObj["gender"].toString();
 
-    this->score1 = jsonObj2["score1"].toString().split(",");
+    this->score1 = jsonObj["score1"].toString().split(",");
+    qDebug() << "score1 from firebase avant clear:" << score1;
     if (this->score1.at(0) == "")
         this->score1.clear();
-    this->score2 = jsonObj2["score2"].toString().split(",");
+    qDebug() << "score1 from firebase:" << score1;
+    this->score2 = jsonObj["score2"].toString().split(",");
     if (this->score2.at(0) == "")
         this->score2.clear();
-    this->score3 = jsonObj2["score3"].toString().split(",");
+    this->score3 = jsonObj["score3"].toString().split(",");
     if (this->score3.at(0) == "")
         this->score3.clear();
 
@@ -172,8 +186,9 @@ QStringList FirebaseHandler::getScore1() {
     }
 
     void FirebaseHandler::addScore(int game, int score) {
-        called++;
-        if (called % 2 == 0) {
+        if (game == 1)
+            called++;
+        if ((called % 2 == 0) || (game == 2) || (game == 3)) {
         QString scoreString = QString::number(score);
 
         QStringList scoreList;

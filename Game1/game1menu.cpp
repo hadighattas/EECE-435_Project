@@ -8,6 +8,7 @@
 
 #include "game1menu.h"
 #include "ui_game1menu.h"
+#include <search.h>
 
 Game1Menu::Game1Menu(QWidget *parent) :
     QWidget(parent),
